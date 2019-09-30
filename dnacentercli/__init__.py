@@ -43,5 +43,5 @@ from .cli import main
 # requests_log.propagate = False
 
 from pkg_resources import get_distribution
-release = get_distribution('dnacenterscli').version
+release = get_distribution('dnacentercli').version
 __version__ = '.'.join(release.split('.')[:3])

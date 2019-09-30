@@ -152,7 +152,7 @@ def v1_2_10(ctx, username, password, encoded_auth, base_url,
     except Exception as e:
         stop_spinner(spinner)
         tbprint()
-        eprint('''Try "dnacentersdk v1-2-10 --help" for help.''')
+        eprint('''Try "dnacentercli v1-2-10 --help" for help.''')
         eprint('Error:', e)
         ctx.exit(-1)
 
@@ -216,7 +216,7 @@ def v1_3_0(ctx, username, password, encoded_auth, base_url,
     except Exception as e:
         stop_spinner(spinner)
         tbprint()
-        eprint('''Try "dnacentersdk v1-3-0 --help" for help.''')
+        eprint('''Try "dnacentercli v1-3-0 --help" for help.''')
         eprint('Error:', e)
         ctx.exit(-1)
 

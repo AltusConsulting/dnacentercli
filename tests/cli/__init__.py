@@ -23,7 +23,7 @@ SOFTWARE.
 """
 
 from click.testing import CliRunner
-from dnacentersdk.cli import main
+from dnacentercli.cli import main
 
 import pytest
 
