@@ -1,0 +1,103 @@
+#!/usr/bin/env bash
+# Run the project's test suite(s).
+#
+# Copyright (c) 2019 Cisco and/or its affiliates.
+# License: MIT
+
+
+# Run all tests by default
+default=true
+module=('dnacentersdk')
+
+# Process Script Arguments
+for i in ${@}; do
+    case ${i} in
+        lint)
+        lint=true
+        default=
+        ;;
+
+        tests)
+        tests=true
+        default=
+        ;;
+
+        ratelimiting)
+        ratelimiting=true
+        default=
+        ;;
+
+        api)
+        api=true
+        default=
+        ;;
+
+        cli)
+        cli=true
+        default=
+        ;;
+
+        *)
+        module+=($i)
+        ;;
+    esac
+done
+
+
+set -e
+cd "$(dirname "$0")/.."
+
+
+# Lint the source code
+if [ ${default} ] || [ ${lint} ]; then
+    echo "==> Linting the source code"
+    flake8
+    flake8 --config=.test.flake8 tests/
+fi
+
+# Run the rate-limit tests
+if [ ${ratelimiting} ]; then
+    echo "==> Running the rate-limit tests"
+    pytest -s -m "ratelimit"
+fi
+
+# Run only API module test
+if [ ${api} ]; then
+    parent_module='api'
+    if [ ${#module[@]} -gt 1 ]; then
+        temp=${module[@]}
+        # Join array elements with ' or '
+        modules=${temp// / or }
+        echo "==> Running the "${parent_module}": "${modules}" tests"
+        pytest -s -m "${parent_module} and ( ${modules} )"
+        exit 0
+    else
+        echo "==> Running the "${parent_module}" tests"
+        pytest -s -m "${parent_module}"
+        exit 0
+    fi
+fi
+
+# Run only CLI module test
+if [ ${cli} ]; then
+    parent_module='cli'
+    if [ ${#module[@]} -gt 1 ]; then
+        temp=${module[@]}
+        # Join array elements with ' or '
+        modules=${temp// / or }
+        echo "==> Running the "${parent_module}": "${modules}" tests"
+        pytest -s -m "${parent_module} and ( ${modules} )"
+        exit 0
+    else
+        echo "==> Running the "${parent_module}" tests"
+        pytest -s -m "${parent_module}"
+        exit 0
+    fi
+fi
+
+# Run the test suite
+if [ ${default} ] || [ ${tests} ]; then
+    echo "==> Running the test suite"
+    pytest -s -m "not ratelimit"
+fi
+
