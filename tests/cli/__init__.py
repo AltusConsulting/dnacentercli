@@ -23,8 +23,12 @@ SOFTWARE.
 """
 
 from click.testing import CliRunner
-from dnacentersdk.cli import main
-
+from dnacentercli.cli import main
+from tests.environment import (
+    DNA_CENTER_USERNAME, DNA_CENTER_PASSWORD,
+    DNA_CENTER_ENCODED_AUTH
+)
+from tests.config import DEFAULT_BASE_URL
 import pytest
 
 
@@ -37,3 +41,19 @@ def runner(request):
 @pytest.fixture(scope='session')
 def cli():
     return main
+
+
+@pytest.fixture(scope='session')
+def auth_options():
+    result_username = DNA_CENTER_USERNAME is not None and ["--username", "{}".format(DNA_CENTER_USERNAME)] or []
+    result_password = DNA_CENTER_PASSWORD is not None and ["--password", "{}".format(DNA_CENTER_PASSWORD)] or []
+    result_encoded_auth = DNA_CENTER_ENCODED_AUTH is not None and ["--encoded_auth", "{}".format(DNA_CENTER_ENCODED_AUTH)] or []
+    result = [
+      *result_username,
+      *result_password,
+      *result_encoded_auth,
+      "--base_url", "{}".format(DEFAULT_BASE_URL),
+      "--verify", "{}".format(True),
+      "--debug", "{}".format(False),
+    ]
+    return list(filter(lambda x: x != '', result))
