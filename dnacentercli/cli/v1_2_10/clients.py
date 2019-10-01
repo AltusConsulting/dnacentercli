@@ -29,8 +29,7 @@ def clients(ctx, obj):
 @clients.command()
 @click.option('--timestamp', type=str,
               help='''Epoch time(in milliseconds) when the Client health data is required.''',
-              show_default=True
-             )
+              show_default=True)
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
@@ -60,10 +59,10 @@ def get_overall_client_health(obj, pretty_print, beep,
         if payload is not None:
             payload = json.loads(payload)
         result = obj.get_overall_client_health(
-                                               timestamp=timestamp,
-                                               headers=headers,
-                                               payload=payload,
-                                               active_validation=active_validation)
+            timestamp=timestamp,
+            headers=headers,
+            payload=payload,
+            active_validation=active_validation)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -76,13 +75,11 @@ def get_overall_client_health(obj, pretty_print, beep,
 @clients.command()
 @click.option('--timestamp', type=str,
               help='''Epoch time(in milliseconds) when the Client health data is required.''',
-              show_default=True
-             )
+              show_default=True)
 @click.option('--mac_address', type=str,
               help='''MAC Address of the client.''',
               required=True,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
@@ -113,11 +110,11 @@ def get_client_detail(obj, pretty_print, beep,
         if payload is not None:
             payload = json.loads(payload)
         result = obj.get_client_detail(
-                                       timestamp=timestamp,
-                                       mac_address=mac_address,
-                                       headers=headers,
-                                       payload=payload,
-                                       active_validation=active_validation)
+            timestamp=timestamp,
+            mac_address=mac_address,
+            headers=headers,
+            payload=payload,
+            active_validation=active_validation)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:

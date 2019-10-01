@@ -55,9 +55,9 @@ def get_all_keywords_of_clis_accepted(obj, pretty_print, beep,
         if payload is not None:
             payload = json.loads(payload)
         result = obj.get_all_keywords_of_clis_accepted(
-                                                       headers=headers,
-                                                       payload=payload,
-                                                       active_validation=active_validation)
+            headers=headers,
+            payload=payload,
+            active_validation=active_validation)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -71,28 +71,23 @@ def get_all_keywords_of_clis_accepted(obj, pretty_print, beep,
 @click.option('--commands', type=str, multiple=True,
               help='''CommandRunnerDTO's commands (list of strings).''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--description', type=str,
               help='''CommandRunnerDTO's description.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--deviceuuids', type=str, multiple=True,
               help='''CommandRunnerDTO's deviceUuids (list of strings).''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--name', type=str,
               help='''CommandRunnerDTO's name.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--timeout', type=int,
               help='''CommandRunnerDTO's timeout.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
@@ -128,14 +123,14 @@ def run_read_only_commands_on_devices(obj, pretty_print, beep,
         commands = list(commands)
         deviceuuids = list(deviceuuids)
         result = obj.run_read_only_commands_on_devices(
-                                                       commands=commands,
-                                                       description=description,
-                                                       deviceuuids=deviceuuids,
-                                                       name=name,
-                                                       timeout=timeout,
-                                                       headers=headers,
-                                                       payload=payload,
-                                                       active_validation=active_validation)
+            commands=commands,
+            description=description,
+            deviceuuids=deviceuuids,
+            name=name,
+            timeout=timeout,
+            headers=headers,
+            payload=payload,
+            active_validation=active_validation)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:

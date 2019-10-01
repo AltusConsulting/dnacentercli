@@ -55,9 +55,9 @@ def get_vlan_details(obj, pretty_print, beep,
         if payload is not None:
             payload = json.loads(payload)
         result = obj.get_vlan_details(
-                                      headers=headers,
-                                      payload=payload,
-                                      active_validation=active_validation)
+            headers=headers,
+            payload=payload,
+            active_validation=active_validation)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -96,9 +96,9 @@ def get_site_topology(obj, pretty_print, beep,
         if payload is not None:
             payload = json.loads(payload)
         result = obj.get_site_topology(
-                                       headers=headers,
-                                       payload=payload,
-                                       active_validation=active_validation)
+            headers=headers,
+            payload=payload,
+            active_validation=active_validation)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -111,8 +111,7 @@ def get_site_topology(obj, pretty_print, beep,
 @networks.command()
 @click.option('--node_type', type=str,
               help='''nodeType query parameter.''',
-              show_default=True
-             )
+              show_default=True)
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
@@ -142,10 +141,10 @@ def get_physical_topology(obj, pretty_print, beep,
         if payload is not None:
             payload = json.loads(payload)
         result = obj.get_physical_topology(
-                                           node_type=node_type,
-                                           headers=headers,
-                                           payload=payload,
-                                           active_validation=active_validation)
+            node_type=node_type,
+            headers=headers,
+            payload=payload,
+            active_validation=active_validation)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -159,8 +158,7 @@ def get_physical_topology(obj, pretty_print, beep,
 @click.option('--topology_type', type=str,
               help='''Type of topology(OSPF,ISIS,etc).''',
               required=True,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
@@ -190,10 +188,10 @@ def get_l3_topology_details(obj, pretty_print, beep,
         if payload is not None:
             payload = json.loads(payload)
         result = obj.get_l3_topology_details(
-                                             topology_type=topology_type,
-                                             headers=headers,
-                                             payload=payload,
-                                             active_validation=active_validation)
+            topology_type=topology_type,
+            headers=headers,
+            payload=payload,
+            active_validation=active_validation)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -207,8 +205,7 @@ def get_l3_topology_details(obj, pretty_print, beep,
 @click.option('--vlan_id', type=str,
               help='''Vlan Name for e.g Vlan1, Vlan23 etc.''',
               required=True,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
@@ -238,10 +235,10 @@ def get_topology_details(obj, pretty_print, beep,
         if payload is not None:
             payload = json.loads(payload)
         result = obj.get_topology_details(
-                                          vlan_id=vlan_id,
-                                          headers=headers,
-                                          payload=payload,
-                                          active_validation=active_validation)
+            vlan_id=vlan_id,
+            headers=headers,
+            payload=payload,
+            active_validation=active_validation)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -254,8 +251,7 @@ def get_topology_details(obj, pretty_print, beep,
 @networks.command()
 @click.option('--timestamp', type=str,
               help='''Epoch time(in milliseconds) when the Network health data is required.''',
-              show_default=True
-             )
+              show_default=True)
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
@@ -285,10 +281,10 @@ def get_overall_network_health(obj, pretty_print, beep,
         if payload is not None:
             payload = json.loads(payload)
         result = obj.get_overall_network_health(
-                                                timestamp=timestamp,
-                                                headers=headers,
-                                                payload=payload,
-                                                active_validation=active_validation)
+            timestamp=timestamp,
+            headers=headers,
+            payload=payload,
+            active_validation=active_validation)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:

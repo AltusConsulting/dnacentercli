@@ -29,64 +29,49 @@ def path_trace(ctx, obj):
 @path_trace.command()
 @click.option('--periodic_refresh', type=bool,
               help='''Is analysis periodically refreshed?.''',
-              show_default=True
-             )
+              show_default=True)
 @click.option('--source_ip', type=str,
               help='''Source IP address.''',
-              show_default=True
-             )
+              show_default=True)
 @click.option('--dest_ip', type=str,
               help='''Destination IP adress.''',
-              show_default=True
-             )
+              show_default=True)
 @click.option('--source_port', type=str,
               help='''Source port.''',
-              show_default=True
-             )
+              show_default=True)
 @click.option('--dest_port', type=str,
               help='''Destination port.''',
-              show_default=True
-             )
+              show_default=True)
 @click.option('--gt_create_time', type=str,
               help='''Analyses requested after this time.''',
-              show_default=True
-             )
+              show_default=True)
 @click.option('--lt_create_time', type=str,
               help='''Analyses requested before this time.''',
-              show_default=True
-             )
+              show_default=True)
 @click.option('--protocol', type=str,
               help='''protocol query parameter.''',
-              show_default=True
-             )
+              show_default=True)
 @click.option('--status', type=str,
               help='''status query parameter.''',
-              show_default=True
-             )
+              show_default=True)
 @click.option('--task_id', type=str,
               help='''Task ID.''',
-              show_default=True
-             )
+              show_default=True)
 @click.option('--last_update_time', type=str,
               help='''Last update time.''',
-              show_default=True
-             )
+              show_default=True)
 @click.option('--limit', type=str,
               help='''Number of resources returned.''',
-              show_default=True
-             )
+              show_default=True)
 @click.option('--offset', type=str,
               help='''Start index of resources returned (1-based).''',
-              show_default=True
-             )
+              show_default=True)
 @click.option('--order', type=str,
               help='''Order by this field.''',
-              show_default=True
-             )
+              show_default=True)
 @click.option('--sort_by', type=str,
               help='''Sort by this field.''',
-              show_default=True
-             )
+              show_default=True)
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
@@ -130,24 +115,24 @@ def retrives_all_previous_pathtraces_summary(obj, pretty_print, beep,
         if payload is not None:
             payload = json.loads(payload)
         result = obj.retrives_all_previous_pathtraces_summary(
-                                                              periodic_refresh=periodic_refresh,
-                                                              source_ip=source_ip,
-                                                              dest_ip=dest_ip,
-                                                              source_port=source_port,
-                                                              dest_port=dest_port,
-                                                              gt_create_time=gt_create_time,
-                                                              lt_create_time=lt_create_time,
-                                                              protocol=protocol,
-                                                              status=status,
-                                                              task_id=task_id,
-                                                              last_update_time=last_update_time,
-                                                              limit=limit,
-                                                              offset=offset,
-                                                              order=order,
-                                                              sort_by=sort_by,
-                                                              headers=headers,
-                                                              payload=payload,
-                                                              active_validation=active_validation)
+            periodic_refresh=periodic_refresh,
+            source_ip=source_ip,
+            dest_ip=dest_ip,
+            source_port=source_port,
+            dest_port=dest_port,
+            gt_create_time=gt_create_time,
+            lt_create_time=lt_create_time,
+            protocol=protocol,
+            status=status,
+            task_id=task_id,
+            last_update_time=last_update_time,
+            limit=limit,
+            offset=offset,
+            order=order,
+            sort_by=sort_by,
+            headers=headers,
+            payload=payload,
+            active_validation=active_validation)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -161,8 +146,7 @@ def retrives_all_previous_pathtraces_summary(obj, pretty_print, beep,
 @click.option('--flow_analysis_id', type=str,
               help='''Flow analysis request id.''',
               required=True,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
@@ -192,10 +176,10 @@ def retrieves_previous_pathtrace(obj, pretty_print, beep,
         if payload is not None:
             payload = json.loads(payload)
         result = obj.retrieves_previous_pathtrace(
-                                                  flow_analysis_id=flow_analysis_id,
-                                                  headers=headers,
-                                                  payload=payload,
-                                                  active_validation=active_validation)
+            flow_analysis_id=flow_analysis_id,
+            headers=headers,
+            payload=payload,
+            active_validation=active_validation)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -209,8 +193,7 @@ def retrieves_previous_pathtrace(obj, pretty_print, beep,
 @click.option('--flow_analysis_id', type=str,
               help='''Flow analysis request id.''',
               required=True,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
@@ -240,10 +223,10 @@ def deletes_pathtrace_by_id(obj, pretty_print, beep,
         if payload is not None:
             payload = json.loads(payload)
         result = obj.deletes_pathtrace_by_id(
-                                             flow_analysis_id=flow_analysis_id,
-                                             headers=headers,
-                                             payload=payload,
-                                             active_validation=active_validation)
+            flow_analysis_id=flow_analysis_id,
+            headers=headers,
+            payload=payload,
+            active_validation=active_validation)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -257,43 +240,35 @@ def deletes_pathtrace_by_id(obj, pretty_print, beep,
 @click.option('--controlpath', type=bool,
               help='''FlowAnalysisRequest's controlPath.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--destip', type=str,
               help='''FlowAnalysisRequest's destIP.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--destport', type=str,
               help='''FlowAnalysisRequest's destPort.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--inclusions', type=str, multiple=True,
               help='''FlowAnalysisRequest's inclusions (list of strings).''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--periodicrefresh', type=bool,
               help='''FlowAnalysisRequest's periodicRefresh.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--protocol', type=str,
               help='''FlowAnalysisRequest's protocol.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--sourceip', type=str,
               help='''FlowAnalysisRequest's sourceIP.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--sourceport', type=str,
               help='''FlowAnalysisRequest's sourcePort.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
@@ -331,17 +306,17 @@ def initiate_a_new_pathtrace(obj, pretty_print, beep,
             payload = json.loads(payload)
         inclusions = list(inclusions)
         result = obj.initiate_a_new_pathtrace(
-                                              controlpath=controlpath,
-                                              destip=destip,
-                                              destport=destport,
-                                              inclusions=inclusions,
-                                              periodicrefresh=periodicrefresh,
-                                              protocol=protocol,
-                                              sourceip=sourceip,
-                                              sourceport=sourceport,
-                                              headers=headers,
-                                              payload=payload,
-                                              active_validation=active_validation)
+            controlpath=controlpath,
+            destip=destip,
+            destport=destport,
+            inclusions=inclusions,
+            periodicrefresh=periodicrefresh,
+            protocol=protocol,
+            sourceip=sourceip,
+            sourceport=sourceport,
+            headers=headers,
+            payload=payload,
+            active_validation=active_validation)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:

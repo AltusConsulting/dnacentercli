@@ -30,8 +30,7 @@ def fabric_wired(ctx, obj):
 @click.option('--device_ip_address', type=str,
               help='''device-ip-address path parameter.''',
               required=True,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
@@ -61,10 +60,10 @@ def deletes_border_device_from_sda_fabric(obj, pretty_print, beep,
         if payload is not None:
             payload = json.loads(payload)
         result = obj.deletes_border_device_from_sda_fabric(
-                                                           device_ip_address=device_ip_address,
-                                                           headers=headers,
-                                                           payload=payload,
-                                                           active_validation=active_validation)
+            device_ip_address=device_ip_address,
+            headers=headers,
+            payload=payload,
+            active_validation=active_validation)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -103,9 +102,9 @@ def adds_border_device_in_sda_fabric(obj, pretty_print, beep,
         if payload is not None:
             payload = json.loads(payload)
         result = obj.adds_border_device_in_sda_fabric(
-                                                      headers=headers,
-                                                      payload=payload,
-                                                      active_validation=active_validation)
+            headers=headers,
+            payload=payload,
+            active_validation=active_validation)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -119,8 +118,7 @@ def adds_border_device_in_sda_fabric(obj, pretty_print, beep,
 @click.option('--device_ip_address', type=str,
               help='''device-ip-address path parameter.''',
               required=True,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
@@ -150,10 +148,10 @@ def gets_border_device_details_from_sda_fabric(obj, pretty_print, beep,
         if payload is not None:
             payload = json.loads(payload)
         result = obj.gets_border_device_details_from_sda_fabric(
-                                                                device_ip_address=device_ip_address,
-                                                                headers=headers,
-                                                                payload=payload,
-                                                                active_validation=active_validation)
+            device_ip_address=device_ip_address,
+            headers=headers,
+            payload=payload,
+            active_validation=active_validation)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:

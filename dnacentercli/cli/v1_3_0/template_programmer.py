@@ -30,38 +30,31 @@ def template_programmer(ctx, obj):
 @click.option('--createtime', type=int,
               help='''ProjectDTO's createTime.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--description', type=str,
               help='''ProjectDTO's description.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--id', type=str,
               help='''ProjectDTO's id.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--lastupdatetime', type=int,
               help='''ProjectDTO's lastUpdateTime.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--name', type=str,
               help='''ProjectDTO's name.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--tags', type=str, multiple=True,
               help='''ProjectDTO's tags (list of string, objects).''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--templates',
               help='''Part of the JSON serializable Python object to send in the body of the Request.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
@@ -98,16 +91,16 @@ def create_project(obj, pretty_print, beep,
             payload = json.loads(payload)
         tags = list(tags)
         result = obj.create_project(
-                                    createtime=createtime,
-                                    description=description,
-                                    id=id,
-                                    lastupdatetime=lastupdatetime,
-                                    name=name,
-                                    tags=tags,
-                                    templates=templates,
-                                    headers=headers,
-                                    payload=payload,
-                                    active_validation=active_validation)
+            createtime=createtime,
+            description=description,
+            id=id,
+            lastupdatetime=lastupdatetime,
+            name=name,
+            tags=tags,
+            templates=templates,
+            headers=headers,
+            payload=payload,
+            active_validation=active_validation)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -120,32 +113,25 @@ def create_project(obj, pretty_print, beep,
 @template_programmer.command()
 @click.option('--project_id', type=str,
               help='''projectId query parameter.''',
-              show_default=True
-             )
+              show_default=True)
 @click.option('--software_type', type=str,
               help='''softwareType query parameter.''',
-              show_default=True
-             )
+              show_default=True)
 @click.option('--software_version', type=str,
               help='''softwareVersion query parameter.''',
-              show_default=True
-             )
+              show_default=True)
 @click.option('--product_family', type=str,
               help='''productFamily query parameter.''',
-              show_default=True
-             )
+              show_default=True)
 @click.option('--product_series', type=str,
               help='''productSeries query parameter.''',
-              show_default=True
-             )
+              show_default=True)
 @click.option('--product_type', type=str,
               help='''productType query parameter.''',
-              show_default=True
-             )
+              show_default=True)
 @click.option('--filter_conflicting_templates', type=bool,
               help='''filterConflictingTemplates query parameter.''',
-              show_default=True
-             )
+              show_default=True)
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
@@ -181,16 +167,16 @@ def gets_the_templates_available(obj, pretty_print, beep,
         if payload is not None:
             payload = json.loads(payload)
         result = obj.gets_the_templates_available(
-                                                  project_id=project_id,
-                                                  software_type=software_type,
-                                                  software_version=software_version,
-                                                  product_family=product_family,
-                                                  product_series=product_series,
-                                                  product_type=product_type,
-                                                  filter_conflicting_templates=filter_conflicting_templates,
-                                                  headers=headers,
-                                                  payload=payload,
-                                                  active_validation=active_validation)
+            project_id=project_id,
+            software_type=software_type,
+            software_version=software_version,
+            product_family=product_family,
+            product_series=product_series,
+            product_type=product_type,
+            filter_conflicting_templates=filter_conflicting_templates,
+            headers=headers,
+            payload=payload,
+            active_validation=active_validation)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -203,8 +189,7 @@ def gets_the_templates_available(obj, pretty_print, beep,
 @template_programmer.command()
 @click.option('--name', type=str,
               help='''Name of project to be searched.''',
-              show_default=True
-             )
+              show_default=True)
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
@@ -234,10 +219,10 @@ def get_projects(obj, pretty_print, beep,
         if payload is not None:
             payload = json.loads(payload)
         result = obj.get_projects(
-                                  name=name,
-                                  headers=headers,
-                                  payload=payload,
-                                  active_validation=active_validation)
+            name=name,
+            headers=headers,
+            payload=payload,
+            active_validation=active_validation)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -251,33 +236,27 @@ def get_projects(obj, pretty_print, beep,
 @click.option('--forcepushtemplate', type=bool,
               help='''TemplateDeploymentInfo's forcePushTemplate.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--iscomposite', type=bool,
               help='''TemplateDeploymentInfo's isComposite.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--maintemplateid', type=str,
               help='''TemplateDeploymentInfo's mainTemplateId.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--membertemplatedeploymentinfo', type=str, multiple=True,
               help='''TemplateDeploymentInfo's memberTemplateDeploymentInfo (list of any objects).''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--targetinfo', type=str, multiple=True,
               help='''TemplateDeploymentInfo's targetInfo (list of objects).''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--templateid', type=str,
               help='''TemplateDeploymentInfo's templateId.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
@@ -316,15 +295,15 @@ def deploy_template(obj, pretty_print, beep,
             membertemplatedeploymentinfo = json.loads('[{}]'.format(', '.join('{0}'.format(w) for w in membertemplatedeploymentinfo)))
         targetinfo = list(targetinfo)
         result = obj.deploy_template(
-                                     forcepushtemplate=forcepushtemplate,
-                                     iscomposite=iscomposite,
-                                     maintemplateid=maintemplateid,
-                                     membertemplatedeploymentinfo=membertemplatedeploymentinfo,
-                                     targetinfo=targetinfo,
-                                     templateid=templateid,
-                                     headers=headers,
-                                     payload=payload,
-                                     active_validation=active_validation)
+            forcepushtemplate=forcepushtemplate,
+            iscomposite=iscomposite,
+            maintemplateid=maintemplateid,
+            membertemplatedeploymentinfo=membertemplatedeploymentinfo,
+            targetinfo=targetinfo,
+            templateid=templateid,
+            headers=headers,
+            payload=payload,
+            active_validation=active_validation)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -338,113 +317,91 @@ def deploy_template(obj, pretty_print, beep,
 @click.option('--author', type=str,
               help='''TemplateDTO's author.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--composite', type=bool,
               help='''TemplateDTO's composite.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--containingtemplates', type=str, multiple=True,
               help='''TemplateDTO's containingTemplates (list of objects).''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--createtime', type=int,
               help='''TemplateDTO's createTime.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--description', type=str,
               help='''TemplateDTO's description.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--devicetypes', type=str, multiple=True,
               help='''TemplateDTO's deviceTypes (list of objects).''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--failurepolicy', type=str,
               help='''TemplateDTO's failurePolicy. Available values are 'ABORT_ON_ERROR', 'CONTINUE_ON_ERROR', 'ROLLBACK_ON_ERROR', 'ROLLBACK_TARGET_ON_ERROR' and 'ABORT_TARGET_ON_ERROR'.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--id', type=str,
               help='''TemplateDTO's id.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--lastupdatetime', type=int,
               help='''TemplateDTO's lastUpdateTime.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--name', type=str,
               help='''TemplateDTO's name.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--parenttemplateid', type=str,
               help='''TemplateDTO's parentTemplateId.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--projectid', type=str,
               help='''TemplateDTO's projectId.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--projectname', type=str,
               help='''TemplateDTO's projectName.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--rollbacktemplatecontent', type=str,
               help='''TemplateDTO's rollbackTemplateContent.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--rollbacktemplateparams', type=str, multiple=True,
               help='''TemplateDTO's rollbackTemplateParams (list of objects).''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--softwaretype', type=str,
               help='''TemplateDTO's softwareType.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--softwarevariant', type=str,
               help='''TemplateDTO's softwareVariant.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--softwareversion', type=str,
               help='''TemplateDTO's softwareVersion.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--tags', type=str, multiple=True,
               help='''TemplateDTO's tags (list of string, objects).''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--templatecontent', type=str,
               help='''TemplateDTO's templateContent.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--templateparams', type=str, multiple=True,
               help='''TemplateDTO's templateParams (list of objects).''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--version', type=str,
               help='''TemplateDTO's version.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
@@ -500,31 +457,31 @@ def update_template(obj, pretty_print, beep,
         tags = list(tags)
         templateparams = list(templateparams)
         result = obj.update_template(
-                                     author=author,
-                                     composite=composite,
-                                     containingtemplates=containingtemplates,
-                                     createtime=createtime,
-                                     description=description,
-                                     devicetypes=devicetypes,
-                                     failurepolicy=failurepolicy,
-                                     id=id,
-                                     lastupdatetime=lastupdatetime,
-                                     name=name,
-                                     parenttemplateid=parenttemplateid,
-                                     projectid=projectid,
-                                     projectname=projectname,
-                                     rollbacktemplatecontent=rollbacktemplatecontent,
-                                     rollbacktemplateparams=rollbacktemplateparams,
-                                     softwaretype=softwaretype,
-                                     softwarevariant=softwarevariant,
-                                     softwareversion=softwareversion,
-                                     tags=tags,
-                                     templatecontent=templatecontent,
-                                     templateparams=templateparams,
-                                     version=version,
-                                     headers=headers,
-                                     payload=payload,
-                                     active_validation=active_validation)
+            author=author,
+            composite=composite,
+            containingtemplates=containingtemplates,
+            createtime=createtime,
+            description=description,
+            devicetypes=devicetypes,
+            failurepolicy=failurepolicy,
+            id=id,
+            lastupdatetime=lastupdatetime,
+            name=name,
+            parenttemplateid=parenttemplateid,
+            projectid=projectid,
+            projectname=projectname,
+            rollbacktemplatecontent=rollbacktemplatecontent,
+            rollbacktemplateparams=rollbacktemplateparams,
+            softwaretype=softwaretype,
+            softwarevariant=softwarevariant,
+            softwareversion=softwareversion,
+            tags=tags,
+            templatecontent=templatecontent,
+            templateparams=templateparams,
+            version=version,
+            headers=headers,
+            payload=payload,
+            active_validation=active_validation)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -538,38 +495,31 @@ def update_template(obj, pretty_print, beep,
 @click.option('--createtime', type=int,
               help='''ProjectDTO's createTime.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--description', type=str,
               help='''ProjectDTO's description.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--id', type=str,
               help='''ProjectDTO's id.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--lastupdatetime', type=int,
               help='''ProjectDTO's lastUpdateTime.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--name', type=str,
               help='''ProjectDTO's name.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--tags', type=str, multiple=True,
               help='''ProjectDTO's tags (list of string, objects).''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--templates',
               help='''Part of the JSON serializable Python object to send in the body of the Request.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
@@ -606,16 +556,16 @@ def update_project(obj, pretty_print, beep,
             payload = json.loads(payload)
         tags = list(tags)
         result = obj.update_project(
-                                    createtime=createtime,
-                                    description=description,
-                                    id=id,
-                                    lastupdatetime=lastupdatetime,
-                                    name=name,
-                                    tags=tags,
-                                    templates=templates,
-                                    headers=headers,
-                                    payload=payload,
-                                    active_validation=active_validation)
+            createtime=createtime,
+            description=description,
+            id=id,
+            lastupdatetime=lastupdatetime,
+            name=name,
+            tags=tags,
+            templates=templates,
+            headers=headers,
+            payload=payload,
+            active_validation=active_validation)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -629,8 +579,7 @@ def update_project(obj, pretty_print, beep,
 @click.option('--template_id', type=str,
               help='''templateId path parameter.''',
               required=True,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
@@ -660,10 +609,10 @@ def delete_template(obj, pretty_print, beep,
         if payload is not None:
             payload = json.loads(payload)
         result = obj.delete_template(
-                                     template_id=template_id,
-                                     headers=headers,
-                                     payload=payload,
-                                     active_validation=active_validation)
+            template_id=template_id,
+            headers=headers,
+            payload=payload,
+            active_validation=active_validation)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -677,13 +626,11 @@ def delete_template(obj, pretty_print, beep,
 @click.option('--params', type=str,
               help='''TemplatePreviewRequestDTO's params.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--templateid', type=str,
               help='''TemplatePreviewRequestDTO's templateId.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
@@ -716,11 +663,11 @@ def preview_template(obj, pretty_print, beep,
         if params is not None:
             params = json.loads('{}'.format(params))
         result = obj.preview_template(
-                                      params=params,
-                                      templateid=templateid,
-                                      headers=headers,
-                                      payload=payload,
-                                      active_validation=active_validation)
+            params=params,
+            templateid=templateid,
+            headers=headers,
+            payload=payload,
+            active_validation=active_validation)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -734,8 +681,7 @@ def preview_template(obj, pretty_print, beep,
 @click.option('--template_id', type=str,
               help='''templateId path parameter.''',
               required=True,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
@@ -765,10 +711,10 @@ def get_template_versions(obj, pretty_print, beep,
         if payload is not None:
             payload = json.loads(payload)
         result = obj.get_template_versions(
-                                           template_id=template_id,
-                                           headers=headers,
-                                           payload=payload,
-                                           active_validation=active_validation)
+            template_id=template_id,
+            headers=headers,
+            payload=payload,
+            active_validation=active_validation)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -782,13 +728,11 @@ def get_template_versions(obj, pretty_print, beep,
 @click.option('--comments', type=str,
               help='''TemplateVersionRequestDTO's comments.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--templateid', type=str,
               help='''TemplateVersionRequestDTO's templateId.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
@@ -819,11 +763,11 @@ def version_template(obj, pretty_print, beep,
         if payload is not None:
             payload = json.loads(payload)
         result = obj.version_template(
-                                      comments=comments,
-                                      templateid=templateid,
-                                      headers=headers,
-                                      payload=payload,
-                                      active_validation=active_validation)
+            comments=comments,
+            templateid=templateid,
+            headers=headers,
+            payload=payload,
+            active_validation=active_validation)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -836,13 +780,11 @@ def version_template(obj, pretty_print, beep,
 @template_programmer.command()
 @click.option('--latest_version', type=bool,
               help='''latestVersion query parameter.''',
-              show_default=True
-             )
+              show_default=True)
 @click.option('--template_id', type=str,
               help='''templateId path parameter.''',
               required=True,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
@@ -873,11 +815,11 @@ def get_template_details(obj, pretty_print, beep,
         if payload is not None:
             payload = json.loads(payload)
         result = obj.get_template_details(
-                                          latest_version=latest_version,
-                                          template_id=template_id,
-                                          headers=headers,
-                                          payload=payload,
-                                          active_validation=active_validation)
+            latest_version=latest_version,
+            template_id=template_id,
+            headers=headers,
+            payload=payload,
+            active_validation=active_validation)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -891,118 +833,95 @@ def get_template_details(obj, pretty_print, beep,
 @click.option('--author', type=str,
               help='''TemplateDTO's author.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--composite', type=bool,
               help='''TemplateDTO's composite.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--containingtemplates', type=str, multiple=True,
               help='''TemplateDTO's containingTemplates (list of objects).''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--createtime', type=int,
               help='''TemplateDTO's createTime.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--description', type=str,
               help='''TemplateDTO's description.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--devicetypes', type=str, multiple=True,
               help='''TemplateDTO's deviceTypes (list of objects).''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--failurepolicy', type=str,
               help='''TemplateDTO's failurePolicy. Available values are 'ABORT_ON_ERROR', 'CONTINUE_ON_ERROR', 'ROLLBACK_ON_ERROR', 'ROLLBACK_TARGET_ON_ERROR' and 'ABORT_TARGET_ON_ERROR'.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--id', type=str,
               help='''TemplateDTO's id.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--lastupdatetime', type=int,
               help='''TemplateDTO's lastUpdateTime.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--name', type=str,
               help='''TemplateDTO's name.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--parenttemplateid', type=str,
               help='''TemplateDTO's parentTemplateId.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--projectid', type=str,
               help='''TemplateDTO's projectId.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--projectname', type=str,
               help='''TemplateDTO's projectName.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--rollbacktemplatecontent', type=str,
               help='''TemplateDTO's rollbackTemplateContent.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--rollbacktemplateparams', type=str, multiple=True,
               help='''TemplateDTO's rollbackTemplateParams (list of objects).''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--softwaretype', type=str,
               help='''TemplateDTO's softwareType.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--softwarevariant', type=str,
               help='''TemplateDTO's softwareVariant.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--softwareversion', type=str,
               help='''TemplateDTO's softwareVersion.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--tags', type=str, multiple=True,
               help='''TemplateDTO's tags (list of string, objects).''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--templatecontent', type=str,
               help='''TemplateDTO's templateContent.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--templateparams', type=str, multiple=True,
               help='''TemplateDTO's templateParams (list of objects).''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--version', type=str,
               help='''TemplateDTO's version.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--project_id', type=str,
               help='''projectId path parameter.''',
               required=True,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
@@ -1059,32 +978,32 @@ def create_template(obj, pretty_print, beep,
         tags = list(tags)
         templateparams = list(templateparams)
         result = obj.create_template(
-                                     author=author,
-                                     composite=composite,
-                                     containingtemplates=containingtemplates,
-                                     createtime=createtime,
-                                     description=description,
-                                     devicetypes=devicetypes,
-                                     failurepolicy=failurepolicy,
-                                     id=id,
-                                     lastupdatetime=lastupdatetime,
-                                     name=name,
-                                     parenttemplateid=parenttemplateid,
-                                     projectid=projectid,
-                                     projectname=projectname,
-                                     rollbacktemplatecontent=rollbacktemplatecontent,
-                                     rollbacktemplateparams=rollbacktemplateparams,
-                                     softwaretype=softwaretype,
-                                     softwarevariant=softwarevariant,
-                                     softwareversion=softwareversion,
-                                     tags=tags,
-                                     templatecontent=templatecontent,
-                                     templateparams=templateparams,
-                                     version=version,
-                                     project_id=project_id,
-                                     headers=headers,
-                                     payload=payload,
-                                     active_validation=active_validation)
+            author=author,
+            composite=composite,
+            containingtemplates=containingtemplates,
+            createtime=createtime,
+            description=description,
+            devicetypes=devicetypes,
+            failurepolicy=failurepolicy,
+            id=id,
+            lastupdatetime=lastupdatetime,
+            name=name,
+            parenttemplateid=parenttemplateid,
+            projectid=projectid,
+            projectname=projectname,
+            rollbacktemplatecontent=rollbacktemplatecontent,
+            rollbacktemplateparams=rollbacktemplateparams,
+            softwaretype=softwaretype,
+            softwarevariant=softwarevariant,
+            softwareversion=softwareversion,
+            tags=tags,
+            templatecontent=templatecontent,
+            templateparams=templateparams,
+            version=version,
+            project_id=project_id,
+            headers=headers,
+            payload=payload,
+            active_validation=active_validation)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -1098,8 +1017,7 @@ def create_template(obj, pretty_print, beep,
 @click.option('--deployment_id', type=str,
               help='''deploymentId path parameter.''',
               required=True,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
@@ -1129,10 +1047,10 @@ def get_template_deployment_status(obj, pretty_print, beep,
         if payload is not None:
             payload = json.loads(payload)
         result = obj.get_template_deployment_status(
-                                                    deployment_id=deployment_id,
-                                                    headers=headers,
-                                                    payload=payload,
-                                                    active_validation=active_validation)
+            deployment_id=deployment_id,
+            headers=headers,
+            payload=payload,
+            active_validation=active_validation)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -1146,8 +1064,7 @@ def get_template_deployment_status(obj, pretty_print, beep,
 @click.option('--project_id', type=str,
               help='''projectId path parameter.''',
               required=True,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
@@ -1177,10 +1094,10 @@ def delete_project(obj, pretty_print, beep,
         if payload is not None:
             payload = json.loads(payload)
         result = obj.delete_project(
-                                    project_id=project_id,
-                                    headers=headers,
-                                    payload=payload,
-                                    active_validation=active_validation)
+            project_id=project_id,
+            headers=headers,
+            payload=payload,
+            active_validation=active_validation)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:

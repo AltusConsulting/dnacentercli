@@ -30,8 +30,7 @@ def site_profile(ctx, obj):
 @click.option('--device_ip', type=str,
               help='''Device to which the provisioning detail has to be retrieved.''',
               required=True,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
@@ -61,10 +60,10 @@ def get_device_details_by_ip(obj, pretty_print, beep,
         if payload is not None:
             payload = json.loads(payload)
         result = obj.get_device_details_by_ip(
-                                              device_ip=device_ip,
-                                              headers=headers,
-                                              payload=payload,
-                                              active_validation=active_validation)
+            device_ip=device_ip,
+            headers=headers,
+            payload=payload,
+            active_validation=active_validation)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -78,13 +77,11 @@ def get_device_details_by_ip(obj, pretty_print, beep,
 @click.option('--provisioning', type=str, multiple=True,
               help='''Provisioning, property of the request body (list of objects).''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--siteprofile', type=str, multiple=True,
               help='''Site Profile, property of the request body (list of objects).''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
@@ -117,11 +114,11 @@ def provision_nfv(obj, pretty_print, beep,
         provisioning = list(provisioning)
         siteprofile = list(siteprofile)
         result = obj.provision_nfv(
-                                   provisioning=provisioning,
-                                   siteprofile=siteprofile,
-                                   headers=headers,
-                                   payload=payload,
-                                   active_validation=active_validation)
+            provisioning=provisioning,
+            siteprofile=siteprofile,
+            headers=headers,
+            payload=payload,
+            active_validation=active_validation)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -135,8 +132,7 @@ def provision_nfv(obj, pretty_print, beep,
 @click.option('--device_ip', type=str,
               help='''Device Ip, property of the request body.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
@@ -166,10 +162,10 @@ def nfv_provisioning_detail(obj, pretty_print, beep,
         if payload is not None:
             payload = json.loads(payload)
         result = obj.nfv_provisioning_detail(
-                                             device_ip=device_ip,
-                                             headers=headers,
-                                             payload=payload,
-                                             active_validation=active_validation)
+            device_ip=device_ip,
+            headers=headers,
+            payload=payload,
+            active_validation=active_validation)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
