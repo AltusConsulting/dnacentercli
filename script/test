@@ -7,7 +7,7 @@
 
 # Run all tests by default
 default=true
-module=('dnacentersdk')
+module=('cli')
 
 # Process Script Arguments
 for i in ${@}; do
@@ -27,18 +27,9 @@ for i in ${@}; do
         default=
         ;;
 
-        api)
-        api=true
-        default=
-        ;;
-
-        cli)
-        cli=true
-        default=
-        ;;
-
         *)
         module+=($i)
+        default=
         ;;
     esac
 done
@@ -61,38 +52,14 @@ if [ ${ratelimiting} ]; then
     pytest -s -m "ratelimit"
 fi
 
-# Run only API module test
-if [ ${api} ]; then
-    parent_module='api'
-    if [ ${#module[@]} -gt 1 ]; then
-        temp=${module[@]}
-        # Join array elements with ' or '
-        modules=${temp// / or }
-        echo "==> Running the "${parent_module}": "${modules}" tests"
-        pytest -s -m "${parent_module} and ( ${modules} )"
-        exit 0
-    else
-        echo "==> Running the "${parent_module}" tests"
-        pytest -s -m "${parent_module}"
-        exit 0
-    fi
-fi
-
-# Run only CLI module test
-if [ ${cli} ]; then
-    parent_module='cli'
-    if [ ${#module[@]} -gt 1 ]; then
-        temp=${module[@]}
-        # Join array elements with ' or '
-        modules=${temp// / or }
-        echo "==> Running the "${parent_module}": "${modules}" tests"
-        pytest -s -m "${parent_module} and ( ${modules} )"
-        exit 0
-    else
-        echo "==> Running the "${parent_module}" tests"
-        pytest -s -m "${parent_module}"
-        exit 0
-    fi
+# Run only one module test
+if [ ${#module[@]} -gt 1 ]; then
+    temp=${module[@]}
+    # Join array elements with ' or '
+    modules=${temp// / or }
+    echo "==> Running the "${modules}" tests"
+    pytest -s -m "${modules}"
+    exit 0
 fi
 
 # Run the test suite
