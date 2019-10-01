@@ -55,9 +55,9 @@ def provision(obj, pretty_print, beep,
         if payload is not None:
             payload = json.loads(payload)
         result = obj.provision(
-                               headers=headers,
-                               payload=payload,
-                               active_validation=active_validation)
+            headers=headers,
+            payload=payload,
+            active_validation=active_validation)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -71,8 +71,7 @@ def provision(obj, pretty_print, beep,
 @click.option('--profiledetails', type=str,
               help='''Profile Details, property of the request body.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
@@ -104,10 +103,10 @@ def update_wireless_profile(obj, pretty_print, beep,
         if profiledetails is not None:
             profiledetails = json.loads('{}'.format(profiledetails))
         result = obj.update_wireless_profile(
-                                             profiledetails=profiledetails,
-                                             headers=headers,
-                                             payload=payload,
-                                             active_validation=active_validation)
+            profiledetails=profiledetails,
+            headers=headers,
+            payload=payload,
+            active_validation=active_validation)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -120,8 +119,7 @@ def update_wireless_profile(obj, pretty_print, beep,
 @non_fabric_wireless.command()
 @click.option('--profile_name', type=str,
               help='''profileName query parameter.''',
-              show_default=True
-             )
+              show_default=True)
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
@@ -151,10 +149,10 @@ def get_wireless_profile(obj, pretty_print, beep,
         if payload is not None:
             payload = json.loads(payload)
         result = obj.get_wireless_profile(
-                                          profile_name=profile_name,
-                                          headers=headers,
-                                          payload=payload,
-                                          active_validation=active_validation)
+            profile_name=profile_name,
+            headers=headers,
+            payload=payload,
+            active_validation=active_validation)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -193,9 +191,9 @@ def update_provision(obj, pretty_print, beep,
         if payload is not None:
             payload = json.loads(payload)
         result = obj.update_provision(
-                                      headers=headers,
-                                      payload=payload,
-                                      active_validation=active_validation)
+            headers=headers,
+            payload=payload,
+            active_validation=active_validation)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -209,8 +207,7 @@ def update_provision(obj, pretty_print, beep,
 @click.option('--wireless_profile_name', type=str,
               help='''wirelessProfileName path parameter.''',
               required=True,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
@@ -240,10 +237,10 @@ def delete_wireless_profile(obj, pretty_print, beep,
         if payload is not None:
             payload = json.loads(payload)
         result = obj.delete_wireless_profile(
-                                             wireless_profile_name=wireless_profile_name,
-                                             headers=headers,
-                                             payload=payload,
-                                             active_validation=active_validation)
+            wireless_profile_name=wireless_profile_name,
+            headers=headers,
+            payload=payload,
+            active_validation=active_validation)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -257,8 +254,7 @@ def delete_wireless_profile(obj, pretty_print, beep,
 @click.option('--profiledetails', type=str,
               help='''Profile Details, property of the request body.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
@@ -290,10 +286,10 @@ def create_wireless_profile(obj, pretty_print, beep,
         if profiledetails is not None:
             profiledetails = json.loads('{}'.format(profiledetails))
         result = obj.create_wireless_profile(
-                                             profiledetails=profiledetails,
-                                             headers=headers,
-                                             payload=payload,
-                                             active_validation=active_validation)
+            profiledetails=profiledetails,
+            headers=headers,
+            payload=payload,
+            active_validation=active_validation)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -307,28 +303,23 @@ def create_wireless_profile(obj, pretty_print, beep,
 @click.option('--enablefabric', type=bool,
               help='''enableFabric, property of the request body.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--flexconnect', type=str,
               help='''Flex Connect - Applicable for non fabric profile, property of the request body.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--managedaplocations', type=str, multiple=True,
               help='''Managed AP Locations (Enter entire Site(s) hierarchy), property of the request body (list of strings).''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--ssiddetails', type=str,
               help='''SsidDetails, property of the request body.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--ssidtype', type=str,
               help='''SSID Type, property of the request body. Available values are 'Guest' and 'Enterprise'.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
@@ -367,14 +358,14 @@ def create_and_provision_ssid(obj, pretty_print, beep,
         if ssiddetails is not None:
             ssiddetails = json.loads('{}'.format(ssiddetails))
         result = obj.create_and_provision_ssid(
-                                               enablefabric=enablefabric,
-                                               flexconnect=flexconnect,
-                                               managedaplocations=managedaplocations,
-                                               ssiddetails=ssiddetails,
-                                               ssidtype=ssidtype,
-                                               headers=headers,
-                                               payload=payload,
-                                               active_validation=active_validation)
+            enablefabric=enablefabric,
+            flexconnect=flexconnect,
+            managedaplocations=managedaplocations,
+            ssiddetails=ssiddetails,
+            ssidtype=ssidtype,
+            headers=headers,
+            payload=payload,
+            active_validation=active_validation)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -388,8 +379,7 @@ def create_and_provision_ssid(obj, pretty_print, beep,
 @click.option('--ssid_name', type=str,
               help='''Enter the SSID name to be deleted.''',
               required=True,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
@@ -419,10 +409,10 @@ def delete_enterprise_ssid(obj, pretty_print, beep,
         if payload is not None:
             payload = json.loads(payload)
         result = obj.delete_enterprise_ssid(
-                                            ssid_name=ssid_name,
-                                            headers=headers,
-                                            payload=payload,
-                                            active_validation=active_validation)
+            ssid_name=ssid_name,
+            headers=headers,
+            payload=payload,
+            active_validation=active_validation)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -436,13 +426,11 @@ def delete_enterprise_ssid(obj, pretty_print, beep,
 @click.option('--ssid_name', type=str,
               help='''Enter the SSID name to be deleted.''',
               required=True,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--managed_aplocations', type=str,
               help='''Enter complete site hierarchy to remove the SSID from the devices found in it. To enter more than one site hierarchy, use comma delimiter without extra space.''',
               required=True,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
@@ -473,11 +461,11 @@ def delete_and_provision_ssid(obj, pretty_print, beep,
         if payload is not None:
             payload = json.loads(payload)
         result = obj.delete_and_provision_ssid(
-                                               ssid_name=ssid_name,
-                                               managed_aplocations=managed_aplocations,
-                                               headers=headers,
-                                               payload=payload,
-                                               active_validation=active_validation)
+            ssid_name=ssid_name,
+            managed_aplocations=managed_aplocations,
+            headers=headers,
+            payload=payload,
+            active_validation=active_validation)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -490,8 +478,7 @@ def delete_and_provision_ssid(obj, pretty_print, beep,
 @non_fabric_wireless.command()
 @click.option('--ssid_name', type=str,
               help='''Enter the enterprise SSID name that needs to be retrieved. If not entered, all the enterprise SSIDs will be retrieved.''',
-              show_default=True
-             )
+              show_default=True)
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
@@ -521,10 +508,10 @@ def get_enterprise_ssid(obj, pretty_print, beep,
         if payload is not None:
             payload = json.loads(payload)
         result = obj.get_enterprise_ssid(
-                                         ssid_name=ssid_name,
-                                         headers=headers,
-                                         payload=payload,
-                                         active_validation=active_validation)
+            ssid_name=ssid_name,
+            headers=headers,
+            payload=payload,
+            active_validation=active_validation)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -538,48 +525,39 @@ def get_enterprise_ssid(obj, pretty_print, beep,
 @click.option('--enablebroadcastssid', type=bool,
               help='''enableBroadcastSSID, property of the request body.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--enablefastlane', type=bool,
               help='''enableFastLane, property of the request body.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--enablemacfiltering', type=bool,
               help='''enableMACFiltering, property of the request body.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--fasttransition', type=str,
               help='''Fast Transition, property of the request body. Available values are 'Adaptive', 'Enable' and 'Disable'.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--name', type=str,
               help='''Enter SSID Name, property of the request body. ConstraintsmaxLength set to 32.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--passphrase', type=str,
               help='''Pass Phrase (Only applicable for SSID with PERSONAL security level), property of the request body. ConstraintsmaxLength set to 63 and minLength set to 8.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--radiopolicy', type=str,
               help='''Radio Policy, property of the request body. Available values are 'Dual band operation (2.4GHz and 5GHz)', 'Dual band operation with band select', '5GHz only' and '2.4GHz only'.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--securitylevel', type=str,
               help='''Security Level, property of the request body. Available values are 'WPA2_ENTERPRISE', 'WPA2_PERSONAL' and 'OPEN'.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--traffictype', type=str,
               help='''Traffic Type, property of the request body. Available values are 'voicedata' and 'data'.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
@@ -617,18 +595,18 @@ def create_enterprise_ssid(obj, pretty_print, beep,
         if payload is not None:
             payload = json.loads(payload)
         result = obj.create_enterprise_ssid(
-                                            enablebroadcastssid=enablebroadcastssid,
-                                            enablefastlane=enablefastlane,
-                                            enablemacfiltering=enablemacfiltering,
-                                            fasttransition=fasttransition,
-                                            name=name,
-                                            passphrase=passphrase,
-                                            radiopolicy=radiopolicy,
-                                            securitylevel=securitylevel,
-                                            traffictype=traffictype,
-                                            headers=headers,
-                                            payload=payload,
-                                            active_validation=active_validation)
+            enablebroadcastssid=enablebroadcastssid,
+            enablefastlane=enablefastlane,
+            enablemacfiltering=enablemacfiltering,
+            fasttransition=fasttransition,
+            name=name,
+            passphrase=passphrase,
+            radiopolicy=radiopolicy,
+            securitylevel=securitylevel,
+            traffictype=traffictype,
+            headers=headers,
+            payload=payload,
+            active_validation=active_validation)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:

@@ -29,8 +29,7 @@ def sites(ctx, obj):
 @sites.command()
 @click.option('--timestamp', type=str,
               help='''Epoch time(in milliseconds) when the Site Hierarchy data is required.''',
-              show_default=True
-             )
+              show_default=True)
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
@@ -60,10 +59,10 @@ def get_site_health(obj, pretty_print, beep,
         if payload is not None:
             payload = json.loads(payload)
         result = obj.get_site_health(
-                                     timestamp=timestamp,
-                                     headers=headers,
-                                     payload=payload,
-                                     active_validation=active_validation)
+            timestamp=timestamp,
+            headers=headers,
+            payload=payload,
+            active_validation=active_validation)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -77,18 +76,15 @@ def get_site_health(obj, pretty_print, beep,
 @click.option('--site', type=str,
               help='''Site, property of the request body.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--type', type=str,
               help='''Type, property of the request body. Available values are 'area', 'building' and 'floor'.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--site_id', type=str,
               help='''site id.''',
               required=True,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
@@ -122,12 +118,12 @@ def update_site(obj, pretty_print, beep,
         if site is not None:
             site = json.loads('{}'.format(site))
         result = obj.update_site(
-                                 site=site,
-                                 type=type,
-                                 site_id=site_id,
-                                 headers=headers,
-                                 payload=payload,
-                                 active_validation=active_validation)
+            site=site,
+            type=type,
+            site_id=site_id,
+            headers=headers,
+            payload=payload,
+            active_validation=active_validation)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -141,13 +137,11 @@ def update_site(obj, pretty_print, beep,
 @click.option('--site', type=str,
               help='''Site, property of the request body.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--type', type=str,
               help='''Type, property of the request body. Available values are 'area', 'building' and 'floor'.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
@@ -180,11 +174,11 @@ def create_site(obj, pretty_print, beep,
         if site is not None:
             site = json.loads('{}'.format(site))
         result = obj.create_site(
-                                 site=site,
-                                 type=type,
-                                 headers=headers,
-                                 payload=payload,
-                                 active_validation=active_validation)
+            site=site,
+            type=type,
+            headers=headers,
+            payload=payload,
+            active_validation=active_validation)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -197,24 +191,19 @@ def create_site(obj, pretty_print, beep,
 @sites.command()
 @click.option('--name', type=str,
               help='''groupNameHierarchy (exglobal/groupName).''',
-              show_default=True
-             )
+              show_default=True)
 @click.option('--site_id', type=str,
               help='''site id.''',
-              show_default=True
-             )
+              show_default=True)
 @click.option('--type', type=str,
               help='''type (exarea, building, floor).''',
-              show_default=True
-             )
+              show_default=True)
 @click.option('--offset', type=int,
               help='''offset/starting row.''',
-              show_default=True
-             )
+              show_default=True)
 @click.option('--limit', type=int,
               help='''Number of sites to be retrieved.''',
-              show_default=True
-             )
+              show_default=True)
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
@@ -248,14 +237,14 @@ def get_site(obj, pretty_print, beep,
         if payload is not None:
             payload = json.loads(payload)
         result = obj.get_site(
-                              name=name,
-                              site_id=site_id,
-                              type=type,
-                              offset=offset,
-                              limit=limit,
-                              headers=headers,
-                              payload=payload,
-                              active_validation=active_validation)
+            name=name,
+            site_id=site_id,
+            type=type,
+            offset=offset,
+            limit=limit,
+            headers=headers,
+            payload=payload,
+            active_validation=active_validation)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -269,8 +258,7 @@ def get_site(obj, pretty_print, beep,
 @click.option('--site_id', type=str,
               help='''site id.''',
               required=True,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
@@ -300,10 +288,10 @@ def delete_site(obj, pretty_print, beep,
         if payload is not None:
             payload = json.loads(payload)
         result = obj.delete_site(
-                                 site_id=site_id,
-                                 headers=headers,
-                                 payload=payload,
-                                 active_validation=active_validation)
+            site_id=site_id,
+            headers=headers,
+            payload=payload,
+            active_validation=active_validation)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -316,8 +304,7 @@ def delete_site(obj, pretty_print, beep,
 @sites.command()
 @click.option('--site_id', type=str,
               help='''site id.''',
-              show_default=True
-             )
+              show_default=True)
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
@@ -347,10 +334,10 @@ def get_site_count(obj, pretty_print, beep,
         if payload is not None:
             payload = json.loads(payload)
         result = obj.get_site_count(
-                                    site_id=site_id,
-                                    headers=headers,
-                                    payload=payload,
-                                    active_validation=active_validation)
+            site_id=site_id,
+            headers=headers,
+            payload=payload,
+            active_validation=active_validation)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -364,13 +351,11 @@ def get_site_count(obj, pretty_print, beep,
 @click.option('--device', type=str, multiple=True,
               help='''Device, property of the request body (list of objects).''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--site_id', type=str,
               help='''Site id to which the device is assigned.''',
               required=True,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
@@ -402,11 +387,11 @@ def assign_device_to_site(obj, pretty_print, beep,
             payload = json.loads(payload)
         device = list(device)
         result = obj.assign_device_to_site(
-                                           device=device,
-                                           site_id=site_id,
-                                           headers=headers,
-                                           payload=payload,
-                                           active_validation=active_validation)
+            device=device,
+            site_id=site_id,
+            headers=headers,
+            payload=payload,
+            active_validation=active_validation)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -420,8 +405,7 @@ def assign_device_to_site(obj, pretty_print, beep,
 @click.option('--site_id', type=str,
               help='''site id.''',
               required=True,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
@@ -451,10 +435,10 @@ def get_membership(obj, pretty_print, beep,
         if payload is not None:
             payload = json.loads(payload)
         result = obj.get_membership(
-                                    site_id=site_id,
-                                    headers=headers,
-                                    payload=payload,
-                                    active_validation=active_validation)
+            site_id=site_id,
+            headers=headers,
+            payload=payload,
+            active_validation=active_validation)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:

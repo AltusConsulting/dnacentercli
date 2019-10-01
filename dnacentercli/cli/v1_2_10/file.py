@@ -55,9 +55,9 @@ def get_list_of_available_namespaces(obj, pretty_print, beep,
         if payload is not None:
             payload = json.loads(payload)
         result = obj.get_list_of_available_namespaces(
-                                                      headers=headers,
-                                                      payload=payload,
-                                                      active_validation=active_validation)
+            headers=headers,
+            payload=payload,
+            active_validation=active_validation)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -71,8 +71,7 @@ def get_list_of_available_namespaces(obj, pretty_print, beep,
 @click.option('--name_space', type=str,
               help='''A listing of fileId's.''',
               required=True,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
@@ -102,10 +101,10 @@ def get_list_of_files(obj, pretty_print, beep,
         if payload is not None:
             payload = json.loads(payload)
         result = obj.get_list_of_files(
-                                       name_space=name_space,
-                                       headers=headers,
-                                       payload=payload,
-                                       active_validation=active_validation)
+            name_space=name_space,
+            headers=headers,
+            payload=payload,
+            active_validation=active_validation)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -119,8 +118,7 @@ def get_list_of_files(obj, pretty_print, beep,
 @click.option('--file_id', type=str,
               help='''File Identification number.''',
               required=True,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
@@ -150,10 +148,10 @@ def download_a_file_by_fileid(obj, pretty_print, beep,
         if payload is not None:
             payload = json.loads(payload)
         result = obj.download_a_file_by_fileid(
-                                               file_id=file_id,
-                                               headers=headers,
-                                               payload=payload,
-                                               active_validation=active_validation)
+            file_id=file_id,
+            headers=headers,
+            payload=payload,
+            active_validation=active_validation)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:

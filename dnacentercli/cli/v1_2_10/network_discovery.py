@@ -55,9 +55,9 @@ def get_count_of_all_discovery_jobs(obj, pretty_print, beep,
         if payload is not None:
             payload = json.loads(payload)
         result = obj.get_count_of_all_discovery_jobs(
-                                                     headers=headers,
-                                                     payload=payload,
-                                                     active_validation=active_validation)
+            headers=headers,
+            payload=payload,
+            active_validation=active_validation)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -96,9 +96,9 @@ def create_netconf_credentials(obj, pretty_print, beep,
         if payload is not None:
             payload = json.loads(payload)
         result = obj.create_netconf_credentials(
-                                                headers=headers,
-                                                payload=payload,
-                                                active_validation=active_validation)
+            headers=headers,
+            payload=payload,
+            active_validation=active_validation)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -112,38 +112,31 @@ def create_netconf_credentials(obj, pretty_print, beep,
 @click.option('--comments', type=str,
               help='''SNMPv2WriteCommunityDTO's comments.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--credentialtype', type=str,
               help='''SNMPv2WriteCommunityDTO's credentialType. Available values are 'GLOBAL' and 'APP'.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--description', type=str,
               help='''SNMPv2WriteCommunityDTO's description.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--id', type=str,
               help='''SNMPv2WriteCommunityDTO's id.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--instancetenantid', type=str,
               help='''SNMPv2WriteCommunityDTO's instanceTenantId.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--instanceuuid', type=str,
               help='''SNMPv2WriteCommunityDTO's instanceUuid.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--writecommunity', type=str,
               help='''SNMPv2WriteCommunityDTO's writeCommunity.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
@@ -179,16 +172,16 @@ def update_snmp_write_community(obj, pretty_print, beep,
         if payload is not None:
             payload = json.loads(payload)
         result = obj.update_snmp_write_community(
-                                                 comments=comments,
-                                                 credentialtype=credentialtype,
-                                                 description=description,
-                                                 id=id,
-                                                 instancetenantid=instancetenantid,
-                                                 instanceuuid=instanceuuid,
-                                                 writecommunity=writecommunity,
-                                                 headers=headers,
-                                                 payload=payload,
-                                                 active_validation=active_validation)
+            comments=comments,
+            credentialtype=credentialtype,
+            description=description,
+            id=id,
+            instancetenantid=instancetenantid,
+            instanceuuid=instanceuuid,
+            writecommunity=writecommunity,
+            headers=headers,
+            payload=payload,
+            active_validation=active_validation)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -202,63 +195,51 @@ def update_snmp_write_community(obj, pretty_print, beep,
 @click.option('--authpassword', type=str,
               help='''SNMPv3CredentialDTO's authPassword.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--authtype', type=str,
               help='''SNMPv3CredentialDTO's authType. Available values are 'SHA' and 'MD5'.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--comments', type=str,
               help='''SNMPv3CredentialDTO's comments.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--credentialtype', type=str,
               help='''SNMPv3CredentialDTO's credentialType. Available values are 'GLOBAL' and 'APP'.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--description', type=str,
               help='''SNMPv3CredentialDTO's description.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--id', type=str,
               help='''SNMPv3CredentialDTO's id.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--instancetenantid', type=str,
               help='''SNMPv3CredentialDTO's instanceTenantId.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--instanceuuid', type=str,
               help='''SNMPv3CredentialDTO's instanceUuid.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--privacypassword', type=str,
               help='''SNMPv3CredentialDTO's privacyPassword.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--privacytype', type=str,
               help='''SNMPv3CredentialDTO's privacyType. Available values are 'DES' and 'AES128'.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--snmpmode', type=str,
               help='''SNMPv3CredentialDTO's snmpMode. Available values are 'AUTHPRIV', 'AUTHNOPRIV' and 'NOAUTHNOPRIV'.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--username', type=str,
               help='''SNMPv3CredentialDTO's username.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
@@ -299,21 +280,21 @@ def update_snmpv3_credentials(obj, pretty_print, beep,
         if payload is not None:
             payload = json.loads(payload)
         result = obj.update_snmpv3_credentials(
-                                               authpassword=authpassword,
-                                               authtype=authtype,
-                                               comments=comments,
-                                               credentialtype=credentialtype,
-                                               description=description,
-                                               id=id,
-                                               instancetenantid=instancetenantid,
-                                               instanceuuid=instanceuuid,
-                                               privacypassword=privacypassword,
-                                               privacytype=privacytype,
-                                               snmpmode=snmpmode,
-                                               username=username,
-                                               headers=headers,
-                                               payload=payload,
-                                               active_validation=active_validation)
+            authpassword=authpassword,
+            authtype=authtype,
+            comments=comments,
+            credentialtype=credentialtype,
+            description=description,
+            id=id,
+            instancetenantid=instancetenantid,
+            instanceuuid=instanceuuid,
+            privacypassword=privacypassword,
+            privacytype=privacytype,
+            snmpmode=snmpmode,
+            username=username,
+            headers=headers,
+            payload=payload,
+            active_validation=active_validation)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -352,9 +333,9 @@ def get_snmp_properties(obj, pretty_print, beep,
         if payload is not None:
             payload = json.loads(payload)
         result = obj.get_snmp_properties(
-                                         headers=headers,
-                                         payload=payload,
-                                         active_validation=active_validation)
+            headers=headers,
+            payload=payload,
+            active_validation=active_validation)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -368,8 +349,7 @@ def get_snmp_properties(obj, pretty_print, beep,
 @click.option('--id', type=str,
               help='''Discovery ID.''',
               required=True,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
@@ -399,10 +379,10 @@ def delete_discovery_by_id(obj, pretty_print, beep,
         if payload is not None:
             payload = json.loads(payload)
         result = obj.delete_discovery_by_id(
-                                            id=id,
-                                            headers=headers,
-                                            payload=payload,
-                                            active_validation=active_validation)
+            id=id,
+            headers=headers,
+            payload=payload,
+            active_validation=active_validation)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -416,163 +396,131 @@ def delete_discovery_by_id(obj, pretty_print, beep,
 @click.option('--cdplevel', type=int,
               help='''InventoryRequest's cdpLevel.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--discoverytype', type=str,
               help='''InventoryRequest's discoveryType.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--enablepasswordlist', type=str, multiple=True,
               help='''InventoryRequest's enablePasswordList (list of string, objects).''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--globalcredentialidlist', type=str, multiple=True,
               help='''InventoryRequest's globalCredentialIdList (list of string, objects).''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--httpreadcredential', type=str,
               help='''InventoryRequest's httpReadCredential.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--httpwritecredential', type=str,
               help='''InventoryRequest's httpWriteCredential.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--ipaddresslist', type=str,
               help='''InventoryRequest's ipAddressList.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--ipfilterlist', type=str, multiple=True,
               help='''InventoryRequest's ipFilterList (list of string, objects).''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--lldplevel', type=int,
               help='''InventoryRequest's lldpLevel.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--name', type=str,
               help='''InventoryRequest's name.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--netconfport', type=str,
               help='''InventoryRequest's netconfPort.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--noaddnewdevice', type=bool,
               help='''InventoryRequest's noAddNewDevice.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--parentdiscoveryid', type=str,
               help='''InventoryRequest's parentDiscoveryId.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--passwordlist', type=str, multiple=True,
               help='''InventoryRequest's passwordList (list of string, objects).''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--preferredmgmtipmethod', type=str,
               help='''InventoryRequest's preferredMgmtIPMethod.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--protocolorder', type=str,
               help='''InventoryRequest's protocolOrder.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--rediscovery', type=bool,
               help='''InventoryRequest's reDiscovery.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--retry', type=int,
               help='''InventoryRequest's retry.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--snmpauthpassphrase', type=str,
               help='''InventoryRequest's snmpAuthPassphrase.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--snmpauthprotocol', type=str,
               help='''InventoryRequest's snmpAuthProtocol.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--snmpmode', type=str,
               help='''InventoryRequest's snmpMode.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--snmpprivpassphrase', type=str,
               help='''InventoryRequest's snmpPrivPassphrase.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--snmpprivprotocol', type=str,
               help='''InventoryRequest's snmpPrivProtocol.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--snmprocommunity', type=str,
               help='''InventoryRequest's snmpROCommunity.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--snmprocommunitydesc', type=str,
               help='''InventoryRequest's snmpROCommunityDesc.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--snmprwcommunity', type=str,
               help='''InventoryRequest's snmpRWCommunity.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--snmprwcommunitydesc', type=str,
               help='''InventoryRequest's snmpRWCommunityDesc.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--snmpusername', type=str,
               help='''InventoryRequest's snmpUserName.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--snmpversion', type=str,
               help='''InventoryRequest's snmpVersion.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--timeout', type=int,
               help='''InventoryRequest's timeout.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--updatemgmtip', type=bool,
               help='''InventoryRequest's updateMgmtIp.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--usernamelist', type=str, multiple=True,
               help='''InventoryRequest's userNameList (list of string, objects).''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
@@ -642,41 +590,41 @@ def start_discovery(obj, pretty_print, beep,
         passwordlist = list(passwordlist)
         usernamelist = list(usernamelist)
         result = obj.start_discovery(
-                                     cdplevel=cdplevel,
-                                     discoverytype=discoverytype,
-                                     enablepasswordlist=enablepasswordlist,
-                                     globalcredentialidlist=globalcredentialidlist,
-                                     httpreadcredential=httpreadcredential,
-                                     httpwritecredential=httpwritecredential,
-                                     ipaddresslist=ipaddresslist,
-                                     ipfilterlist=ipfilterlist,
-                                     lldplevel=lldplevel,
-                                     name=name,
-                                     netconfport=netconfport,
-                                     noaddnewdevice=noaddnewdevice,
-                                     parentdiscoveryid=parentdiscoveryid,
-                                     passwordlist=passwordlist,
-                                     preferredmgmtipmethod=preferredmgmtipmethod,
-                                     protocolorder=protocolorder,
-                                     rediscovery=rediscovery,
-                                     retry=retry,
-                                     snmpauthpassphrase=snmpauthpassphrase,
-                                     snmpauthprotocol=snmpauthprotocol,
-                                     snmpmode=snmpmode,
-                                     snmpprivpassphrase=snmpprivpassphrase,
-                                     snmpprivprotocol=snmpprivprotocol,
-                                     snmprocommunity=snmprocommunity,
-                                     snmprocommunitydesc=snmprocommunitydesc,
-                                     snmprwcommunity=snmprwcommunity,
-                                     snmprwcommunitydesc=snmprwcommunitydesc,
-                                     snmpusername=snmpusername,
-                                     snmpversion=snmpversion,
-                                     timeout=timeout,
-                                     updatemgmtip=updatemgmtip,
-                                     usernamelist=usernamelist,
-                                     headers=headers,
-                                     payload=payload,
-                                     active_validation=active_validation)
+            cdplevel=cdplevel,
+            discoverytype=discoverytype,
+            enablepasswordlist=enablepasswordlist,
+            globalcredentialidlist=globalcredentialidlist,
+            httpreadcredential=httpreadcredential,
+            httpwritecredential=httpwritecredential,
+            ipaddresslist=ipaddresslist,
+            ipfilterlist=ipfilterlist,
+            lldplevel=lldplevel,
+            name=name,
+            netconfport=netconfport,
+            noaddnewdevice=noaddnewdevice,
+            parentdiscoveryid=parentdiscoveryid,
+            passwordlist=passwordlist,
+            preferredmgmtipmethod=preferredmgmtipmethod,
+            protocolorder=protocolorder,
+            rediscovery=rediscovery,
+            retry=retry,
+            snmpauthpassphrase=snmpauthpassphrase,
+            snmpauthprotocol=snmpauthprotocol,
+            snmpmode=snmpmode,
+            snmpprivpassphrase=snmpprivpassphrase,
+            snmpprivprotocol=snmpprivprotocol,
+            snmprocommunity=snmprocommunity,
+            snmprocommunitydesc=snmprocommunitydesc,
+            snmprwcommunity=snmprwcommunity,
+            snmprwcommunitydesc=snmprwcommunitydesc,
+            snmpusername=snmpusername,
+            snmpversion=snmpversion,
+            timeout=timeout,
+            updatemgmtip=updatemgmtip,
+            usernamelist=usernamelist,
+            headers=headers,
+            payload=payload,
+            active_validation=active_validation)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -715,9 +663,9 @@ def create_snmp_write_community(obj, pretty_print, beep,
         if payload is not None:
             payload = json.loads(payload)
         result = obj.create_snmp_write_community(
-                                                 headers=headers,
-                                                 payload=payload,
-                                                 active_validation=active_validation)
+            headers=headers,
+            payload=payload,
+            active_validation=active_validation)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -756,9 +704,9 @@ def create_http_write_credentials(obj, pretty_print, beep,
         if payload is not None:
             payload = json.loads(payload)
         result = obj.create_http_write_credentials(
-                                                   headers=headers,
-                                                   payload=payload,
-                                                   active_validation=active_validation)
+            headers=headers,
+            payload=payload,
+            active_validation=active_validation)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -771,45 +719,35 @@ def create_http_write_credentials(obj, pretty_print, beep,
 @network_discovery.command()
 @click.option('--task_id', type=str,
               help='''taskId query parameter.''',
-              show_default=True
-             )
+              show_default=True)
 @click.option('--sort_by', type=str,
               help='''sortBy query parameter.''',
-              show_default=True
-             )
+              show_default=True)
 @click.option('--sort_order', type=str,
               help='''sortOrder query parameter.''',
-              show_default=True
-             )
+              show_default=True)
 @click.option('--ip_address', type=str,
               help='''ipAddress query parameter.''',
-              show_default=True
-             )
+              show_default=True)
 @click.option('--ping_status', type=str,
               help='''pingStatus query parameter.''',
-              show_default=True
-             )
+              show_default=True)
 @click.option('--snmp_status', type=str,
               help='''snmpStatus query parameter.''',
-              show_default=True
-             )
+              show_default=True)
 @click.option('--cli_status', type=str,
               help='''cliStatus query parameter.''',
-              show_default=True
-             )
+              show_default=True)
 @click.option('--netconf_status', type=str,
               help='''netconfStatus query parameter.''',
-              show_default=True
-             )
+              show_default=True)
 @click.option('--http_status', type=str,
               help='''httpStatus query parameter.''',
-              show_default=True
-             )
+              show_default=True)
 @click.option('--id', type=str,
               help='''Discovery ID.''',
               required=True,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
@@ -848,19 +786,19 @@ def get_network_devices_from_discovery(obj, pretty_print, beep,
         if payload is not None:
             payload = json.loads(payload)
         result = obj.get_network_devices_from_discovery(
-                                                        task_id=task_id,
-                                                        sort_by=sort_by,
-                                                        sort_order=sort_order,
-                                                        ip_address=ip_address,
-                                                        ping_status=ping_status,
-                                                        snmp_status=snmp_status,
-                                                        cli_status=cli_status,
-                                                        netconf_status=netconf_status,
-                                                        http_status=http_status,
-                                                        id=id,
-                                                        headers=headers,
-                                                        payload=payload,
-                                                        active_validation=active_validation)
+            task_id=task_id,
+            sort_by=sort_by,
+            sort_order=sort_order,
+            ip_address=ip_address,
+            ping_status=ping_status,
+            snmp_status=snmp_status,
+            cli_status=cli_status,
+            netconf_status=netconf_status,
+            http_status=http_status,
+            id=id,
+            headers=headers,
+            payload=payload,
+            active_validation=active_validation)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -874,13 +812,11 @@ def get_network_devices_from_discovery(obj, pretty_print, beep,
 @click.option('--siteuuids', type=str, multiple=True,
               help='''SitesInfoDTO's siteUuids (list of strings).''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--global_credential_id', type=str,
               help='''Global credential Uuid.''',
               required=True,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
@@ -912,11 +848,11 @@ def update_global_credentials(obj, pretty_print, beep,
             payload = json.loads(payload)
         siteuuids = list(siteuuids)
         result = obj.update_global_credentials(
-                                               siteuuids=siteuuids,
-                                               global_credential_id=global_credential_id,
-                                               headers=headers,
-                                               payload=payload,
-                                               active_validation=active_validation)
+            siteuuids=siteuuids,
+            global_credential_id=global_credential_id,
+            headers=headers,
+            payload=payload,
+            active_validation=active_validation)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -930,13 +866,11 @@ def update_global_credentials(obj, pretty_print, beep,
 @click.option('--start_index', type=int,
               help='''Start index.''',
               required=True,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--records_to_return', type=int,
               help='''Number of records to return.''',
               required=True,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
@@ -967,11 +901,11 @@ def get_discoveries_by_range(obj, pretty_print, beep,
         if payload is not None:
             payload = json.loads(payload)
         result = obj.get_discoveries_by_range(
-                                              start_index=start_index,
-                                              records_to_return=records_to_return,
-                                              headers=headers,
-                                              payload=payload,
-                                              active_validation=active_validation)
+            start_index=start_index,
+            records_to_return=records_to_return,
+            headers=headers,
+            payload=payload,
+            active_validation=active_validation)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -1010,9 +944,9 @@ def create_snmp_read_community(obj, pretty_print, beep,
         if payload is not None:
             payload = json.loads(payload)
         result = obj.create_snmp_read_community(
-                                                headers=headers,
-                                                payload=payload,
-                                                active_validation=active_validation)
+            headers=headers,
+            payload=payload,
+            active_validation=active_validation)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -1026,8 +960,7 @@ def create_snmp_read_community(obj, pretty_print, beep,
 @click.option('--id', type=str,
               help='''Discovery ID.''',
               required=True,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
@@ -1057,10 +990,10 @@ def get_discovery_by_id(obj, pretty_print, beep,
         if payload is not None:
             payload = json.loads(payload)
         result = obj.get_discovery_by_id(
-                                         id=id,
-                                         headers=headers,
-                                         payload=payload,
-                                         active_validation=active_validation)
+            id=id,
+            headers=headers,
+            payload=payload,
+            active_validation=active_validation)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -1074,183 +1007,147 @@ def get_discovery_by_id(obj, pretty_print, beep,
 @click.option('--attributeinfo', type=str,
               help='''DiscoveryNIO's attributeInfo.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--cdplevel', type=int,
               help='''DiscoveryNIO's cdpLevel.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--deviceids', type=str,
               help='''DiscoveryNIO's deviceIds.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--discoverycondition', type=str,
               help='''DiscoveryNIO's discoveryCondition.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--discoverystatus', type=str,
               help='''DiscoveryNIO's discoveryStatus.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--discoverytype', type=str,
               help='''DiscoveryNIO's discoveryType.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--enablepasswordlist', type=str,
               help='''DiscoveryNIO's enablePasswordList.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--globalcredentialidlist', type=str, multiple=True,
               help='''DiscoveryNIO's globalCredentialIdList (list of string, objects).''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--httpreadcredential', type=str,
               help='''DiscoveryNIO's httpReadCredential.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--httpwritecredential', type=str,
               help='''DiscoveryNIO's httpWriteCredential.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--id', type=str,
               help='''DiscoveryNIO's id.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--ipaddresslist', type=str,
               help='''DiscoveryNIO's ipAddressList.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--ipfilterlist', type=str,
               help='''DiscoveryNIO's ipFilterList.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--isautocdp', type=bool,
               help='''DiscoveryNIO's isAutoCdp.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--lldplevel', type=int,
               help='''DiscoveryNIO's lldpLevel.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--name', type=str,
               help='''DiscoveryNIO's name.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--netconfport', type=str,
               help='''DiscoveryNIO's netconfPort.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--numdevices', type=int,
               help='''DiscoveryNIO's numDevices.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--parentdiscoveryid', type=str,
               help='''DiscoveryNIO's parentDiscoveryId.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--passwordlist', type=str,
               help='''DiscoveryNIO's passwordList.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--preferredmgmtipmethod', type=str,
               help='''DiscoveryNIO's preferredMgmtIPMethod.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--protocolorder', type=str,
               help='''DiscoveryNIO's protocolOrder.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--retrycount', type=int,
               help='''DiscoveryNIO's retryCount.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--snmpauthpassphrase', type=str,
               help='''DiscoveryNIO's snmpAuthPassphrase.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--snmpauthprotocol', type=str,
               help='''DiscoveryNIO's snmpAuthProtocol.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--snmpmode', type=str,
               help='''DiscoveryNIO's snmpMode.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--snmpprivpassphrase', type=str,
               help='''DiscoveryNIO's snmpPrivPassphrase.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--snmpprivprotocol', type=str,
               help='''DiscoveryNIO's snmpPrivProtocol.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--snmprocommunity', type=str,
               help='''DiscoveryNIO's snmpRoCommunity.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--snmprocommunitydesc', type=str,
               help='''DiscoveryNIO's snmpRoCommunityDesc.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--snmprwcommunity', type=str,
               help='''DiscoveryNIO's snmpRwCommunity.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--snmprwcommunitydesc', type=str,
               help='''DiscoveryNIO's snmpRwCommunityDesc.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--snmpusername', type=str,
               help='''DiscoveryNIO's snmpUserName.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--timeout', type=int,
               help='''DiscoveryNIO's timeOut.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--updatemgmtip', type=bool,
               help='''DiscoveryNIO's updateMgmtIp.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--usernamelist', type=str,
               help='''DiscoveryNIO's userNameList.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
@@ -1322,45 +1219,45 @@ def updates_discovery_by_id(obj, pretty_print, beep,
         if httpwritecredential is not None:
             httpwritecredential = json.loads('{}'.format(httpwritecredential))
         result = obj.updates_discovery_by_id(
-                                             attributeinfo=attributeinfo,
-                                             cdplevel=cdplevel,
-                                             deviceids=deviceids,
-                                             discoverycondition=discoverycondition,
-                                             discoverystatus=discoverystatus,
-                                             discoverytype=discoverytype,
-                                             enablepasswordlist=enablepasswordlist,
-                                             globalcredentialidlist=globalcredentialidlist,
-                                             httpreadcredential=httpreadcredential,
-                                             httpwritecredential=httpwritecredential,
-                                             id=id,
-                                             ipaddresslist=ipaddresslist,
-                                             ipfilterlist=ipfilterlist,
-                                             isautocdp=isautocdp,
-                                             lldplevel=lldplevel,
-                                             name=name,
-                                             netconfport=netconfport,
-                                             numdevices=numdevices,
-                                             parentdiscoveryid=parentdiscoveryid,
-                                             passwordlist=passwordlist,
-                                             preferredmgmtipmethod=preferredmgmtipmethod,
-                                             protocolorder=protocolorder,
-                                             retrycount=retrycount,
-                                             snmpauthpassphrase=snmpauthpassphrase,
-                                             snmpauthprotocol=snmpauthprotocol,
-                                             snmpmode=snmpmode,
-                                             snmpprivpassphrase=snmpprivpassphrase,
-                                             snmpprivprotocol=snmpprivprotocol,
-                                             snmprocommunity=snmprocommunity,
-                                             snmprocommunitydesc=snmprocommunitydesc,
-                                             snmprwcommunity=snmprwcommunity,
-                                             snmprwcommunitydesc=snmprwcommunitydesc,
-                                             snmpusername=snmpusername,
-                                             timeout=timeout,
-                                             updatemgmtip=updatemgmtip,
-                                             usernamelist=usernamelist,
-                                             headers=headers,
-                                             payload=payload,
-                                             active_validation=active_validation)
+            attributeinfo=attributeinfo,
+            cdplevel=cdplevel,
+            deviceids=deviceids,
+            discoverycondition=discoverycondition,
+            discoverystatus=discoverystatus,
+            discoverytype=discoverytype,
+            enablepasswordlist=enablepasswordlist,
+            globalcredentialidlist=globalcredentialidlist,
+            httpreadcredential=httpreadcredential,
+            httpwritecredential=httpwritecredential,
+            id=id,
+            ipaddresslist=ipaddresslist,
+            ipfilterlist=ipfilterlist,
+            isautocdp=isautocdp,
+            lldplevel=lldplevel,
+            name=name,
+            netconfport=netconfport,
+            numdevices=numdevices,
+            parentdiscoveryid=parentdiscoveryid,
+            passwordlist=passwordlist,
+            preferredmgmtipmethod=preferredmgmtipmethod,
+            protocolorder=protocolorder,
+            retrycount=retrycount,
+            snmpauthpassphrase=snmpauthpassphrase,
+            snmpauthprotocol=snmpauthprotocol,
+            snmpmode=snmpmode,
+            snmpprivpassphrase=snmpprivpassphrase,
+            snmpprivprotocol=snmpprivprotocol,
+            snmprocommunity=snmprocommunity,
+            snmprocommunitydesc=snmprocommunitydesc,
+            snmprwcommunity=snmprwcommunity,
+            snmprwcommunitydesc=snmprwcommunitydesc,
+            snmpusername=snmpusername,
+            timeout=timeout,
+            updatemgmtip=updatemgmtip,
+            usernamelist=usernamelist,
+            headers=headers,
+            payload=payload,
+            active_validation=active_validation)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -1399,9 +1296,9 @@ def create_cli_credentials(obj, pretty_print, beep,
         if payload is not None:
             payload = json.loads(payload)
         result = obj.create_cli_credentials(
-                                            headers=headers,
-                                            payload=payload,
-                                            active_validation=active_validation)
+            headers=headers,
+            payload=payload,
+            active_validation=active_validation)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -1415,38 +1312,31 @@ def create_cli_credentials(obj, pretty_print, beep,
 @click.option('--comments', type=str,
               help='''SNMPv2ReadCommunityDTO's comments.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--credentialtype', type=str,
               help='''SNMPv2ReadCommunityDTO's credentialType. Available values are 'GLOBAL' and 'APP'.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--description', type=str,
               help='''SNMPv2ReadCommunityDTO's description.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--id', type=str,
               help='''SNMPv2ReadCommunityDTO's id.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--instancetenantid', type=str,
               help='''SNMPv2ReadCommunityDTO's instanceTenantId.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--instanceuuid', type=str,
               help='''SNMPv2ReadCommunityDTO's instanceUuid.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--readcommunity', type=str,
               help='''SNMPv2ReadCommunityDTO's readCommunity.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
@@ -1482,16 +1372,16 @@ def update_snmp_read_community(obj, pretty_print, beep,
         if payload is not None:
             payload = json.loads(payload)
         result = obj.update_snmp_read_community(
-                                                comments=comments,
-                                                credentialtype=credentialtype,
-                                                description=description,
-                                                id=id,
-                                                instancetenantid=instancetenantid,
-                                                instanceuuid=instanceuuid,
-                                                readcommunity=readcommunity,
-                                                headers=headers,
-                                                payload=payload,
-                                                active_validation=active_validation)
+            comments=comments,
+            credentialtype=credentialtype,
+            description=description,
+            id=id,
+            instancetenantid=instancetenantid,
+            instanceuuid=instanceuuid,
+            readcommunity=readcommunity,
+            headers=headers,
+            payload=payload,
+            active_validation=active_validation)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -1504,21 +1394,17 @@ def update_snmp_read_community(obj, pretty_print, beep,
 @network_discovery.command()
 @click.option('--offset', type=int,
               help='''offset query parameter.''',
-              show_default=True
-             )
+              show_default=True)
 @click.option('--limit', type=int,
               help='''limit query parameter.''',
-              show_default=True
-             )
+              show_default=True)
 @click.option('--ip_address', type=str,
               help='''ipAddress query parameter.''',
-              show_default=True
-             )
+              show_default=True)
 @click.option('--id', type=str,
               help='''Discovery ID.''',
               required=True,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
@@ -1551,13 +1437,13 @@ def get_list_of_discoveries_by_discovery_id(obj, pretty_print, beep,
         if payload is not None:
             payload = json.loads(payload)
         result = obj.get_list_of_discoveries_by_discovery_id(
-                                                             offset=offset,
-                                                             limit=limit,
-                                                             ip_address=ip_address,
-                                                             id=id,
-                                                             headers=headers,
-                                                             payload=payload,
-                                                             active_validation=active_validation)
+            offset=offset,
+            limit=limit,
+            ip_address=ip_address,
+            id=id,
+            headers=headers,
+            payload=payload,
+            active_validation=active_validation)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -1596,9 +1482,9 @@ def create_update_snmp_properties(obj, pretty_print, beep,
         if payload is not None:
             payload = json.loads(payload)
         result = obj.create_update_snmp_properties(
-                                                   headers=headers,
-                                                   payload=payload,
-                                                   active_validation=active_validation)
+            headers=headers,
+            payload=payload,
+            active_validation=active_validation)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -1611,21 +1497,17 @@ def create_update_snmp_properties(obj, pretty_print, beep,
 @network_discovery.command()
 @click.option('--offset', type=int,
               help='''offset query parameter.''',
-              show_default=True
-             )
+              show_default=True)
 @click.option('--limit', type=int,
               help='''limit query parameter.''',
-              show_default=True
-             )
+              show_default=True)
 @click.option('--ip_address', type=str,
               help='''ipAddress query parameter.''',
               required=True,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--name', type=str,
               help='''name query parameter.''',
-              show_default=True
-             )
+              show_default=True)
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
@@ -1658,13 +1540,13 @@ def get_discovery_jobs_by_ip(obj, pretty_print, beep,
         if payload is not None:
             payload = json.loads(payload)
         result = obj.get_discovery_jobs_by_ip(
-                                              offset=offset,
-                                              limit=limit,
-                                              ip_address=ip_address,
-                                              name=name,
-                                              headers=headers,
-                                              payload=payload,
-                                              active_validation=active_validation)
+            offset=offset,
+            limit=limit,
+            ip_address=ip_address,
+            name=name,
+            headers=headers,
+            payload=payload,
+            active_validation=active_validation)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -1677,23 +1559,19 @@ def get_discovery_jobs_by_ip(obj, pretty_print, beep,
 @network_discovery.command()
 @click.option('--task_id', type=str,
               help='''taskId query parameter.''',
-              show_default=True
-             )
+              show_default=True)
 @click.option('--id', type=str,
               help='''Discovery ID.''',
               required=True,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--start_index', type=int,
               help='''Start index.''',
               required=True,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--records_to_return', type=int,
               help='''Number of records to return.''',
               required=True,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
@@ -1726,13 +1604,13 @@ def get_discovered_devices_by_range(obj, pretty_print, beep,
         if payload is not None:
             payload = json.loads(payload)
         result = obj.get_discovered_devices_by_range(
-                                                     task_id=task_id,
-                                                     id=id,
-                                                     start_index=start_index,
-                                                     records_to_return=records_to_return,
-                                                     headers=headers,
-                                                     payload=payload,
-                                                     active_validation=active_validation)
+            task_id=task_id,
+            id=id,
+            start_index=start_index,
+            records_to_return=records_to_return,
+            headers=headers,
+            payload=payload,
+            active_validation=active_validation)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -1746,8 +1624,7 @@ def get_discovered_devices_by_range(obj, pretty_print, beep,
 @click.option('--id', type=str,
               help='''Global Credential ID.''',
               required=True,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
@@ -1777,10 +1654,10 @@ def get_credential_sub_type_by_credential_id(obj, pretty_print, beep,
         if payload is not None:
             payload = json.loads(payload)
         result = obj.get_credential_sub_type_by_credential_id(
-                                                              id=id,
-                                                              headers=headers,
-                                                              payload=payload,
-                                                              active_validation=active_validation)
+            id=id,
+            headers=headers,
+            payload=payload,
+            active_validation=active_validation)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -1794,53 +1671,43 @@ def get_credential_sub_type_by_credential_id(obj, pretty_print, beep,
 @click.option('--comments', type=str,
               help='''HTTPWriteCredentialDTO's comments.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--credentialtype', type=str,
               help='''HTTPWriteCredentialDTO's credentialType. Available values are 'GLOBAL' and 'APP'.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--description', type=str,
               help='''HTTPWriteCredentialDTO's description.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--id', type=str,
               help='''HTTPWriteCredentialDTO's id.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--instancetenantid', type=str,
               help='''HTTPWriteCredentialDTO's instanceTenantId.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--instanceuuid', type=str,
               help='''HTTPWriteCredentialDTO's instanceUuid.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--password', type=str,
               help='''HTTPWriteCredentialDTO's password.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--port', type=int,
               help='''HTTPWriteCredentialDTO's port.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--secure', type=bool,
               help='''HTTPWriteCredentialDTO's secure.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--username', type=str,
               help='''HTTPWriteCredentialDTO's username.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
@@ -1879,19 +1746,19 @@ def update_http_write_credentials(obj, pretty_print, beep,
         if payload is not None:
             payload = json.loads(payload)
         result = obj.update_http_write_credentials(
-                                                   comments=comments,
-                                                   credentialtype=credentialtype,
-                                                   description=description,
-                                                   id=id,
-                                                   instancetenantid=instancetenantid,
-                                                   instanceuuid=instanceuuid,
-                                                   password=password,
-                                                   port=port,
-                                                   secure=secure,
-                                                   username=username,
-                                                   headers=headers,
-                                                   payload=payload,
-                                                   active_validation=active_validation)
+            comments=comments,
+            credentialtype=credentialtype,
+            description=description,
+            id=id,
+            instancetenantid=instancetenantid,
+            instanceuuid=instanceuuid,
+            password=password,
+            port=port,
+            secure=secure,
+            username=username,
+            headers=headers,
+            payload=payload,
+            active_validation=active_validation)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -1905,13 +1772,11 @@ def update_http_write_credentials(obj, pretty_print, beep,
 @click.option('--start_index', type=int,
               help='''Start index.''',
               required=True,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--records_to_delete', type=int,
               help='''Number of records to delete.''',
               required=True,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
@@ -1942,11 +1807,11 @@ def delete_discovery_by_specified_range(obj, pretty_print, beep,
         if payload is not None:
             payload = json.loads(payload)
         result = obj.delete_discovery_by_specified_range(
-                                                         start_index=start_index,
-                                                         records_to_delete=records_to_delete,
-                                                         headers=headers,
-                                                         payload=payload,
-                                                         active_validation=active_validation)
+            start_index=start_index,
+            records_to_delete=records_to_delete,
+            headers=headers,
+            payload=payload,
+            active_validation=active_validation)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -1985,9 +1850,9 @@ def create_http_read_credentials(obj, pretty_print, beep,
         if payload is not None:
             payload = json.loads(payload)
         result = obj.create_http_read_credentials(
-                                                  headers=headers,
-                                                  payload=payload,
-                                                  active_validation=active_validation)
+            headers=headers,
+            payload=payload,
+            active_validation=active_validation)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -2001,38 +1866,31 @@ def create_http_read_credentials(obj, pretty_print, beep,
 @click.option('--comments', type=str,
               help='''NetconfCredentialDTO's comments.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--credentialtype', type=str,
               help='''NetconfCredentialDTO's credentialType. Available values are 'GLOBAL' and 'APP'.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--description', type=str,
               help='''NetconfCredentialDTO's description.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--id', type=str,
               help='''NetconfCredentialDTO's id.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--instancetenantid', type=str,
               help='''NetconfCredentialDTO's instanceTenantId.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--instanceuuid', type=str,
               help='''NetconfCredentialDTO's instanceUuid.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--netconfport', type=str,
               help='''NetconfCredentialDTO's netconfPort.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
@@ -2068,16 +1926,16 @@ def update_netconf_credentials(obj, pretty_print, beep,
         if payload is not None:
             payload = json.loads(payload)
         result = obj.update_netconf_credentials(
-                                                comments=comments,
-                                                credentialtype=credentialtype,
-                                                description=description,
-                                                id=id,
-                                                instancetenantid=instancetenantid,
-                                                instanceuuid=instanceuuid,
-                                                netconfport=netconfport,
-                                                headers=headers,
-                                                payload=payload,
-                                                active_validation=active_validation)
+            comments=comments,
+            credentialtype=credentialtype,
+            description=description,
+            id=id,
+            instancetenantid=instancetenantid,
+            instanceuuid=instanceuuid,
+            netconfport=netconfport,
+            headers=headers,
+            payload=payload,
+            active_validation=active_validation)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -2116,9 +1974,9 @@ def delete_all_discovery(obj, pretty_print, beep,
         if payload is not None:
             payload = json.loads(payload)
         result = obj.delete_all_discovery(
-                                          headers=headers,
-                                          payload=payload,
-                                          active_validation=active_validation)
+            headers=headers,
+            payload=payload,
+            active_validation=active_validation)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -2132,8 +1990,7 @@ def delete_all_discovery(obj, pretty_print, beep,
 @click.option('--global_credential_id', type=str,
               help='''ID of global-credential.''',
               required=True,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
@@ -2163,10 +2020,10 @@ def delete_global_credentials_by_id(obj, pretty_print, beep,
         if payload is not None:
             payload = json.loads(payload)
         result = obj.delete_global_credentials_by_id(
-                                                     global_credential_id=global_credential_id,
-                                                     headers=headers,
-                                                     payload=payload,
-                                                     active_validation=active_validation)
+            global_credential_id=global_credential_id,
+            headers=headers,
+            payload=payload,
+            active_validation=active_validation)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -2180,53 +2037,43 @@ def delete_global_credentials_by_id(obj, pretty_print, beep,
 @click.option('--comments', type=str,
               help='''HTTPReadCredentialDTO's comments.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--credentialtype', type=str,
               help='''HTTPReadCredentialDTO's credentialType. Available values are 'GLOBAL' and 'APP'.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--description', type=str,
               help='''HTTPReadCredentialDTO's description.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--id', type=str,
               help='''HTTPReadCredentialDTO's id.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--instancetenantid', type=str,
               help='''HTTPReadCredentialDTO's instanceTenantId.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--instanceuuid', type=str,
               help='''HTTPReadCredentialDTO's instanceUuid.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--password', type=str,
               help='''HTTPReadCredentialDTO's password.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--port', type=int,
               help='''HTTPReadCredentialDTO's port.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--secure', type=bool,
               help='''HTTPReadCredentialDTO's secure.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--username', type=str,
               help='''HTTPReadCredentialDTO's username.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
@@ -2265,19 +2112,19 @@ def update_http_read_credential(obj, pretty_print, beep,
         if payload is not None:
             payload = json.loads(payload)
         result = obj.update_http_read_credential(
-                                                 comments=comments,
-                                                 credentialtype=credentialtype,
-                                                 description=description,
-                                                 id=id,
-                                                 instancetenantid=instancetenantid,
-                                                 instanceuuid=instanceuuid,
-                                                 password=password,
-                                                 port=port,
-                                                 secure=secure,
-                                                 username=username,
-                                                 headers=headers,
-                                                 payload=payload,
-                                                 active_validation=active_validation)
+            comments=comments,
+            credentialtype=credentialtype,
+            description=description,
+            id=id,
+            instancetenantid=instancetenantid,
+            instanceuuid=instanceuuid,
+            password=password,
+            port=port,
+            secure=secure,
+            username=username,
+            headers=headers,
+            payload=payload,
+            active_validation=active_validation)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -2291,48 +2138,39 @@ def update_http_read_credential(obj, pretty_print, beep,
 @click.option('--comments', type=str,
               help='''CLICredentialDTO's comments.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--credentialtype', type=str,
               help='''CLICredentialDTO's credentialType. Available values are 'GLOBAL' and 'APP'.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--description', type=str,
               help='''CLICredentialDTO's description.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--enablepassword', type=str,
               help='''CLICredentialDTO's enablePassword.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--id', type=str,
               help='''CLICredentialDTO's id.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--instancetenantid', type=str,
               help='''CLICredentialDTO's instanceTenantId.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--instanceuuid', type=str,
               help='''CLICredentialDTO's instanceUuid.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--password', type=str,
               help='''CLICredentialDTO's password.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--username', type=str,
               help='''CLICredentialDTO's username.''',
               default=None,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
@@ -2370,18 +2208,18 @@ def update_cli_credentials(obj, pretty_print, beep,
         if payload is not None:
             payload = json.loads(payload)
         result = obj.update_cli_credentials(
-                                            comments=comments,
-                                            credentialtype=credentialtype,
-                                            description=description,
-                                            enablepassword=enablepassword,
-                                            id=id,
-                                            instancetenantid=instancetenantid,
-                                            instanceuuid=instanceuuid,
-                                            password=password,
-                                            username=username,
-                                            headers=headers,
-                                            payload=payload,
-                                            active_validation=active_validation)
+            comments=comments,
+            credentialtype=credentialtype,
+            description=description,
+            enablepassword=enablepassword,
+            id=id,
+            instancetenantid=instancetenantid,
+            instanceuuid=instanceuuid,
+            password=password,
+            username=username,
+            headers=headers,
+            payload=payload,
+            active_validation=active_validation)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -2420,9 +2258,9 @@ def create_snmpv3_credentials(obj, pretty_print, beep,
         if payload is not None:
             payload = json.loads(payload)
         result = obj.create_snmpv3_credentials(
-                                               headers=headers,
-                                               payload=payload,
-                                               active_validation=active_validation)
+            headers=headers,
+            payload=payload,
+            active_validation=active_validation)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -2435,13 +2273,11 @@ def create_snmpv3_credentials(obj, pretty_print, beep,
 @network_discovery.command()
 @click.option('--task_id', type=str,
               help='''taskId query parameter.''',
-              show_default=True
-             )
+              show_default=True)
 @click.option('--id', type=str,
               help='''Discovery ID.''',
               required=True,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
@@ -2472,11 +2308,11 @@ def get_devices_discovered_by_id(obj, pretty_print, beep,
         if payload is not None:
             payload = json.loads(payload)
         result = obj.get_devices_discovered_by_id(
-                                                  task_id=task_id,
-                                                  id=id,
-                                                  headers=headers,
-                                                  payload=payload,
-                                                  active_validation=active_validation)
+            task_id=task_id,
+            id=id,
+            headers=headers,
+            payload=payload,
+            active_validation=active_validation)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -2489,13 +2325,11 @@ def get_devices_discovered_by_id(obj, pretty_print, beep,
 @network_discovery.command()
 @click.option('--task_id', type=str,
               help='''taskId query parameter.''',
-              show_default=True
-             )
+              show_default=True)
 @click.option('--id', type=str,
               help='''Discovery ID.''',
               required=True,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
@@ -2526,11 +2360,11 @@ def get_discovered_network_devices_by_discovery_id(obj, pretty_print, beep,
         if payload is not None:
             payload = json.loads(payload)
         result = obj.get_discovered_network_devices_by_discovery_id(
-                                                                    task_id=task_id,
-                                                                    id=id,
-                                                                    headers=headers,
-                                                                    payload=payload,
-                                                                    active_validation=active_validation)
+            task_id=task_id,
+            id=id,
+            headers=headers,
+            payload=payload,
+            active_validation=active_validation)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -2544,16 +2378,13 @@ def get_discovered_network_devices_by_discovery_id(obj, pretty_print, beep,
 @click.option('--credential_sub_type', type=str,
               help='''Credential type as CLI / SNMPV2_READ_COMMUNITY / SNMPV2_WRITE_COMMUNITY / SNMPV3 / HTTP_WRITE / HTTP_READ / NETCONF.''',
               required=True,
-              show_default=True
-             )
+              show_default=True)
 @click.option('--sort_by', type=str,
               help='''sortBy query parameter.''',
-              show_default=True
-             )
+              show_default=True)
 @click.option('--order', type=str,
               help='''order query parameter.''',
-              show_default=True
-             )
+              show_default=True)
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
@@ -2585,12 +2416,12 @@ def get_global_credentials(obj, pretty_print, beep,
         if payload is not None:
             payload = json.loads(payload)
         result = obj.get_global_credentials(
-                                            credential_sub_type=credential_sub_type,
-                                            sort_by=sort_by,
-                                            order=order,
-                                            headers=headers,
-                                            payload=payload,
-                                            active_validation=active_validation)
+            credential_sub_type=credential_sub_type,
+            sort_by=sort_by,
+            order=order,
+            headers=headers,
+            payload=payload,
+            active_validation=active_validation)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:

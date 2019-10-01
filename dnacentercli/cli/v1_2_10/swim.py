@@ -29,76 +29,58 @@ def swim(ctx, obj):
 @swim.command()
 @click.option('--image_uuid', type=str,
               help='''imageUuid query parameter.''',
-              show_default=True
-             )
+              show_default=True)
 @click.option('--name', type=str,
               help='''name query parameter.''',
-              show_default=True
-             )
+              show_default=True)
 @click.option('--family', type=str,
               help='''family query parameter.''',
-              show_default=True
-             )
+              show_default=True)
 @click.option('--application_type', type=str,
               help='''applicationType query parameter.''',
-              show_default=True
-             )
+              show_default=True)
 @click.option('--image_integrity_status', type=str,
               help='''imageIntegrityStatus - FAILURE, UNKNOWN, VERIFIED.''',
-              show_default=True
-             )
+              show_default=True)
 @click.option('--version', type=str,
               help='''software Image Version.''',
-              show_default=True
-             )
+              show_default=True)
 @click.option('--image_series', type=str,
               help='''image Series.''',
-              show_default=True
-             )
+              show_default=True)
 @click.option('--image_name', type=str,
               help='''image Name.''',
-              show_default=True
-             )
+              show_default=True)
 @click.option('--is_tagged_golden', type=bool,
               help='''is Tagged Golden.''',
-              show_default=True
-             )
+              show_default=True)
 @click.option('--is_cco_recommended', type=bool,
               help='''is recommended from cisco.com.''',
-              show_default=True
-             )
+              show_default=True)
 @click.option('--is_cco_latest', type=bool,
               help='''is latest from cisco.com.''',
-              show_default=True
-             )
+              show_default=True)
 @click.option('--created_time', type=int,
               help='''time in milliseconds (epoch format).''',
-              show_default=True
-             )
+              show_default=True)
 @click.option('--image_size_greater_than', type=int,
               help='''size in bytes.''',
-              show_default=True
-             )
+              show_default=True)
 @click.option('--image_size_lesser_than', type=int,
               help='''size in bytes.''',
-              show_default=True
-             )
+              show_default=True)
 @click.option('--sort_by', type=str,
               help='''sort results by this field.''',
-              show_default=True
-             )
+              show_default=True)
 @click.option('--sort_order', type=str,
               help='''sort order - 'asc' or 'des'. Default is asc.''',
-              show_default=True
-             )
+              show_default=True)
 @click.option('--limit', type=int,
               help='''limit query parameter.''',
-              show_default=True
-             )
+              show_default=True)
 @click.option('--offset', type=int,
               help='''offset query parameter.''',
-              show_default=True
-             )
+              show_default=True)
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
@@ -145,27 +127,27 @@ def get_software_image_details(obj, pretty_print, beep,
         if payload is not None:
             payload = json.loads(payload)
         result = obj.get_software_image_details(
-                                                image_uuid=image_uuid,
-                                                name=name,
-                                                family=family,
-                                                application_type=application_type,
-                                                image_integrity_status=image_integrity_status,
-                                                version=version,
-                                                image_series=image_series,
-                                                image_name=image_name,
-                                                is_tagged_golden=is_tagged_golden,
-                                                is_cco_recommended=is_cco_recommended,
-                                                is_cco_latest=is_cco_latest,
-                                                created_time=created_time,
-                                                image_size_greater_than=image_size_greater_than,
-                                                image_size_lesser_than=image_size_lesser_than,
-                                                sort_by=sort_by,
-                                                sort_order=sort_order,
-                                                limit=limit,
-                                                offset=offset,
-                                                headers=headers,
-                                                payload=payload,
-                                                active_validation=active_validation)
+            image_uuid=image_uuid,
+            name=name,
+            family=family,
+            application_type=application_type,
+            image_integrity_status=image_integrity_status,
+            version=version,
+            image_series=image_series,
+            image_name=image_name,
+            is_tagged_golden=is_tagged_golden,
+            is_cco_recommended=is_cco_recommended,
+            is_cco_latest=is_cco_latest,
+            created_time=created_time,
+            image_size_greater_than=image_size_greater_than,
+            image_size_lesser_than=image_size_lesser_than,
+            sort_by=sort_by,
+            sort_order=sort_order,
+            limit=limit,
+            offset=offset,
+            headers=headers,
+            payload=payload,
+            active_validation=active_validation)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -204,9 +186,9 @@ def trigger_software_image_distribution(obj, pretty_print, beep,
         if payload is not None:
             payload = json.loads(payload)
         result = obj.trigger_software_image_distribution(
-                                                         headers=headers,
-                                                         payload=payload,
-                                                         active_validation=active_validation)
+            headers=headers,
+            payload=payload,
+            active_validation=active_validation)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -219,28 +201,22 @@ def trigger_software_image_distribution(obj, pretty_print, beep,
 @swim.command()
 @click.option('--is_third_party', type=bool,
               help='''Third party Image check.''',
-              show_default=True
-             )
+              show_default=True)
 @click.option('--third_party_vendor', type=str,
               help='''Third Party Vendor.''',
-              show_default=True
-             )
+              show_default=True)
 @click.option('--third_party_image_family', type=str,
               help='''Third Party image family.''',
-              show_default=True
-             )
+              show_default=True)
 @click.option('--third_party_application_type', type=str,
               help='''Third Party Application Type.''',
-              show_default=True
-             )
+              show_default=True)
 @click.option('--multipart_fields', default=None,
               help='''Fields from which to create a multipart/form-data body.''',
-              show_default=True
-             )
+              show_default=True)
 @click.option('--multipart_monitor_callback', default=None,
               help='''function used to monitor the progress of the upload.''',
-              show_default=True
-             )
+              show_default=True)
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
@@ -275,15 +251,15 @@ def import_local_software_image(obj, pretty_print, beep,
         if payload is not None:
             payload = json.loads(payload)
         result = obj.import_local_software_image(
-                                                 is_third_party=is_third_party,
-                                                 third_party_vendor=third_party_vendor,
-                                                 third_party_image_family=third_party_image_family,
-                                                 third_party_application_type=third_party_application_type,
-                                                 multipart_fields=multipart_fields,
-                                                 multipart_monitor_callback=multipart_monitor_callback,
-                                                 headers=headers,
-                                                 payload=payload,
-                                                 active_validation=active_validation)
+            is_third_party=is_third_party,
+            third_party_vendor=third_party_vendor,
+            third_party_image_family=third_party_image_family,
+            third_party_application_type=third_party_application_type,
+            multipart_fields=multipart_fields,
+            multipart_monitor_callback=multipart_monitor_callback,
+            headers=headers,
+            payload=payload,
+            active_validation=active_validation)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -296,16 +272,13 @@ def import_local_software_image(obj, pretty_print, beep,
 @swim.command()
 @click.option('--schedule_at', type=str,
               help='''Epoch Time (The number of milli-seconds since January 1 1970 UTC) at which the distribution should be scheduled (Optional) .''',
-              show_default=True
-             )
+              show_default=True)
 @click.option('--schedule_desc', type=str,
               help='''Custom Description (Optional).''',
-              show_default=True
-             )
+              show_default=True)
 @click.option('--schedule_origin', type=str,
               help='''Originator of this call (Optional).''',
-              show_default=True
-             )
+              show_default=True)
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
@@ -337,12 +310,12 @@ def import_software_image_via_url(obj, pretty_print, beep,
         if payload is not None:
             payload = json.loads(payload)
         result = obj.import_software_image_via_url(
-                                                   schedule_at=schedule_at,
-                                                   schedule_desc=schedule_desc,
-                                                   schedule_origin=schedule_origin,
-                                                   headers=headers,
-                                                   payload=payload,
-                                                   active_validation=active_validation)
+            schedule_at=schedule_at,
+            schedule_desc=schedule_desc,
+            schedule_origin=schedule_origin,
+            headers=headers,
+            payload=payload,
+            active_validation=active_validation)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -355,8 +328,7 @@ def import_software_image_via_url(obj, pretty_print, beep,
 @swim.command()
 @click.option('--schedule_validate', type=bool,
               help='''scheduleValidate, validates data before schedule (Optional).''',
-              show_default=True
-             )
+              show_default=True)
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
@@ -386,10 +358,10 @@ def trigger_software_image_activation(obj, pretty_print, beep,
         if payload is not None:
             payload = json.loads(payload)
         result = obj.trigger_software_image_activation(
-                                                       schedule_validate=schedule_validate,
-                                                       headers=headers,
-                                                       payload=payload,
-                                                       active_validation=active_validation)
+            schedule_validate=schedule_validate,
+            headers=headers,
+            payload=payload,
+            active_validation=active_validation)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
