@@ -24,7 +24,7 @@ The project has a few dependencies:
 - `click`_ >= 7.0
 - `dnacentersdk`_ >= 1.3.0.post2
 
-.. note:: dnacentercli works starting from **python 3**
+**Note**: dnacentercli works starting from **python 3**
 
 What is DNA Center?
 ===================
@@ -74,7 +74,7 @@ Authenticate
 DNA Center SDK creates a DNACenterAPI "Connection Object" defaults to pulling from environment variables and dnacentersdk.config.
 The same happens for the DNA Center CLI, except, of course, the version parameter.
 
-You can ask for help using ``--help``` and see the list of options and commands available on your selected version:
+You can ask for help using ``--help`` and see the list of options and commands available on your selected version:
 
 .. code-block:: bash
 
@@ -86,11 +86,13 @@ You can ask for help using ``--help``` and see the list of options and commands 
 To avoid getting errors like the following:
 
 ::
+
     > HTTPSConnectionPool(host='128.107.71.199', port=443): 
     Max retries exceeded with url: /dna/system/api/v1/auth/token (Caused by SSLError
     (SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate
     verify failed: self signed certificate in certificate chain (_ssl.c:1076)')))
-    
+
+
 Include the verify option and set it to False: ``--verify False``
 
 
@@ -135,6 +137,7 @@ is the same as
 **Note:** 
 
 ::
+
     There are differences accross platforms about JSON strings.
     On *nix based systems and command lines, the following is a valid JSON string representation:
 
@@ -144,13 +147,16 @@ is the same as
     $ dnacentercli v1-2-10 networks get-overall-network-health --timestamp "1568008500000" --headers '{"__runsync": true}'
 
 ::
+
     On Windows and its command lines, the following is the valid JSON string representation:
+
     
 .. code-block:: bash
 
     $ dnacentercli v1-2-10 networks get-overall-network-health --timestamp "1568008500000" --headers '{\"__runsync\": true}'
     
 ::
+
     Be careful.
 
 
