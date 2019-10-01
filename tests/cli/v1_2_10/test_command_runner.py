@@ -1,6 +1,8 @@
 import click
 import pytest
 from tests.environment import DNA_CENTER_VERSION
+from tests.models.schema_validator import json_schema_validate
+from .test_devices import get_device_list
 
 
 pytestmark = pytest.mark.skipif(DNA_CENTER_VERSION != '1.2.10', reason='version does not match')
