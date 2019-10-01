@@ -81,16 +81,17 @@ You can ask for help using ``--help``` and see the list of options and commands 
     $ dnacentercli v1-2-10 --help 
 
 
-.. note::
+**Note:**
 
-    To avoid getting errors like the following:
+To avoid getting errors like the following:
+
+::
+    > HTTPSConnectionPool(host='128.107.71.199', port=443): 
+    Max retries exceeded with url: /dna/system/api/v1/auth/token (Caused by SSLError
+    (SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate
+    verify failed: self signed certificate in certificate chain (_ssl.c:1076)')))
     
-    > HTTPSConnectionPool(host='128.107.71.199', port=443):
-      Max retries exceeded with url: /dna/system/api/v1/auth/token (Caused by
-      SSLError (SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate
-      verify failed: self signed certificate in certificate chain (_ssl.c:1076)')))
-    
-    Include the verify option and set it to False: ``--verify False``
+Include the verify option and set it to False: ``--verify False``
 
 
 Access to DNA Center APIs
@@ -131,21 +132,25 @@ is the same as
     > --verify True networks get-overall-network-health --timestamp "1568008500000" --headers '{"__runsync": true}'
 
 
-.. note:: 
+**Note:** 
 
+::
     There are differences accross platforms about JSON strings.
     On *nix based systems and command lines, the following is a valid JSON string representation:
+
     
-    .. code-block:: bash
+.. code-block:: bash
 
-        $ dnacentercli v1-2-10 networks get-overall-network-health --timestamp "1568008500000" --headers '{"__runsync": true}'
+    $ dnacentercli v1-2-10 networks get-overall-network-health --timestamp "1568008500000" --headers '{"__runsync": true}'
 
+::
     On Windows and its command lines, the following is the valid JSON string representation:
     
-    .. code-block:: bash
+.. code-block:: bash
 
-        $ dnacentercli v1-2-10 networks get-overall-network-health --timestamp "1568008500000" --headers '{\"__runsync\": true}'
+    $ dnacentercli v1-2-10 networks get-overall-network-health --timestamp "1568008500000" --headers '{\"__runsync\": true}'
     
+::
     Be careful.
 
 
