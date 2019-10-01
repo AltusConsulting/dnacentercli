@@ -43,8 +43,8 @@ PACKAGE_CLASSIFIERS = [
 
 INSTALLATION_REQUIREMENTS = [
     'future',
-    'Click==7.0',
-    "dnacentersdk==1.3.0.post2",
+    'Click>=7.0',
+    "dnacentersdk>=1.3.0.post2",
 ]
 
 
