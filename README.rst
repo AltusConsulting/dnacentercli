@@ -138,7 +138,7 @@ is the same as
 
 **Note:** 
 
-There are differences accross platforms about JSON strings.
+There are differences across platforms about JSON strings.
 
 On \*nix based systems and command lines, the following is a valid JSON string representation:
     
@@ -161,7 +161,7 @@ Be careful.
 Multiple Options
 ----------------
 
-There are some cases where the parameter value is a list. To record all the values, you have to provide the parameter multiple times.
+There are some cases where the parameter type is a list. To record all the values, you have to provide the parameter multiple times.
 
 For example:
 
@@ -173,8 +173,8 @@ For example:
 Bell
 ------
 
-To activate the beep when spinner finishes (or the API call finishes), add ``--beep`` to your API Call.
-The ``--beep`` option is a flag, on if present off if ommited.
+To activate the beep when the spinner finishes (or the API call ends), add the ``--beep`` option to your API Call.
+The ``--beep`` option is a boolean flag if present is on otherwise is off.
 
 
 Pretty Print
@@ -229,7 +229,7 @@ Exceptions
 ----------
 
 All DNA Center SDK exceptions are streamed to the Standard Error (stderr).
-Before exiting the program, it will print the traceback (limited to 1 element), the name and some description of the exception.
+Before exiting the program, it will print the traceback (limited to 1 element), the exception name and its description.
 
 
 *Copyright (c) 2019 Cisco and/or its affiliates.*
