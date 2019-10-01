@@ -130,34 +130,30 @@ is the same as
 
 .. code-block:: bash
 
-    $ dnacentercli v1-2-10 --username devnetuser --password Cisco123! --base_url https://sandboxdnac2.cisco.com:443 \
-    > --verify True networks get-overall-network-health --timestamp "1568008500000" --headers '{"__runsync": true}'
+    $ dnacentercli v1-2-10 --username devnetuser --password Cisco123! \
+    > --base_url https://sandboxdnac2.cisco.com:443 --verify True \
+    > networks get-overall-network-health \
+    > --timestamp "1568008500000" --headers '{"__runsync": true}'
 
 
 **Note:** 
 
-::
+There are differences accross platforms about JSON strings.
 
-    There are differences accross platforms about JSON strings.
-    On *nix based systems and command lines, the following is a valid JSON string representation:
-
+On \*nix based systems and command lines, the following is a valid JSON string representation:
     
 .. code-block:: bash
 
     $ dnacentercli v1-2-10 networks get-overall-network-health --timestamp "1568008500000" --headers '{"__runsync": true}'
 
-::
-
-    On Windows and its command lines, the following is the valid JSON string representation:
+On Windows and its command lines, the following is the valid JSON string representation:
 
     
 .. code-block:: bash
 
     $ dnacentercli v1-2-10 networks get-overall-network-health --timestamp "1568008500000" --headers '{\"__runsync\": true}'
     
-::
-
-    Be careful.
+Be careful.
 
 
 Multiple Options
