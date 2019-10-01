@@ -144,14 +144,16 @@ On \*nix based systems and command lines, the following is a valid JSON string r
     
 .. code-block:: bash
 
-    $ dnacentercli v1-2-10 networks get-overall-network-health --timestamp "1568008500000" --headers '{"__runsync": true}'
+    $ dnacentercli v1-2-10 networks get-overall-network-health \
+    --timestamp "1568008500000" --headers '{"__runsync": true}'
 
 On Windows and its command lines, the following is the valid JSON string representation:
 
     
 .. code-block:: bash
 
-    $ dnacentercli v1-2-10 networks get-overall-network-health --timestamp "1568008500000" --headers '{\"__runsync\": true}'
+    dnacentercli v1-2-10 networks get-overall-network-health ^
+    --timestamp "1568008500000" --headers '{\"__runsync\": true}'
     
 Be careful.
 
@@ -165,7 +167,7 @@ For example:
 
 .. code-block:: bash
 
-    $ dnacentercli v1-2-10 devices add-device --ipaddress 10.20.10.1 --ipaddress 10.30.10.1
+    $ dnacentercli v1-2-10 devices add-device --ipaddress '10.20.10.1' --ipaddress '10.30.10.1'
 
 
 Bell
