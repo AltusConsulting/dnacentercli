@@ -94,12 +94,12 @@ from .v1_3_0.template_programmer import \
 
 def version_set(ctx, param, value):
     if value not in ['1.2.10', '1.3.0']:
-            ctx.fail(
-                'Unknown API version, '
-                + 'known versions are {}'.format(
-                    '1.2.10 and 1.3.0.'
-                )
+        ctx.fail(
+            'Unknown API version, '
+            + 'known versions are {}'.format(
+                '1.2.10 and 1.3.0.'
             )
+        )
     if value == '1.2.10':
         main.add_command(v1_2_10_clients)
         main.add_command(v1_2_10_command_runner)
@@ -156,7 +156,7 @@ def version_set(ctx, param, value):
               prompt=True, hide_input=True,
               confirmation_prompt=True)
 @click.option('--encoded_auth', '-ea', type=str,
-              default=DNA_CENTER_ENCODED_AUTH ,
+              default=DNA_CENTER_ENCODED_AUTH,
               help='HTTP Basic Auth base64 encoded string.',
               show_default=True)
 @click.option('--base_url', type=str,
