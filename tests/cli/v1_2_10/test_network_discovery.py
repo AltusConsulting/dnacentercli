@@ -21,9 +21,9 @@ pytestmark = pytest.mark.skipif(DNA_CENTER_VERSION != '1.2.10', reason='version 
 # @pytest.mark.network_discovery
 # def test_create_cli_credentials(runner, cli, auth_options):
 #     result = runner.invoke(cli, ['v1-2-10', *auth_options, 'network-discovery', 'create-cli-credentials', '''--payload=[{
-            "username": "test_user_devnet",
-            "password": "NO!$DATA!$"
-        }]''', '''--active_validation=True'''])
+#             "username": "test_user_devnet",
+#             "password": "NO!$DATA!$"
+#         }]''', '''--active_validation=True'''])
 #     assert not result.exception
 #     if result.output.strip():
 #         obj = loads(result.output)
@@ -33,8 +33,8 @@ pytestmark = pytest.mark.skipif(DNA_CENTER_VERSION != '1.2.10', reason='version 
 # @pytest.mark.network_discovery
 # def test_create_netconf_credentials(runner, cli, auth_options):
 #     result = runner.invoke(cli, ['v1-2-10', *auth_options, 'network-discovery', 'create-netconf-credentials', '''--payload=[{
-            "netconfPort": '65533'  # range of 1 to 65535
-        }]''', '''--active_validation=True'''])
+#             "netconfPort": '65533'  # range of 1 to 65535
+#         }]''', '''--active_validation=True'''])
 #     assert not result.exception
 #     if result.output.strip():
 #         obj = loads(result.output)
@@ -44,9 +44,9 @@ pytestmark = pytest.mark.skipif(DNA_CENTER_VERSION != '1.2.10', reason='version 
 # @pytest.mark.network_discovery
 # def test_create_snmp_write_community(runner, cli, auth_options):
 #     result = runner.invoke(cli, ['v1-2-10', *auth_options, 'network-discovery', 'create-snmp-write-community', '''--payload=[{
-            "writeCommunity": "NO!$DATA!$",
-            "description": "created snmpv2"
-        }]''', '''--active_validation=True'''])
+#             "writeCommunity": "NO!$DATA!$",
+#             "description": "created snmpv2"
+#         }]''', '''--active_validation=True'''])
 #     assert not result.exception
 #     if result.output.strip():
 #         obj = loads(result.output)
@@ -56,9 +56,9 @@ pytestmark = pytest.mark.skipif(DNA_CENTER_VERSION != '1.2.10', reason='version 
 # @pytest.mark.network_discovery
 # def test_create_snmp_read_community(runner, cli, auth_options):
 #     result = runner.invoke(cli, ['v1-2-10', *auth_options, 'network-discovery', 'create-snmp-read-community', '''--payload=[{
-            "readCommunity": "NO!$DATA!$",
-            "description": "created snmpv2"
-        }]''', '''--active_validation=True'''])
+#             "readCommunity": "NO!$DATA!$",
+#             "description": "created snmpv2"
+#         }]''', '''--active_validation=True'''])
 #     assert not result.exception
 #     if result.output.strip():
 #         obj = loads(result.output)
@@ -68,10 +68,10 @@ pytestmark = pytest.mark.skipif(DNA_CENTER_VERSION != '1.2.10', reason='version 
 # @pytest.mark.network_discovery
 # def test_create_http_write_credentials(runner, cli, auth_options):
 #     result = runner.invoke(cli, ['v1-2-10', *auth_options, 'network-discovery', 'create-http-write-credentials', '''--payload=[{
-            "username": "test_user_devnet",
-            "password": "W.~&KV9ha",
-            "port": 8080
-        }]''', '''--active_validation=True'''])
+#             "username": "test_user_devnet",
+#             "password": "W.~&KV9ha",
+#             "port": 8080
+#         }]''', '''--active_validation=True'''])
 #     assert not result.exception
 #     if result.output.strip():
 #         obj = loads(result.output)
@@ -81,10 +81,10 @@ pytestmark = pytest.mark.skipif(DNA_CENTER_VERSION != '1.2.10', reason='version 
 # @pytest.mark.network_discovery
 # def test_create_http_read_credentials(runner, cli, auth_options):
 #     result = runner.invoke(cli, ['v1-2-10', *auth_options, 'network-discovery', 'create-http-read-credentials', '''--payload=[{
-            "username": "test_user_devnet",
-            "password": "W.~&KV9ha",
-            "port": 8080
-        }]''', '''--active_validation=True'''])
+#             "username": "test_user_devnet",
+#             "password": "W.~&KV9ha",
+#             "port": 8080
+#         }]''', '''--active_validation=True'''])
 #     assert not result.exception
 #     if result.output.strip():
 #         obj = loads(result.output)
@@ -94,9 +94,9 @@ pytestmark = pytest.mark.skipif(DNA_CENTER_VERSION != '1.2.10', reason='version 
 # @pytest.mark.network_discovery
 # def test_create_update_snmp_properties(runner, cli, auth_options):
 #     result = runner.invoke(cli, ['v1-2-10', *auth_options, 'network-discovery', 'create-update-snmp-properties', '''--payload=[{
-            "intValue": 1,
-            "systemPropertyName": "version"
-        }]''', '''--active_validation=True'''])
+#             "intValue": 1,
+#             "systemPropertyName": "version"
+#         }]''', '''--active_validation=True'''])
 #     assert not result.exception
 #     if result.output.strip():
 #         obj = loads(result.output)
@@ -106,9 +106,9 @@ pytestmark = pytest.mark.skipif(DNA_CENTER_VERSION != '1.2.10', reason='version 
 # @pytest.mark.network_discovery
 # def test_create_snmpv3_credentials(runner, cli, auth_options):
 #     result = runner.invoke(cli, ['v1-2-10', *auth_options, 'network-discovery', 'create-snmpv3-credentials', '''--payload=[{
-            "snmpMode": "NOAUTHNOPRIV",
-            "username": "test_user_devnet"
-        }]''', '''--active_validation=True'''])
+#             "snmpMode": "NOAUTHNOPRIV",
+#             "username": "test_user_devnet"
+#         }]''', '''--active_validation=True'''])
 #     assert not result.exception
 #     if result.output.strip():
 #         obj = loads(result.output)

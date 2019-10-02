@@ -15,8 +15,8 @@ pytestmark = pytest.mark.skipif(DNA_CENTER_VERSION != '1.2.10', reason='version 
 # @pytest.mark.fabric_wired
 # def test_adds_border_device_in_sda_fabric(runner, cli, auth_options):
 #     result = runner.invoke(cli, ['v1-2-10', *auth_options, 'fabric-wired', 'adds-border-device-in-sda-fabric', '''--sda_border_device=BORDER_DEVICE_SDA_FABRIC_PATH''', '''--payload=[{
-            "deviceManagementIpAddress": device.managementIpAddress
-        }]''', '''--active_validation=True'''])
+#             "deviceManagementIpAddress": device.managementIpAddress
+#         }]''', '''--active_validation=True'''])
 #     assert not result.exception
 #     if result.output.strip():
 #         obj = loads(result.output)

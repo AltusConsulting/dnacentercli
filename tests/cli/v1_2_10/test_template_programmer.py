@@ -57,12 +57,12 @@ pytestmark = pytest.mark.skipif(DNA_CENTER_VERSION != '1.2.10', reason='version 
 # @pytest.mark.template_programmer
 # def test_create_template(runner, cli, auth_options):
 #     result = runner.invoke(cli, ['v1-2-10', *auth_options, 'template-programmer', 'create-template', '''--project_id=filtered_project[0].id''', '''--author=None''', '''--composite=False''', '''--containingTemplates=[]''', '''--createTime=None''', '''--description=None''', '''--deviceTypes=[
-            {
-                "productFamily": "Switches and Hubs",
-                # "productSeries": "Cisco Catalyst 9300 Series Switches",
-                # "productType": "Cisco Catalyst 9300 Switch"
-            }
-        ]''', '''--failurePolicy=None''', '''--id=None''', '''--lastUpdateTime=None''', '''--name='test_template'''', '''--parentTemplateId=None''', '''--projectId=None''', '''--projectName=None''', '''--rollbackTemplateContent=''''', '''--rollbackTemplateParams=[]''', '''--softwareType='IOS-XE'''', '''--softwareVariant='XE'''', '''--softwareVersion=None''', '''--tags=None''', '''--templateContent='show version\n'''', '''--templateParams=[]''', '''--version=None''', '''--payload=None''', '''--active_validation=True'''])
+#             {
+#                 "productFamily": "Switches and Hubs",
+#                 # "productSeries": "Cisco Catalyst 9300 Series Switches",
+#                 # "productType": "Cisco Catalyst 9300 Switch"
+#             }
+#         ]''', '''--failurePolicy=None''', '''--id=None''', '''--lastUpdateTime=None''', '''--name='test_template'''', '''--parentTemplateId=None''', '''--projectId=None''', '''--projectName=None''', '''--rollbackTemplateContent=''''', '''--rollbackTemplateParams=[]''', '''--softwareType='IOS-XE'''', '''--softwareVariant='XE'''', '''--softwareVersion=None''', '''--tags=None''', '''--templateContent='show version\n'''', '''--templateParams=[]''', '''--version=None''', '''--payload=None''', '''--active_validation=True'''])
 #     assert not result.exception
 #     if result.output.strip():
 #         obj = loads(result.output)
@@ -108,7 +108,7 @@ pytestmark = pytest.mark.skipif(DNA_CENTER_VERSION != '1.2.10', reason='version 
 # @pytest.mark.template_programmer
 # def test_deploy_template(runner, cli, auth_options):
 #     result = runner.invoke(cli, ['v1-2-10', *auth_options, 'template-programmer', 'deploy-template', '''--forcePushTemplate=True''', '''--isComposite=template.composite''', '''--mainTemplateId=template.parentTemplateId''', '''--memberTemplateDeploymentInfo=None''', '''--targetInfo=[{'id': t.managementIpAddress,
-                    'type': 'MANAGED_DEVICE_IP'''', '''--'params': {}} for t in target]''', '''--templateId=template.id''', '''--payload=None''', '''--active_validation=True'''])
+#                    'type': 'MANAGED_DEVICE_IP'''', '''--'params': {}} for t in target]''', '''--templateId=template.id''', '''--payload=None''', '''--active_validation=True'''])
 #     assert not result.exception
 #     if result.output.strip():
 #         obj = loads(result.output)

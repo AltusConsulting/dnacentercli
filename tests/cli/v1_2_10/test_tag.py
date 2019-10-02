@@ -93,8 +93,8 @@ pytestmark = pytest.mark.skipif(DNA_CENTER_VERSION != '1.2.10', reason='version 
 # @pytest.mark.tag
 # def test_add_members_to_the_tag(runner, cli, auth_options):
 #     result = runner.invoke(cli, ['v1-2-10', *auth_options, 'tag', 'add-members-to-the-tag', '''--id=get_tag_created(api).response[0].id''', '''--payload={
-            "networkdevice": [api.devices.get_device_list().response[0].id]
-        }''', '''--active_validation=True'''])
+#            "networkdevice": [api.devices.get_device_list().response[0].id]
+#        }''', '''--active_validation=True'''])
 #     assert not result.exception
 #     if result.output.strip():
 #         obj = loads(result.output)

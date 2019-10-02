@@ -27,7 +27,7 @@ pytestmark = pytest.mark.skipif(DNA_CENTER_VERSION != '1.2.10', reason='version 
 # @pytest.mark.swim
 # def test_import_local_software_image(runner, cli, auth_options):
 #     result = runner.invoke(cli, ['v1-2-10', *auth_options, 'swim', 'import-local-software-image', '''--is_third_party=None''', '''--third_party_application_type=None''', '''--third_party_image_family=None''', '''--third_party_vendor=None''', '''--multipart_fields={'file': (LOCAL_SOFTWARE_IMAGE_NAME,
-                                   open(LOCAL_SOFTWARE_IMAGE_PATH''', '''--'rb'))}''', '''--multipart_monitor_callback=None''', '''--payload=None''', '''--active_validation=True'''])
+#                                    open(LOCAL_SOFTWARE_IMAGE_PATH''', '''--'rb'))}''', '''--multipart_monitor_callback=None''', '''--payload=None''', '''--active_validation=True'''])
 #     assert not result.exception
 #     if result.output.strip():
 #         obj = loads(result.output)
@@ -39,11 +39,11 @@ pytestmark = pytest.mark.skipif(DNA_CENTER_VERSION != '1.2.10', reason='version 
 # @pytest.mark.swim
 # def test_import_software_image_via_url(runner, cli, auth_options):
 #     result = runner.invoke(cli, ['v1-2-10', *auth_options, 'swim', 'import-software-image-via-url', '''--schedule_at=None''', '''--schedule_desc=None''', '''--schedule_origin=None''', '''--payload=[{
-            'applicationType': image_details.applicationType,
-            'vendor': image_details.vendor,
-            'imageFamily': image_details.family,
-            'sourceURL': DEFAULT_BASE_URL + '/dna/intent/api/v1/' + files
-        }]''', '''--active_validation=True'''])
+#             'applicationType': image_details.applicationType,
+#             'vendor': image_details.vendor,
+#             'imageFamily': image_details.family,
+#             'sourceURL': DEFAULT_BASE_URL + '/dna/intent/api/v1/' + files
+#         }]''', '''--active_validation=True'''])
 #     assert not result.exception
 #     if result.output.strip():
 #         obj = loads(result.output)
@@ -53,11 +53,11 @@ pytestmark = pytest.mark.skipif(DNA_CENTER_VERSION != '1.2.10', reason='version 
 # @pytest.mark.swim
 # def test_trigger_software_image_activation(runner, cli, auth_options):
 #     result = runner.invoke(cli, ['v1-2-10', *auth_options, 'swim', 'trigger-software-image-activation', '''--schedule_validate=None''', '''--payload=[{
-            'activateLowerImageVersion': True,
-            'deviceUuid': get_device_list(api).response[0].id,
-            'distributeIfNeeded': True,
-            'imageUuidList': [get_software_image_details(api).response[0].imageUuid],
-        }]''', '''--active_validation=True'''])
+#             'activateLowerImageVersion': True,
+#             'deviceUuid': get_device_list(api).response[0].id,
+#             'distributeIfNeeded': True,
+#             'imageUuidList': [get_software_image_details(api).response[0].imageUuid],
+#         }]''', '''--active_validation=True'''])
 #     assert not result.exception
 #     if result.output.strip():
 #         obj = loads(result.output)
@@ -67,9 +67,9 @@ pytestmark = pytest.mark.skipif(DNA_CENTER_VERSION != '1.2.10', reason='version 
 # @pytest.mark.swim
 # def test_trigger_software_image_distribution(runner, cli, auth_options):
 #     result = runner.invoke(cli, ['v1-2-10', *auth_options, 'swim', 'trigger-software-image-distribution', '''--payload=[{
-            'deviceUuid': get_device_list(api).response[0].id,
-            'imageUuid': get_software_image_details(api).response[0].imageUuid
-        }]''', '''--active_validation=True'''])
+#             'deviceUuid': get_device_list(api).response[0].id,
+#             'imageUuid': get_software_image_details(api).response[0].imageUuid
+#         }]''', '''--active_validation=True'''])
 #     assert not result.exception
 #     if result.output.strip():
 #         obj = loads(result.output)

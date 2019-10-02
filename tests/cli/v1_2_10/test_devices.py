@@ -321,19 +321,19 @@ pytestmark = pytest.mark.skipif(DNA_CENTER_VERSION != '1.2.10', reason='version 
 # @pytest.mark.devices
 # def test_add_device(runner, cli, auth_options):
 #     result = runner.invoke(cli, ['v1-2-10', *auth_options, 'devices', 'add-device', '''--cliTransport=None''', '''--computeDevice=None''', '''--enablePassword=None''', '''--extendedDiscoveryInfo=None''', '''--httpPassword=None''', '''--httpPort=None''', '''--httpSecure=None''', '''--httpUserName=None''', '''--ipAddress=[new_ipAddress]''', '''--merakiOrgId=None''', '''--netconfPort=None''', '''--password=None''', '''--serialNumber=None''', '''--snmpAuthPassphrase=None''', '''--snmpAuthProtocol=None''', '''--snmpMode=None''', '''--snmpPrivPassphrase=None''', '''--snmpPrivProtocol=None''', '''--snmpROCommunity=None''', '''--snmpRWCommunity=None''', '''--snmpRetry=None''', '''--snmpTimeout=None''', '''--snmpUserName=None''', '''--snmpVersion=None''', '''--type=None''', '''--updateMgmtIPaddressList=None''', '''--userName=None''', '''--payload={
-            "cliTransport": "ssh",
-            "enablePassword": "false",
-            "snmpMode": "NOAUTHNOPRIV",
-            "snmpROCommunity": credentials[0].id,
-            "snmpRWCommunity": "",
-            "snmpRetry": 0,
-            "snmpTimeout": 0,
-            "snmpUserName": "test_user_devnet",
-            "snmpVersion": "v2",
-            "type": "NETWORK_DEVICE",
-            "userName": "test_user_devnet",
-            "password": "W.~&KV9ha"
-        }''', '''--active_validation=True'''])
+#             "cliTransport": "ssh",
+#             "enablePassword": "false",
+#             "snmpMode": "NOAUTHNOPRIV",
+#             "snmpROCommunity": credentials[0].id,
+#             "snmpRWCommunity": "",
+#             "snmpRetry": 0,
+#             "snmpTimeout": 0,
+#             "snmpUserName": "test_user_devnet",
+#             "snmpVersion": "v2",
+#             "type": "NETWORK_DEVICE",
+#             "userName": "test_user_devnet",
+#             "password": "W.~&KV9ha"
+#         }''', '''--active_validation=True'''])
 #     assert not result.exception
 #     if result.output.strip():
 #         obj = loads(result.output)

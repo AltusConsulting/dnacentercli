@@ -123,11 +123,11 @@ pytestmark = pytest.mark.skipif(DNA_CENTER_VERSION != '1.2.10', reason='version 
 # @pytest.mark.pnp
 # def test_import_devices_in_bulk(runner, cli, auth_options):
 #     result = runner.invoke(cli, ['v1-2-10', *auth_options, 'pnp', 'import-devices-in-bulk', '''--payload=[{
-            "deviceInfo": {
-                "serialNumber": "c3160d2650",
-                "name": "Test device c3160d2650"
-            }
-        }]''', '''--active_validation=True'''])
+#             "deviceInfo": {
+#                 "serialNumber": "c3160d2650",
+#                 "name": "Test device c3160d2650"
+#             }
+#         }]''', '''--active_validation=True'''])
 #     assert not result.exception
 #     if result.output.strip():
 #         obj = loads(result.output)
@@ -182,12 +182,12 @@ pytestmark = pytest.mark.skipif(DNA_CENTER_VERSION != '1.2.10', reason='version 
 # @pytest.mark.pnp
 # def test_claim_a_device_to_a_site(runner, cli, auth_options):
 #     result = runner.invoke(cli, ['v1-2-10', *auth_options, 'pnp', 'claim-a-device-to-a-site', '''--deviceId=None''', '''--siteId=None''', '''--type=None''', '''--payload={
-            "siteId": siteId,
-            "deviceId": deviceId,
-            "type": "Default",
-            "imageInfo": {"imageId": ""''', '''--"skip": False},
-            "configInfo": {"configId": ""''', '''--"configParameters": []}
-        }''', '''--active_validation=True'''])
+#             "siteId": siteId,
+#             "deviceId": deviceId,
+#             "type": "Default",
+#             "imageInfo": {"imageId": ""''', '''--"skip": False},
+#             "configInfo": {"configId": ""''', '''--"configParameters": []}
+#         }''', '''--active_validation=True'''])
 #     assert not result.exception
 #     if result.output.strip():
 #         obj = loads(result.output)
@@ -224,22 +224,22 @@ pytestmark = pytest.mark.skipif(DNA_CENTER_VERSION != '1.2.10', reason='version 
 # @pytest.mark.pnp
 # def test_add_a_workflow(runner, cli, auth_options):
 #     result = runner.invoke(cli, ['v1-2-10', *auth_options, 'pnp', 'add-a-workflow', '''--_id=None''', '''--addToInventory=None''', '''--addedOn=None''', '''--configId=None''', '''--currTaskIdx=None''', '''--description='test_devnet_1'''', '''--endTime=None''', '''--execTime=None''', '''--imageId=None''', '''--instanceType=None''', '''--lastupdateOn=None''', '''--name='test_devnet_1'''', '''--startTime=None''', '''--state=None''', '''--tasks=[{
-            'taskSeqNo': 0,
-            'name': 'Config Download',
-            'type': 'Config',
-            'startTime': 0,
-            'endTime': 0,
-            'timeTaken': 0,
-            'currWorkItemIdx': 0,
-            'configInfo': {
-                'configId': template.id,
-                'configFileUrl': None,
-                'fileServiceId': None,
-                'saveToStartUp': True,
-                'connLossRollBack': True,
-                'configParameters': None
-            }
-        }]''', '''--tenantId=None''', '''--type='Standard'''', '''--useState='Available'''', '''--version=None''', '''--payload=None''', '''--active_validation=True'''])
+#             'taskSeqNo': 0,
+#             'name': 'Config Download',
+#             'type': 'Config',
+#             'startTime': 0,
+#             'endTime': 0,
+#             'timeTaken': 0,
+#             'currWorkItemIdx': 0,
+#             'configInfo': {
+#                 'configId': template.id,
+#                 'configFileUrl': None,
+#                 'fileServiceId': None,
+#                 'saveToStartUp': True,
+#                 'connLossRollBack': True,
+#                 'configParameters': None
+#             }
+#         }]''', '''--tenantId=None''', '''--type='Standard'''', '''--useState='Available'''', '''--version=None''', '''--payload=None''', '''--active_validation=True'''])
 #     assert not result.exception
 #     if result.output.strip():
 #         obj = loads(result.output)
@@ -267,11 +267,11 @@ pytestmark = pytest.mark.skipif(DNA_CENTER_VERSION != '1.2.10', reason='version 
 # @pytest.mark.pnp
 # def test_claim_device(runner, cli, auth_options):
 #     result = runner.invoke(cli, ['v1-2-10', *auth_options, 'pnp', 'claim-device', '''--configFileUrl=None''', '''--configId=None''', '''--deviceClaimList=[
-            {
-                "configList": configList,
-                "deviceId": deviceId
-            }
-        ]''', '''--fileServiceId=None''', '''--imageId=None''', '''--imageUrl=None''', '''--populateInventory=None''', '''--projectId=None''', '''--workflowId=workflow.id''', '''--payload=None''', '''--active_validation=True'''])
+#             {
+#                 "configList": configList,
+#                 "deviceId": deviceId
+#             }
+#         ]''', '''--fileServiceId=None''', '''--imageId=None''', '''--imageUrl=None''', '''--populateInventory=None''', '''--projectId=None''', '''--workflowId=workflow.id''', '''--payload=None''', '''--active_validation=True'''])
 #     assert not result.exception
 #     if result.output.strip():
 #         obj = loads(result.output)

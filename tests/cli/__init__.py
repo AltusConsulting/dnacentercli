@@ -49,11 +49,11 @@ def auth_options():
     result_password = DNA_CENTER_PASSWORD is not None and ["--password", "{}".format(DNA_CENTER_PASSWORD)] or []
     result_encoded_auth = DNA_CENTER_ENCODED_AUTH is not None and ["--encoded_auth", "{}".format(DNA_CENTER_ENCODED_AUTH)] or []
     result = [
-      *result_username,
-      *result_password,
-      *result_encoded_auth,
-      "--base_url", "{}".format(DEFAULT_BASE_URL),
-      "--verify", "{}".format(True),
-      "--debug", "{}".format(False),
+        *result_username,
+        *result_password,
+        *result_encoded_auth,
+        "--base_url", "{}".format(DEFAULT_BASE_URL),
+        "--verify", "{}".format(True),
+        "--debug", "{}".format(False),
     ]
     return list(filter(lambda x: x != '', result))

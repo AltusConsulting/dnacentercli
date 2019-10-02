@@ -21,14 +21,14 @@ pytestmark = pytest.mark.skipif(DNA_CENTER_VERSION != '1.2.10', reason='version 
 # @pytest.mark.sites
 # def test_create_site(runner, cli, auth_options):
 #     result = runner.invoke(cli, ['v1-2-10', *auth_options, 'sites', 'create-site', '''--site=None''', '''--type=None''', '''--payload={
-            'type': 'building',
-            'site': {
-                'building': {
-                    'name': 'Test_Building',
-                    'address': '10.10.22.70'
-                }
-            }
-        }''', '''--active_validation=True'''])
+#             'type': 'building',
+#             'site': {
+#                 'building': {
+#                     'name': 'Test_Building',
+#                     'address': '10.10.22.70'
+#                 }
+#             }
+#         }''', '''--active_validation=True'''])
 #     assert not result.exception
 #     if result.output.strip():
 #         obj = loads(result.output)
