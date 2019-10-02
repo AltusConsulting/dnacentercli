@@ -1,4 +1,10 @@
-# Setup install files
+# Distribution / packaging
 build/
 dist/
-dnacentercli.egg-info/
+*.egg-info/
+.Python
+develop-eggs/
+downloads/
+eggs/
+.eggs/
+*.egg

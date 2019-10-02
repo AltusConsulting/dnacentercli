@@ -1,7 +1,19 @@
 # -*- coding: utf-8 -*-
 import click
 import urllib3
-from dnacentersdk import config, DNACenterAPI
+import os
+from dnacentersdk import DNACenterAPI
+from dnacentercli.environment import (
+    DNA_CENTER_USERNAME,
+    DNA_CENTER_PASSWORD,
+    DNA_CENTER_ENCODED_AUTH,
+    DNA_CENTER_DEBUG,
+    DNA_CENTER_VERSION,
+    DNA_CENTER_BASE_URL,
+    DNA_CENTER_SINGLE_REQUEST_TIMEOUT,
+    DNA_CENTER_WAIT_ON_RATE_LIMIT,
+    DNA_CENTER_VERIFY,
+)
 from .utils.spinner import (
     init_spinner,
     start_spinner,
@@ -80,9 +92,100 @@ from .v1_3_0.template_programmer import \
     template_programmer as v1_3_0_template_programmer
 
 
+def version_set(ctx, param, value):
+    if value not in ['1.2.10', '1.3.0']:
+            ctx.fail(
+                'Unknown API version, '
+                + 'known versions are {}'.format(
+                    '1.2.10 and 1.3.0.'
+                )
+            )
+    if value == '1.2.10':
+        main.add_command(v1_2_10_clients)
+        main.add_command(v1_2_10_command_runner)
+        main.add_command(v1_2_10_devices)
+        main.add_command(v1_2_10_fabric_wired)
+        main.add_command(v1_2_10_file)
+        main.add_command(v1_2_10_network_discovery)
+        main.add_command(v1_2_10_networks)
+        main.add_command(v1_2_10_non_fabric_wireless)
+        main.add_command(v1_2_10_path_trace)
+        main.add_command(v1_2_10_pnp)
+        main.add_command(v1_2_10_swim)
+        main.add_command(v1_2_10_site_profile)
+        main.add_command(v1_2_10_sites)
+        main.add_command(v1_2_10_tag)
+        main.add_command(v1_2_10_task)
+        main.add_command(v1_2_10_template_programmer)
+    if value == '1.3.0':
+        main.add_command(v1_3_0_clients)
+        main.add_command(v1_3_0_command_runner)
+        main.add_command(v1_3_0_devices)
+        main.add_command(v1_3_0_fabric_wired)
+        main.add_command(v1_3_0_file)
+        main.add_command(v1_3_0_network_discovery)
+        main.add_command(v1_3_0_networks)
+        main.add_command(v1_3_0_non_fabric_wireless)
+        main.add_command(v1_3_0_path_trace)
+        main.add_command(v1_3_0_pnp)
+        main.add_command(v1_3_0_swim)
+        main.add_command(v1_3_0_site_profile)
+        main.add_command(v1_3_0_sites)
+        main.add_command(v1_3_0_tag)
+        main.add_command(v1_3_0_task)
+        main.add_command(v1_3_0_template_programmer)
+    return value
+
+
 @click.group()
+@click.option('--dna-version', '-v', 'version', type=str,
+              default=DNA_CENTER_VERSION,
+              help='Controls which version of DNA_CENTER to use.',
+              show_default=True,
+              callback=version_set,
+              is_eager=True)
+@click.option('--username', '-u',
+              default=DNA_CENTER_USERNAME,
+              help='HTTP Basic Auth username.',
+              show_default=True,
+              prompt=True)
+@click.option('--password', '-p',
+              default=DNA_CENTER_PASSWORD,
+              help='HTTP Basic Auth password.',
+              show_default=True,
+              prompt=True, hide_input=True,
+              confirmation_prompt=True)
+@click.option('--encoded_auth', '-ea', type=str,
+              default=DNA_CENTER_ENCODED_AUTH ,
+              help='HTTP Basic Auth base64 encoded string.',
+              show_default=True)
+@click.option('--base_url', type=str,
+              default=DNA_CENTER_BASE_URL,
+              help='The base URL to be prefixed to the individual API endpoint suffixes.',
+              show_default=True)
+@click.option('--single_request_timeout', type=int,
+              default=DNA_CENTER_SINGLE_REQUEST_TIMEOUT,
+              help='Timeout (in seconds) for RESTful HTTP requests.',
+              show_default=True)
+@click.option('--wait_on_rate_limit', type=bool,
+              default=DNA_CENTER_WAIT_ON_RATE_LIMIT,
+              help='Enables or disables automatic rate-limit handling.',
+              show_default=True)
+@click.option('--verify', type=bool,
+              default=DNA_CENTER_VERIFY,
+              help="Controls whether to verify the server's TLS certificate.",
+              show_default=True)
+@click.option('--debug', '-d', type=bool, envvar='DEBUG',
+              default=False,
+              help="Controls whether to log information about DNA Center APIs' request and response process.",
+              show_default=True)
 @click.pass_context
-def main(ctx):
+def main(ctx, username, password, encoded_auth, base_url,
+         version,
+         single_request_timeout,
+         wait_on_rate_limit,
+         verify,
+         debug):
     """DNA Center API wrapper.
 
     DNACenterAPI wraps all of the individual DNA Center APIs and represents
@@ -90,54 +193,6 @@ def main(ctx):
 
     """
     urllib3.disable_warnings()
-    pass
-
-
-@main.group()
-@click.option('--username', '-u', envvar='DNA_CENTER_USERNAME',
-              default=None,
-              help='HTTP Basic Auth username.',
-              show_default=True,
-              prompt=True)
-@click.option('--password', '-p', envvar='DNA_CENTER_PASSWORD',
-              default=None,
-              help='HTTP Basic Auth password.',
-              show_default=True,
-              prompt=True, hide_input=True,
-              confirmation_prompt=True)
-@click.option('--encoded_auth', '-ea', envvar='DNA_CENTER_ENCODED_AUTH',
-              default=None,
-              help='HTTP Basic Auth base64 encoded string.',
-              show_default=True)
-@click.option('--base_url', type=str,
-              default=config.DEFAULT_BASE_URL,
-              help='The base URL to be prefixed to the individual API endpoint suffixes.',
-              show_default=True)
-@click.option('--single_request_timeout', type=int,
-              default=config.DEFAULT_SINGLE_REQUEST_TIMEOUT,
-              help='Timeout (in seconds) for RESTful HTTP requests.',
-              show_default=True)
-@click.option('--wait_on_rate_limit', type=bool,
-              default=config.DEFAULT_WAIT_ON_RATE_LIMIT,
-              help='Enables or disables automatic rate-limit handling.',
-              show_default=True)
-@click.option('--verify', type=bool,
-              default=config.DEFAULT_VERIFY,
-              help="Controls whether to verify the server's TLS certificate.",
-              show_default=True)
-@click.option('--debug', '-d', type=bool, envvar='DEBUG',
-              default=False,
-              help="Controls whether to log information about DNA Center APIs' request and response process.",
-              show_default=True)
-@click.pass_context
-def v1_2_10(ctx, username, password, encoded_auth, base_url,
-            single_request_timeout,
-            wait_on_rate_limit,
-            verify,
-            debug):
-    """DNA Center API v1.2.10
-
-    """
     spinner = init_spinner(beep=False)
     start_spinner(spinner)
     try:
@@ -146,110 +201,12 @@ def v1_2_10(ctx, username, password, encoded_auth, base_url,
                                single_request_timeout=single_request_timeout,
                                wait_on_rate_limit=wait_on_rate_limit,
                                verify=verify,
-                               version='1.2.10',
+                               version=version,
                                debug=debug)
         stop_spinner(spinner)
     except Exception as e:
         stop_spinner(spinner)
         tbprint()
-        eprint('''Try "dnacentercli v1-2-10 --help" for help.''')
+        eprint('''Try "dnacentercli --help" for help.''')
         eprint('Error:', e)
         ctx.exit(-1)
-
-
-@main.group()
-@click.option('--username', '-u', envvar='DNA_CENTER_USERNAME',
-              default=None,
-              help='HTTP Basic Auth username.',
-              show_default=True,
-              prompt=True)
-@click.option('--password', '-p', envvar='DNA_CENTER_PASSWORD',
-              default=None,
-              help='HTTP Basic Auth password.',
-              show_default=True,
-              prompt=True, hide_input=True,
-              confirmation_prompt=True)
-@click.option('--encoded_auth', '-ea', envvar='DNA_CENTER_ENCODED_AUTH',
-              default=None,
-              help='HTTP Basic Auth base64 encoded string.',
-              show_default=True)
-@click.option('--base_url', type=str,
-              default=config.DEFAULT_BASE_URL,
-              help='The base URL to be prefixed to the individual API endpoint suffixes.',
-              show_default=True)
-@click.option('--single_request_timeout', type=int,
-              default=config.DEFAULT_SINGLE_REQUEST_TIMEOUT,
-              help='Timeout (in seconds) for RESTful HTTP requests.',
-              show_default=True)
-@click.option('--wait_on_rate_limit', type=bool,
-              default=config.DEFAULT_WAIT_ON_RATE_LIMIT,
-              help='Enables or disables automatic rate-limit handling.',
-              show_default=True)
-@click.option('--verify', type=bool,
-              default=config.DEFAULT_VERIFY,
-              help="Controls whether to verify the server's TLS certificate.",
-              show_default=True)
-@click.option('--debug', '-d', type=bool, envvar='DEBUG',
-              default=False,
-              help="Controls whether to log information about DNA Center APIs' request and response process.",
-              show_default=True)
-@click.pass_context
-def v1_3_0(ctx, username, password, encoded_auth, base_url,
-           single_request_timeout,
-           wait_on_rate_limit,
-           verify,
-           debug):
-    """DNA Center API v1.3.0
-
-    """
-    spinner = init_spinner(beep=False)
-    start_spinner(spinner)
-    try:
-        ctx.obj = DNACenterAPI(username, password, encoded_auth,
-                               base_url=base_url,
-                               single_request_timeout=single_request_timeout,
-                               wait_on_rate_limit=wait_on_rate_limit,
-                               verify=verify,
-                               version='1.3.0',
-                               debug=debug)
-        stop_spinner(spinner)
-    except Exception as e:
-        stop_spinner(spinner)
-        tbprint()
-        eprint('''Try "dnacentercli v1-3-0 --help" for help.''')
-        eprint('Error:', e)
-        ctx.exit(-1)
-
-
-v1_2_10.add_command(v1_2_10_clients)
-v1_2_10.add_command(v1_2_10_command_runner)
-v1_2_10.add_command(v1_2_10_devices)
-v1_2_10.add_command(v1_2_10_fabric_wired)
-v1_2_10.add_command(v1_2_10_file)
-v1_2_10.add_command(v1_2_10_network_discovery)
-v1_2_10.add_command(v1_2_10_networks)
-v1_2_10.add_command(v1_2_10_non_fabric_wireless)
-v1_2_10.add_command(v1_2_10_path_trace)
-v1_2_10.add_command(v1_2_10_pnp)
-v1_2_10.add_command(v1_2_10_swim)
-v1_2_10.add_command(v1_2_10_site_profile)
-v1_2_10.add_command(v1_2_10_sites)
-v1_2_10.add_command(v1_2_10_tag)
-v1_2_10.add_command(v1_2_10_task)
-v1_2_10.add_command(v1_2_10_template_programmer)
-v1_3_0.add_command(v1_3_0_clients)
-v1_3_0.add_command(v1_3_0_command_runner)
-v1_3_0.add_command(v1_3_0_devices)
-v1_3_0.add_command(v1_3_0_fabric_wired)
-v1_3_0.add_command(v1_3_0_file)
-v1_3_0.add_command(v1_3_0_network_discovery)
-v1_3_0.add_command(v1_3_0_networks)
-v1_3_0.add_command(v1_3_0_non_fabric_wireless)
-v1_3_0.add_command(v1_3_0_path_trace)
-v1_3_0.add_command(v1_3_0_pnp)
-v1_3_0.add_command(v1_3_0_swim)
-v1_3_0.add_command(v1_3_0_site_profile)
-v1_3_0.add_command(v1_3_0_sites)
-v1_3_0.add_command(v1_3_0_tag)
-v1_3_0.add_command(v1_3_0_task)
-v1_3_0.add_command(v1_3_0_template_programmer)

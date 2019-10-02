@@ -23,6 +23,6 @@ def oprint(*args, **kwargs):
 
 
 def opprint(*args, indent=None, **kwargs):
-     for arg in args:
+    for arg in args:
         print(json.dumps(arg, sort_keys=True, indent=indent, separators=(',', ': ')), **kwargs)
         print('', **kwargs)

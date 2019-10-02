@@ -47,38 +47,20 @@ API Version
 Cisco DNA Center SDK wraps DNA Center APIs (versions: 1.2.10 and 1.3.0),
 using the version parameter to control which API version to use.
 
-DNA Center CLI does it by separating the versions by commands.
-
-.. code-block:: bash
-    
-    $ dnacentercli --help
-    
-    Usage: dnacentercli [OPTIONS] COMMAND [ARGS]...
-
-    DNA Center API wrapper.
-
-    DNACenterAPI wraps all of the individual DNA Center APIs and represents
-    them in a simple hierarchical structure.
-
-    Options:
-     --help  Show this message and exit.
-
-    Commands:
-      v1-2-10  DNA Center API v1.2.10
-      v1-3-0   DNA Center API v1.3.0
+DNA Center CLI does it by separating the versions by the `--dna-version` or `-v` option.
 
 
 Authenticate
 -------------
 
-DNA Center SDK creates a DNACenterAPI "Connection Object" defaults to pulling from environment variables and dnacentersdk.config.
-The same happens for the DNA Center CLI, except, of course, the version parameter.
+DNA Center SDK creates a DNACenterAPI "Connection Object" defaults to pulling from environment variables and config values.
+The same happens for the DNA Center CLI.
 
 You can ask for help using ``--help`` and see the list of options and commands available on your selected version:
 
 .. code-block:: bash
 
-    $ dnacentercli v1-2-10 --help 
+    $ dnacentercli -v '1.2.10' --help 
 
 
 **Note:**
@@ -105,7 +87,7 @@ You can ask for specific API help using ``--help`` after the previous command op
 
 .. code-block:: bash
 
-    $ dnacentercli v1-2-10 --base_url https://128.107.71.199:443 --verify False networks --help
+    $ dnacentercli -v '1.2.10' --base_url https://128.107.71.199:443 --verify False networks --help
 
 
 Making API Calls
@@ -130,7 +112,7 @@ is the same as
 
 .. code-block:: bash
 
-    $ dnacentercli v1-2-10 --username devnetuser --password Cisco123! \
+    $ dnacentercli -v '1.2.10' --username devnetuser --password Cisco123! \
     > --base_url https://sandboxdnac2.cisco.com:443 --verify True \
     > networks get-overall-network-health \
     > --timestamp "1568008500000" --headers '{"__runsync": true}'
@@ -144,7 +126,7 @@ On \*nix based systems and command lines, the following is a valid JSON string r
     
 .. code-block:: bash
 
-    $ dnacentercli v1-2-10 networks get-overall-network-health \
+    $ dnacentercli -v '1.2.10' networks get-overall-network-health \
     --timestamp "1568008500000" --headers '{"__runsync": true}'
 
 On Windows and its command lines, the following is the valid JSON string representation:
@@ -152,7 +134,7 @@ On Windows and its command lines, the following is the valid JSON string represe
     
 .. code-block:: bash
 
-    dnacentercli v1-2-10 networks get-overall-network-health ^
+    dnacentercli -v '1.2.10' networks get-overall-network-health ^
     --timestamp "1568008500000" --headers '{\"__runsync\": true}'
     
 Be careful.
@@ -167,7 +149,7 @@ For example:
 
 .. code-block:: bash
 
-    $ dnacentercli v1-2-10 devices add-device --ipaddress '10.20.10.1' --ipaddress '10.30.10.1'
+    $ dnacentercli -v '1.2.10' devices add-device --ipaddress '10.20.10.1' --ipaddress '10.30.10.1'
 
 
 Bell
@@ -188,7 +170,7 @@ For example:
 
 .. code-block:: bash
 
-    $ dnacentercli v1-2-10 devices get-device-list --family 'Unified AP' --hostname 'T1-9' -pp 2
+    $ dnacentercli -v '1.2.10' devices get-device-list --family 'Unified AP' --hostname 'T1-9' -pp 2
     {
       "response": [
         {
