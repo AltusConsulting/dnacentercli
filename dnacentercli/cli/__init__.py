@@ -147,14 +147,11 @@ def version_set(ctx, param, value):
 @click.option('--username', '-u',
               default=DNA_CENTER_USERNAME,
               help='HTTP Basic Auth username.',
-              show_default=True,
-              prompt=True)
+              show_default=True)
 @click.option('--password', '-p',
               default=DNA_CENTER_PASSWORD,
               help='HTTP Basic Auth password.',
-              show_default=True,
-              prompt=True, hide_input=True,
-              confirmation_prompt=True)
+              show_default=True)
 @click.option('--encoded_auth', '-ea', type=str,
               default=DNA_CENTER_ENCODED_AUTH,
               help='HTTP Basic Auth base64 encoded string.',
@@ -179,19 +176,29 @@ def version_set(ctx, param, value):
               default=False,
               help="Controls whether to log information about DNA Center APIs' request and response process.",
               show_default=True)
+@click.option('-y/-n', 'prompt', is_flag=True,
+              default=False,
+              help='''Prompt flag for username and password''')
 @click.pass_context
 def main(ctx, username, password, encoded_auth, base_url,
          version,
          single_request_timeout,
          wait_on_rate_limit,
          verify,
-         debug):
+         debug,
+         prompt):
     """DNA Center API wrapper.
 
     DNACenterAPI wraps all of the individual DNA Center APIs and represents
     them in a simple hierarchical structure.
 
     """
+
+    if prompt:
+        username = click.prompt('Username', default=username, show_default=True)
+        password_prompt = 'Password [****]' if password else 'Password'
+        password = click.prompt(password_prompt, default=password, show_default=False, hide_input=True, confirmation_prompt='Repeat for confirmation')
+
     urllib3.disable_warnings()
     spinner = init_spinner(beep=False)
     start_spinner(spinner)
