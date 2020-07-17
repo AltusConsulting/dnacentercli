@@ -1,54 +1,125 @@
+# -*- coding: utf-8 -*-
+"""DNACenterAPI Task API fixtures and tests.
+
+Copyright (c) 2019 Cisco and/or its affiliates.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+"""
+
 import click
 import pytest
 from json import loads
 from tests.environment import DNA_CENTER_VERSION
-from tests.models.schema_validator import json_schema_validate
-from dnacentersdk import mydict_data_factory
 
 
 pytestmark = pytest.mark.skipif(DNA_CENTER_VERSION != '1.2.10', reason='version does not match')
 
 
-# @pytest.mark.task
-# def test_get_tasks(runner, cli, auth_options):
-#     result = runner.invoke(cli, ['v1-2-10', *auth_options, 'task', 'get-tasks', '''--data=None''', '''--end_time=None''', '''--error_code=None''', '''--failure_reason=None''', '''--is_error=None''', '''--limit=None''', '''--offset=None''', '''--order=None''', '''--parent_id=None''', '''--progress=None''', '''--service_type=None''', '''--sort_by=None''', '''--start_time=None''', '''--username=None''', '''--payload=None''', '''--active_validation=True'''])
-#     assert not result.exception
-#     if result.output.strip():
-#         obj = loads(result.output)
-#         assert json_schema_validate('jsd_e78bb8a2449b9eed_v1_2_10').validate(obj) is None
+def is_valid_get_task_count(result):
+    data = result.output.strip()
+    return True if data else False
 
 
-# @pytest.mark.task
-# def test_get_task_tree(runner, cli, auth_options):
-#     result = runner.invoke(cli, ['v1-2-10', *auth_options, 'task', 'get-task-tree', '''--task_id=get_tasks(api).response[0].id''', '''--payload=None''', '''--active_validation=True'''])
-#     assert not result.exception
-#     if result.output.strip():
-#         obj = loads(result.output)
-#         assert json_schema_validate('jsd_f5a269c44f2a95fa_v1_2_10').validate(obj) is None
+@pytest.mark.task
+def test_get_task_count(runner, cli, auth_options):
+    result = runner.invoke(cli, ['-v', '1.2.10', *auth_options,
+                                 'task', 'get-task-count',
+                                 """--data='string'""",
+                                 """--end_time='string'""",
+                                 """--error_code='string'""",
+                                 """--failure_reason='string'""",
+                                 """--is_error='string'""",
+                                 """--parent_id='string'""",
+                                 """--progress='string'""",
+                                 """--service_type='string'""",
+                                 """--start_time='string'""",
+                                 """--username='string'"""])
+    assert not result.exception
+    assert is_valid_get_task_count(result)
 
 
-# @pytest.mark.task
-# def test_get_task_count(runner, cli, auth_options):
-#     result = runner.invoke(cli, ['v1-2-10', *auth_options, 'task', 'get-task-count', '''--data=None''', '''--end_time=None''', '''--error_code=None''', '''--failure_reason=None''', '''--is_error=None''', '''--parent_id=None''', '''--progress=None''', '''--service_type=None''', '''--start_time=None''', '''--username=None''', '''--payload=None''', '''--active_validation=True'''])
-#     assert not result.exception
-#     if result.output.strip():
-#         obj = loads(result.output)
-#         assert json_schema_validate('jsd_26b44ab04649a183_v1_2_10').validate(obj) is None
+def is_valid_get_task_by_id(result):
+    data = result.output.strip()
+    return True if data else False
 
 
-# @pytest.mark.task
-# def test_get_task_by_id(runner, cli, auth_options):
-#     result = runner.invoke(cli, ['v1-2-10', *auth_options, 'task', 'get-task-by-id', '''--task_id=get_tasks(api).response[0].id''', '''--payload=None''', '''--active_validation=True'''])
-#     assert not result.exception
-#     if result.output.strip():
-#         obj = loads(result.output)
-#         assert json_schema_validate('jsd_a1a9387346ba92b1_v1_2_10').validate(obj) is None
+@pytest.mark.task
+def test_get_task_by_id(runner, cli, auth_options):
+    result = runner.invoke(cli, ['-v', '1.2.10', *auth_options,
+                                 'task', 'get-task-by-id',
+                                 """--task_id='string'"""])
+    assert not result.exception
+    assert is_valid_get_task_by_id(result)
 
 
-# @pytest.mark.task
-# def test_get_task_by_operationid(runner, cli, auth_options):
-#     result = runner.invoke(cli, ['v1-2-10', *auth_options, 'task', 'get-task-by-operationid', '''--limit=1''', '''--offset=0''', '''--operation_id=filtered_tasks[0].operationIdList[0]''', '''--payload=None''', '''--active_validation=True'''])
-#     assert not result.exception
-#     if result.output.strip():
-#         obj = loads(result.output)
-#         assert json_schema_validate('jsd_e487f8d3481b94f2_v1_2_10').validate(obj) is None
+def is_valid_get_tasks(result):
+    data = result.output.strip()
+    return True if data else False
+
+
+@pytest.mark.task
+def test_get_tasks(runner, cli, auth_options):
+    result = runner.invoke(cli, ['-v', '1.2.10', *auth_options,
+                                 'task', 'get-tasks',
+                                 """--data='string'""",
+                                 """--end_time='string'""",
+                                 """--error_code='string'""",
+                                 """--failure_reason='string'""",
+                                 """--is_error='string'""",
+                                 """--limit='string'""",
+                                 """--offset='string'""",
+                                 """--order='string'""",
+                                 """--parent_id='string'""",
+                                 """--progress='string'""",
+                                 """--service_type='string'""",
+                                 """--sort_by='string'""",
+                                 """--start_time='string'""",
+                                 """--username='string'"""])
+    assert not result.exception
+    assert is_valid_get_tasks(result)
+
+
+def is_valid_get_task_tree(result):
+    data = result.output.strip()
+    return True if data else False
+
+
+@pytest.mark.task
+def test_get_task_tree(runner, cli, auth_options):
+    result = runner.invoke(cli, ['-v', '1.2.10', *auth_options,
+                                 'task', 'get-task-tree',
+                                 """--task_id='string'"""])
+    assert not result.exception
+    assert is_valid_get_task_tree(result)
+
+
+def is_valid_get_task_by_operationid(result):
+    data = result.output.strip()
+    return True if data else False
+
+
+@pytest.mark.task
+def test_get_task_by_operationid(runner, cli, auth_options):
+    result = runner.invoke(cli, ['-v', '1.2.10', *auth_options,
+                                 'task', 'get-task-by-operationid',
+                                 """--limit=0""",
+                                 """--offset=0""",
+                                 """--operation_id='string'"""])
+    assert not result.exception
+    assert is_valid_get_task_by_operationid(result)

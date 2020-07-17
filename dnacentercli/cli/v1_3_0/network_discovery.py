@@ -30,21 +30,13 @@ def network_discovery(ctx, obj):
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
-              show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
               show_default=True)
 @click.option('--beep', is_flag=True, help='''Spinner beep (on)''')
 @click.pass_obj
 def get_count_of_all_discovery_jobs(obj, pretty_print, beep,
-                                    headers,
-                                    payload,
-                                    active_validation):
+                                    headers):
     """Returns the count of all available discovery jobs.
     """
     spinner = init_spinner(beep=beep)
@@ -52,12 +44,8 @@ def get_count_of_all_discovery_jobs(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.get_count_of_all_discovery_jobs(
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -173,12 +161,12 @@ def update_snmp_write_community(obj, pretty_print, beep,
             payload = json.loads(payload)
         result = obj.update_snmp_write_community(
             comments=comments,
-            credentialtype=credentialtype,
+            credentialType=credentialtype,
             description=description,
             id=id,
-            instancetenantid=instancetenantid,
-            instanceuuid=instanceuuid,
-            writecommunity=writecommunity,
+            instanceTenantId=instancetenantid,
+            instanceUuid=instanceuuid,
+            writeCommunity=writecommunity,
             headers=headers,
             payload=payload,
             active_validation=active_validation)
@@ -280,17 +268,17 @@ def update_snmpv3_credentials(obj, pretty_print, beep,
         if payload is not None:
             payload = json.loads(payload)
         result = obj.update_snmpv3_credentials(
-            authpassword=authpassword,
-            authtype=authtype,
+            authPassword=authpassword,
+            authType=authtype,
             comments=comments,
-            credentialtype=credentialtype,
+            credentialType=credentialtype,
             description=description,
             id=id,
-            instancetenantid=instancetenantid,
-            instanceuuid=instanceuuid,
-            privacypassword=privacypassword,
-            privacytype=privacytype,
-            snmpmode=snmpmode,
+            instanceTenantId=instancetenantid,
+            instanceUuid=instanceuuid,
+            privacyPassword=privacypassword,
+            privacyType=privacytype,
+            snmpMode=snmpmode,
             username=username,
             headers=headers,
             payload=payload,
@@ -369,12 +357,12 @@ def update_snmp_read_community(obj, pretty_print, beep,
             payload = json.loads(payload)
         result = obj.update_snmp_read_community(
             comments=comments,
-            credentialtype=credentialtype,
+            credentialType=credentialtype,
             description=description,
             id=id,
-            instancetenantid=instancetenantid,
-            instanceuuid=instanceuuid,
-            readcommunity=readcommunity,
+            instanceTenantId=instancetenantid,
+            instanceUuid=instanceuuid,
+            readCommunity=readcommunity,
             headers=headers,
             payload=payload,
             active_validation=active_validation)
@@ -399,12 +387,6 @@ def update_snmp_read_community(obj, pretty_print, beep,
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
-              show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
               show_default=True)
@@ -413,9 +395,7 @@ def update_snmp_read_community(obj, pretty_print, beep,
 def get_discoveries_by_range(obj, pretty_print, beep,
                              start_index,
                              records_to_return,
-                             headers,
-                             payload,
-                             active_validation):
+                             headers):
     """Returns the discovery by specified range.
     """
     spinner = init_spinner(beep=beep)
@@ -423,14 +403,10 @@ def get_discoveries_by_range(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.get_discoveries_by_range(
             start_index=start_index,
             records_to_return=records_to_return,
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -475,12 +451,6 @@ def get_discoveries_by_range(obj, pretty_print, beep,
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
-              show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
               show_default=True)
@@ -497,9 +467,7 @@ def get_network_devices_from_discovery(obj, pretty_print, beep,
                                        netconf_status,
                                        http_status,
                                        id,
-                                       headers,
-                                       payload,
-                                       active_validation):
+                                       headers):
     """Returns the network devices from a discovery job based on given filters. Discovery ID can be obtained using the "Get Discoveries by range" API.
     """
     spinner = init_spinner(beep=beep)
@@ -507,8 +475,6 @@ def get_network_devices_from_discovery(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.get_network_devices_from_discovery(
             task_id=task_id,
             sort_by=sort_by,
@@ -520,9 +486,7 @@ def get_network_devices_from_discovery(obj, pretty_print, beep,
             netconf_status=netconf_status,
             http_status=http_status,
             id=id,
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -577,21 +541,13 @@ def create_http_write_credentials(obj, pretty_print, beep,
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
-              show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
               show_default=True)
 @click.option('--beep', is_flag=True, help='''Spinner beep (on)''')
 @click.pass_obj
 def get_snmp_properties(obj, pretty_print, beep,
-                        headers,
-                        payload,
-                        active_validation):
+                        headers):
     """Returns SNMP properties.
     """
     spinner = init_spinner(beep=beep)
@@ -599,12 +555,8 @@ def get_snmp_properties(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.get_snmp_properties(
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -622,12 +574,6 @@ def get_snmp_properties(obj, pretty_print, beep,
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
-              show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
               show_default=True)
@@ -635,9 +581,7 @@ def get_snmp_properties(obj, pretty_print, beep,
 @click.pass_obj
 def delete_discovery_by_id(obj, pretty_print, beep,
                            id,
-                           headers,
-                           payload,
-                           active_validation):
+                           headers):
     """Stops the discovery for the given Discovery ID and removes it. Discovery ID can be obtained using the "Get Discoveries by range" API.
     """
     spinner = init_spinner(beep=beep)
@@ -645,13 +589,9 @@ def delete_discovery_by_id(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.delete_discovery_by_id(
             id=id,
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -850,47 +790,57 @@ def start_discovery(obj, pretty_print, beep,
         if payload is not None:
             payload = json.loads(payload)
         enablepasswordlist = list(enablepasswordlist)
+        enablepasswordlist = json.loads('[{}]'.format(', '.join('{0}'.format(w) for w in enablepasswordlist)))
+        enablepasswordlist = enablepasswordlist if len(enablepasswordlist) > 0 else None
         globalcredentialidlist = list(globalcredentialidlist)
+        globalcredentialidlist = json.loads('[{}]'.format(', '.join('{0}'.format(w) for w in globalcredentialidlist)))
+        globalcredentialidlist = globalcredentialidlist if len(globalcredentialidlist) > 0 else None
         if httpreadcredential is not None:
             httpreadcredential = json.loads('{}'.format(httpreadcredential))
         if httpwritecredential is not None:
             httpwritecredential = json.loads('{}'.format(httpwritecredential))
         ipfilterlist = list(ipfilterlist)
+        ipfilterlist = json.loads('[{}]'.format(', '.join('{0}'.format(w) for w in ipfilterlist)))
+        ipfilterlist = ipfilterlist if len(ipfilterlist) > 0 else None
         passwordlist = list(passwordlist)
+        passwordlist = json.loads('[{}]'.format(', '.join('{0}'.format(w) for w in passwordlist)))
+        passwordlist = passwordlist if len(passwordlist) > 0 else None
         usernamelist = list(usernamelist)
+        usernamelist = json.loads('[{}]'.format(', '.join('{0}'.format(w) for w in usernamelist)))
+        usernamelist = usernamelist if len(usernamelist) > 0 else None
         result = obj.start_discovery(
-            cdplevel=cdplevel,
-            discoverytype=discoverytype,
-            enablepasswordlist=enablepasswordlist,
-            globalcredentialidlist=globalcredentialidlist,
-            httpreadcredential=httpreadcredential,
-            httpwritecredential=httpwritecredential,
-            ipaddresslist=ipaddresslist,
-            ipfilterlist=ipfilterlist,
-            lldplevel=lldplevel,
+            cdpLevel=cdplevel,
+            discoveryType=discoverytype,
+            enablePasswordList=enablepasswordlist,
+            globalCredentialIdList=globalcredentialidlist,
+            httpReadCredential=httpreadcredential,
+            httpWriteCredential=httpwritecredential,
+            ipAddressList=ipaddresslist,
+            ipFilterList=ipfilterlist,
+            lldpLevel=lldplevel,
             name=name,
-            netconfport=netconfport,
-            noaddnewdevice=noaddnewdevice,
-            parentdiscoveryid=parentdiscoveryid,
-            passwordlist=passwordlist,
-            preferredmgmtipmethod=preferredmgmtipmethod,
-            protocolorder=protocolorder,
-            rediscovery=rediscovery,
+            netconfPort=netconfport,
+            noAddNewDevice=noaddnewdevice,
+            parentDiscoveryId=parentdiscoveryid,
+            passwordList=passwordlist,
+            preferredMgmtIPMethod=preferredmgmtipmethod,
+            protocolOrder=protocolorder,
+            reDiscovery=rediscovery,
             retry=retry,
-            snmpauthpassphrase=snmpauthpassphrase,
-            snmpauthprotocol=snmpauthprotocol,
-            snmpmode=snmpmode,
-            snmpprivpassphrase=snmpprivpassphrase,
-            snmpprivprotocol=snmpprivprotocol,
-            snmprocommunity=snmprocommunity,
-            snmprocommunitydesc=snmprocommunitydesc,
-            snmprwcommunity=snmprwcommunity,
-            snmprwcommunitydesc=snmprwcommunitydesc,
-            snmpusername=snmpusername,
-            snmpversion=snmpversion,
+            snmpAuthPassphrase=snmpauthpassphrase,
+            snmpAuthProtocol=snmpauthprotocol,
+            snmpMode=snmpmode,
+            snmpPrivPassphrase=snmpprivpassphrase,
+            snmpPrivProtocol=snmpprivprotocol,
+            snmpROCommunity=snmprocommunity,
+            snmpROCommunityDesc=snmprocommunitydesc,
+            snmpRWCommunity=snmprwcommunity,
+            snmpRWCommunityDesc=snmprwcommunitydesc,
+            snmpUserName=snmpusername,
+            snmpVersion=snmpversion,
             timeout=timeout,
-            updatemgmtip=updatemgmtip,
-            usernamelist=usernamelist,
+            updateMgmtIp=updatemgmtip,
+            userNameList=usernamelist,
             headers=headers,
             payload=payload,
             active_validation=active_validation)
@@ -911,12 +861,6 @@ def start_discovery(obj, pretty_print, beep,
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
-              show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
               show_default=True)
@@ -924,9 +868,7 @@ def start_discovery(obj, pretty_print, beep,
 @click.pass_obj
 def get_discovery_by_id(obj, pretty_print, beep,
                         id,
-                        headers,
-                        payload,
-                        active_validation):
+                        headers):
     """Returns discovery by Discovery ID. Discovery ID can be obtained using the "Get Discoveries by range" API.
     """
     spinner = init_spinner(beep=beep)
@@ -934,13 +876,9 @@ def get_discovery_by_id(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.get_discovery_by_id(
             id=id,
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -1112,11 +1050,11 @@ def update_http_read_credential(obj, pretty_print, beep,
             payload = json.loads(payload)
         result = obj.update_http_read_credential(
             comments=comments,
-            credentialtype=credentialtype,
+            credentialType=credentialtype,
             description=description,
             id=id,
-            instancetenantid=instancetenantid,
-            instanceuuid=instanceuuid,
+            instanceTenantId=instancetenantid,
+            instanceUuid=instanceuuid,
             password=password,
             port=port,
             secure=secure,
@@ -1150,12 +1088,6 @@ def update_http_read_credential(obj, pretty_print, beep,
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
-              show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
               show_default=True)
@@ -1166,9 +1098,7 @@ def get_list_of_discoveries_by_discovery_id(obj, pretty_print, beep,
                                             limit,
                                             ip_address,
                                             id,
-                                            headers,
-                                            payload,
-                                            active_validation):
+                                            headers):
     """Returns the list of discovery jobs for the given Discovery ID. The results can be optionally filtered based on IP. Discovery ID can be obtained using the "Get Discoveries by range" API.
     """
     spinner = init_spinner(beep=beep)
@@ -1176,16 +1106,12 @@ def get_list_of_discoveries_by_discovery_id(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.get_list_of_discoveries_by_discovery_id(
             offset=offset,
             limit=limit,
             ip_address=ip_address,
             id=id,
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -1488,47 +1414,49 @@ def updates_discovery_by_id(obj, pretty_print, beep,
         if attributeinfo is not None:
             attributeinfo = json.loads('{}'.format(attributeinfo))
         globalcredentialidlist = list(globalcredentialidlist)
+        globalcredentialidlist = json.loads('[{}]'.format(', '.join('{0}'.format(w) for w in globalcredentialidlist)))
+        globalcredentialidlist = globalcredentialidlist if len(globalcredentialidlist) > 0 else None
         if httpreadcredential is not None:
             httpreadcredential = json.loads('{}'.format(httpreadcredential))
         if httpwritecredential is not None:
             httpwritecredential = json.loads('{}'.format(httpwritecredential))
         result = obj.updates_discovery_by_id(
-            attributeinfo=attributeinfo,
-            cdplevel=cdplevel,
-            deviceids=deviceids,
-            discoverycondition=discoverycondition,
-            discoverystatus=discoverystatus,
-            discoverytype=discoverytype,
-            enablepasswordlist=enablepasswordlist,
-            globalcredentialidlist=globalcredentialidlist,
-            httpreadcredential=httpreadcredential,
-            httpwritecredential=httpwritecredential,
+            attributeInfo=attributeinfo,
+            cdpLevel=cdplevel,
+            deviceIds=deviceids,
+            discoveryCondition=discoverycondition,
+            discoveryStatus=discoverystatus,
+            discoveryType=discoverytype,
+            enablePasswordList=enablepasswordlist,
+            globalCredentialIdList=globalcredentialidlist,
+            httpReadCredential=httpreadcredential,
+            httpWriteCredential=httpwritecredential,
             id=id,
-            ipaddresslist=ipaddresslist,
-            ipfilterlist=ipfilterlist,
-            isautocdp=isautocdp,
-            lldplevel=lldplevel,
+            ipAddressList=ipaddresslist,
+            ipFilterList=ipfilterlist,
+            isAutoCdp=isautocdp,
+            lldpLevel=lldplevel,
             name=name,
-            netconfport=netconfport,
-            numdevices=numdevices,
-            parentdiscoveryid=parentdiscoveryid,
-            passwordlist=passwordlist,
-            preferredmgmtipmethod=preferredmgmtipmethod,
-            protocolorder=protocolorder,
-            retrycount=retrycount,
-            snmpauthpassphrase=snmpauthpassphrase,
-            snmpauthprotocol=snmpauthprotocol,
-            snmpmode=snmpmode,
-            snmpprivpassphrase=snmpprivpassphrase,
-            snmpprivprotocol=snmpprivprotocol,
-            snmprocommunity=snmprocommunity,
-            snmprocommunitydesc=snmprocommunitydesc,
-            snmprwcommunity=snmprwcommunity,
-            snmprwcommunitydesc=snmprwcommunitydesc,
-            snmpusername=snmpusername,
-            timeout=timeout,
-            updatemgmtip=updatemgmtip,
-            usernamelist=usernamelist,
+            netconfPort=netconfport,
+            numDevices=numdevices,
+            parentDiscoveryId=parentdiscoveryid,
+            passwordList=passwordlist,
+            preferredMgmtIPMethod=preferredmgmtipmethod,
+            protocolOrder=protocolorder,
+            retryCount=retrycount,
+            snmpAuthPassphrase=snmpauthpassphrase,
+            snmpAuthProtocol=snmpauthprotocol,
+            snmpMode=snmpmode,
+            snmpPrivPassphrase=snmpprivpassphrase,
+            snmpPrivProtocol=snmpprivprotocol,
+            snmpRoCommunity=snmprocommunity,
+            snmpRoCommunityDesc=snmprocommunitydesc,
+            snmpRwCommunity=snmprwcommunity,
+            snmpRwCommunityDesc=snmprwcommunitydesc,
+            snmpUserName=snmpusername,
+            timeOut=timeout,
+            updateMgmtIp=updatemgmtip,
+            userNameList=usernamelist,
             headers=headers,
             payload=payload,
             active_validation=active_validation)
@@ -1621,11 +1549,11 @@ def update_http_write_credentials(obj, pretty_print, beep,
             payload = json.loads(payload)
         result = obj.update_http_write_credentials(
             comments=comments,
-            credentialtype=credentialtype,
+            credentialType=credentialtype,
             description=description,
             id=id,
-            instancetenantid=instancetenantid,
-            instanceuuid=instanceuuid,
+            instanceTenantId=instancetenantid,
+            instanceUuid=instanceuuid,
             password=password,
             port=port,
             secure=secure,
@@ -1654,12 +1582,6 @@ def update_http_write_credentials(obj, pretty_print, beep,
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
-              show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
               show_default=True)
@@ -1668,9 +1590,7 @@ def update_http_write_credentials(obj, pretty_print, beep,
 def delete_discovery_by_specified_range(obj, pretty_print, beep,
                                         start_index,
                                         records_to_delete,
-                                        headers,
-                                        payload,
-                                        active_validation):
+                                        headers):
     """Stops discovery for the given range and removes them.
     """
     spinner = init_spinner(beep=beep)
@@ -1678,14 +1598,10 @@ def delete_discovery_by_specified_range(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.delete_discovery_by_specified_range(
             start_index=start_index,
             records_to_delete=records_to_delete,
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -1699,21 +1615,13 @@ def delete_discovery_by_specified_range(obj, pretty_print, beep,
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
-              show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
               show_default=True)
 @click.option('--beep', is_flag=True, help='''Spinner beep (on)''')
 @click.pass_obj
 def delete_all_discovery(obj, pretty_print, beep,
-                         headers,
-                         payload,
-                         active_validation):
+                         headers):
     """Stops all the discoveries and removes them.
     """
     spinner = init_spinner(beep=beep)
@@ -1721,12 +1629,8 @@ def delete_all_discovery(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.delete_all_discovery(
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -1747,12 +1651,6 @@ def delete_all_discovery(obj, pretty_print, beep,
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
-              show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
               show_default=True)
@@ -1761,9 +1659,7 @@ def delete_all_discovery(obj, pretty_print, beep,
 def get_devices_discovered_by_id(obj, pretty_print, beep,
                                  task_id,
                                  id,
-                                 headers,
-                                 payload,
-                                 active_validation):
+                                 headers):
     """Returns the count of network devices discovered in the given discovery. Discovery ID can be obtained using the "Get Discoveries by range" API.
     """
     spinner = init_spinner(beep=beep)
@@ -1771,14 +1667,10 @@ def get_devices_discovered_by_id(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.get_devices_discovered_by_id(
             task_id=task_id,
             id=id,
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -1796,12 +1688,6 @@ def get_devices_discovered_by_id(obj, pretty_print, beep,
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
-              show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
               show_default=True)
@@ -1809,9 +1695,7 @@ def get_devices_discovered_by_id(obj, pretty_print, beep,
 @click.pass_obj
 def delete_global_credentials_by_id(obj, pretty_print, beep,
                                     global_credential_id,
-                                    headers,
-                                    payload,
-                                    active_validation):
+                                    headers):
     """Deletes global credential for the given ID.
     """
     spinner = init_spinner(beep=beep)
@@ -1819,13 +1703,9 @@ def delete_global_credentials_by_id(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.delete_global_credentials_by_id(
             global_credential_id=global_credential_id,
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -1910,12 +1790,12 @@ def update_cli_credentials(obj, pretty_print, beep,
             payload = json.loads(payload)
         result = obj.update_cli_credentials(
             comments=comments,
-            credentialtype=credentialtype,
+            credentialType=credentialtype,
             description=description,
-            enablepassword=enablepassword,
+            enablePassword=enablepassword,
             id=id,
-            instancetenantid=instancetenantid,
-            instanceuuid=instanceuuid,
+            instanceTenantId=instancetenantid,
+            instanceUuid=instanceuuid,
             password=password,
             username=username,
             headers=headers,
@@ -2036,12 +1916,12 @@ def update_netconf_credentials(obj, pretty_print, beep,
             payload = json.loads(payload)
         result = obj.update_netconf_credentials(
             comments=comments,
-            credentialtype=credentialtype,
+            credentialType=credentialtype,
             description=description,
             id=id,
-            instancetenantid=instancetenantid,
-            instanceuuid=instanceuuid,
-            netconfport=netconfport,
+            instanceTenantId=instancetenantid,
+            instanceUuid=instanceuuid,
+            netconfPort=netconfport,
             headers=headers,
             payload=payload,
             active_validation=active_validation)
@@ -2062,12 +1942,6 @@ def update_netconf_credentials(obj, pretty_print, beep,
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
-              show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
               show_default=True)
@@ -2075,9 +1949,7 @@ def update_netconf_credentials(obj, pretty_print, beep,
 @click.pass_obj
 def get_credential_sub_type_by_credential_id(obj, pretty_print, beep,
                                              id,
-                                             headers,
-                                             payload,
-                                             active_validation):
+                                             headers):
     """Returns the credential sub type for the given Id.
     """
     spinner = init_spinner(beep=beep)
@@ -2085,13 +1957,9 @@ def get_credential_sub_type_by_credential_id(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.get_credential_sub_type_by_credential_id(
             id=id,
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -2140,8 +2008,9 @@ def update_global_credentials(obj, pretty_print, beep,
         if payload is not None:
             payload = json.loads(payload)
         siteuuids = list(siteuuids)
+        siteuuids = siteuuids if len(siteuuids) > 0 else None
         result = obj.update_global_credentials(
-            siteuuids=siteuuids,
+            siteUuids=siteuuids,
             global_credential_id=global_credential_id,
             headers=headers,
             payload=payload,
@@ -2213,12 +2082,6 @@ def create_snmp_read_community(obj, pretty_print, beep,
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
-              show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
               show_default=True)
@@ -2229,9 +2092,7 @@ def get_discovery_jobs_by_ip(obj, pretty_print, beep,
                              limit,
                              ip_address,
                              name,
-                             headers,
-                             payload,
-                             active_validation):
+                             headers):
     """Returns the list of discovery jobs for the given IP.
     """
     spinner = init_spinner(beep=beep)
@@ -2239,16 +2100,12 @@ def get_discovery_jobs_by_ip(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.get_discovery_jobs_by_ip(
             offset=offset,
             limit=limit,
             ip_address=ip_address,
             name=name,
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -2277,12 +2134,6 @@ def get_discovery_jobs_by_ip(obj, pretty_print, beep,
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
-              show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
               show_default=True)
@@ -2293,9 +2144,7 @@ def get_discovered_devices_by_range(obj, pretty_print, beep,
                                     id,
                                     start_index,
                                     records_to_return,
-                                    headers,
-                                    payload,
-                                    active_validation):
+                                    headers):
     """Returns the network devices discovered for the given discovery and for the given range. The maximum number of records that can be retrieved is 500. Discovery ID can be obtained using the "Get Discoveries by range" API.
     """
     spinner = init_spinner(beep=beep)
@@ -2303,16 +2152,12 @@ def get_discovered_devices_by_range(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.get_discovered_devices_by_range(
             task_id=task_id,
             id=id,
             start_index=start_index,
             records_to_return=records_to_return,
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -2335,12 +2180,6 @@ def get_discovered_devices_by_range(obj, pretty_print, beep,
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
-              show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
               show_default=True)
@@ -2350,9 +2189,7 @@ def get_global_credentials(obj, pretty_print, beep,
                            credential_sub_type,
                            sort_by,
                            order,
-                           headers,
-                           payload,
-                           active_validation):
+                           headers):
     """Returns global credential for the given credential sub type.
     """
     spinner = init_spinner(beep=beep)
@@ -2360,15 +2197,11 @@ def get_global_credentials(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.get_global_credentials(
             credential_sub_type=credential_sub_type,
             sort_by=sort_by,
             order=order,
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -2389,12 +2222,6 @@ def get_global_credentials(obj, pretty_print, beep,
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
-              show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
               show_default=True)
@@ -2403,9 +2230,7 @@ def get_global_credentials(obj, pretty_print, beep,
 def get_discovered_network_devices_by_discovery_id(obj, pretty_print, beep,
                                                    task_id,
                                                    id,
-                                                   headers,
-                                                   payload,
-                                                   active_validation):
+                                                   headers):
     """Returns the network devices discovered for the given Discovery ID. Discovery ID can be obtained using the "Get Discoveries by range" API.
     """
     spinner = init_spinner(beep=beep)
@@ -2413,14 +2238,10 @@ def get_discovered_network_devices_by_discovery_id(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.get_discovered_network_devices_by_discovery_id(
             task_id=task_id,
             id=id,
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:

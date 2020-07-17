@@ -30,21 +30,13 @@ def command_runner(ctx, obj):
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
-              show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
               show_default=True)
 @click.option('--beep', is_flag=True, help='''Spinner beep (on)''')
 @click.pass_obj
 def get_all_keywords_of_clis_accepted(obj, pretty_print, beep,
-                                      headers,
-                                      payload,
-                                      active_validation):
+                                      headers):
     """Get valid keywords.
     """
     spinner = init_spinner(beep=beep)
@@ -52,12 +44,8 @@ def get_all_keywords_of_clis_accepted(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.get_all_keywords_of_clis_accepted(
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -121,11 +109,13 @@ def run_read_only_commands_on_devices(obj, pretty_print, beep,
         if payload is not None:
             payload = json.loads(payload)
         commands = list(commands)
+        commands = commands if len(commands) > 0 else None
         deviceuuids = list(deviceuuids)
+        deviceuuids = deviceuuids if len(deviceuuids) > 0 else None
         result = obj.run_read_only_commands_on_devices(
             commands=commands,
             description=description,
-            deviceuuids=deviceuuids,
+            deviceUuids=deviceuuids,
             name=name,
             timeout=timeout,
             headers=headers,

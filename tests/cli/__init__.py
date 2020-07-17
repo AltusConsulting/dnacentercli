@@ -22,17 +22,38 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 """
 
+import pytest
 from click.testing import CliRunner
 from dnacentercli.cli import main
 from tests.environment import (
     DNA_CENTER_USERNAME, DNA_CENTER_PASSWORD,
-    DNA_CENTER_ENCODED_AUTH
+    DNA_CENTER_ENCODED_AUTH, DNA_CENTER_VERSION
 )
 from tests.config import DEFAULT_BASE_URL
-import pytest
+from tests.mock.mock import (
+    get_free_port,
+    get_mock_url,
+    start_mock_server
+)
 
 
 # Fixtures
+@pytest.fixture(scope="session")
+def free_port():
+    return get_free_port()
+
+
+@pytest.fixture(scope="session")
+def base_url(free_port):
+    return get_mock_url(free_port)
+
+
+@pytest.fixture(scope="session")
+def mock_dnac_server(free_port):
+    start_mock_server(free_port, DNA_CENTER_VERSION)
+    return
+
+
 @pytest.fixture(scope='function')
 def runner(request):
     return CliRunner()
@@ -44,7 +65,7 @@ def cli():
 
 
 @pytest.fixture(scope='session')
-def auth_options():
+def auth_options(mock_dnac_server, base_url):
     result_username = DNA_CENTER_USERNAME is not None and ["--username", "{}".format(DNA_CENTER_USERNAME)] or []
     result_password = DNA_CENTER_PASSWORD is not None and ["--password", "{}".format(DNA_CENTER_PASSWORD)] or []
     result_encoded_auth = DNA_CENTER_ENCODED_AUTH is not None and ["--encoded_auth", "{}".format(DNA_CENTER_ENCODED_AUTH)] or []
@@ -52,7 +73,7 @@ def auth_options():
         *result_username,
         *result_password,
         *result_encoded_auth,
-        "--base_url", "{}".format(DEFAULT_BASE_URL),
+        "--base_url", "{}".format(base_url),
         "--verify", "{}".format(True),
         "--debug", "{}".format(False),
     ]

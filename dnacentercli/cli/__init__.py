@@ -90,14 +90,144 @@ from .v1_3_0.task import \
     task as v1_3_0_task
 from .v1_3_0.template_programmer import \
     template_programmer as v1_3_0_template_programmer
+from .v1_3_1.application_policy import \
+    application_policy as v1_3_1_application_policy
+from .v1_3_1.clients import \
+    clients as v1_3_1_clients
+from .v1_3_1.command_runner import \
+    command_runner as v1_3_1_command_runner
+from .v1_3_1.configuration_templates import \
+    configuration_templates as v1_3_1_configuration_templates
+from .v1_3_1.device_onboarding_pnp import \
+    device_onboarding_pnp as v1_3_1_device_onboarding_pnp
+from .v1_3_1.devices import \
+    devices as v1_3_1_devices
+from .v1_3_1.event_management import \
+    event_management as v1_3_1_event_management
+from .v1_3_1.fabric_wired import \
+    fabric_wired as v1_3_1_fabric_wired
+from .v1_3_1.file import \
+    file as v1_3_1_file
+from .v1_3_1.issues import \
+    issues as v1_3_1_issues
+from .v1_3_1.network_discovery import \
+    network_discovery as v1_3_1_network_discovery
+from .v1_3_1.network_settings import \
+    network_settings as v1_3_1_network_settings
+from .v1_3_1.non_fabric_wireless import \
+    non_fabric_wireless as v1_3_1_non_fabric_wireless
+from .v1_3_1.path_trace import \
+    path_trace as v1_3_1_path_trace
+from .v1_3_1.site_design import \
+    site_design as v1_3_1_site_design
+from .v1_3_1.sites import \
+    sites as v1_3_1_sites
+from .v1_3_1.software_image_management_swim import \
+    software_image_management_swim as v1_3_1_software_image_management_swim
+from .v1_3_1.tag import \
+    tag as v1_3_1_tag
+from .v1_3_1.task import \
+    task as v1_3_1_task
+from .v1_3_1.topology import \
+    topology as v1_3_1_topology
+from .v1_3_1.users import \
+    users as v1_3_1_users
+from .v1_3_3.application_policy import \
+    application_policy as v1_3_3_application_policy
+from .v1_3_3.clients import \
+    clients as v1_3_3_clients
+from .v1_3_3.command_runner import \
+    command_runner as v1_3_3_command_runner
+from .v1_3_3.configuration_templates import \
+    configuration_templates as v1_3_3_configuration_templates
+from .v1_3_3.device_onboarding_pnp import \
+    device_onboarding_pnp as v1_3_3_device_onboarding_pnp
+from .v1_3_3.devices import \
+    devices as v1_3_3_devices
+from .v1_3_3.discovery import \
+    discovery as v1_3_3_discovery
+from .v1_3_3.event_management import \
+    event_management as v1_3_3_event_management
+from .v1_3_3.file import \
+    file as v1_3_3_file
+from .v1_3_3.issues import \
+    issues as v1_3_3_issues
+from .v1_3_3.network_settings import \
+    network_settings as v1_3_3_network_settings
+from .v1_3_3.path_trace import \
+    path_trace as v1_3_3_path_trace
+from .v1_3_3.sda import \
+    sda as v1_3_3_sda
+from .v1_3_3.site_design import \
+    site_design as v1_3_3_site_design
+from .v1_3_3.sites import \
+    sites as v1_3_3_sites
+from .v1_3_3.software_image_management_swim import \
+    software_image_management_swim as v1_3_3_software_image_management_swim
+from .v1_3_3.tag import \
+    tag as v1_3_3_tag
+from .v1_3_3.task import \
+    task as v1_3_3_task
+from .v1_3_3.topology import \
+    topology as v1_3_3_topology
+from .v1_3_3.users import \
+    users as v1_3_3_users
+from .v1_3_3.wireless import \
+    wireless as v1_3_3_wireless
+from .v2_1_1.application_policy import \
+    application_policy as v2_1_1_application_policy
+from .v2_1_1.clients import \
+    clients as v2_1_1_clients
+from .v2_1_1.command_runner import \
+    command_runner as v2_1_1_command_runner
+from .v2_1_1.configuration_templates import \
+    configuration_templates as v2_1_1_configuration_templates
+from .v2_1_1.device_onboarding_pnp import \
+    device_onboarding_pnp as v2_1_1_device_onboarding_pnp
+from .v2_1_1.device_replacement import \
+    device_replacement as v2_1_1_device_replacement
+from .v2_1_1.devices import \
+    devices as v2_1_1_devices
+from .v2_1_1.discovery import \
+    discovery as v2_1_1_discovery
+from .v2_1_1.event_management import \
+    event_management as v2_1_1_event_management
+from .v2_1_1.file import \
+    file as v2_1_1_file
+from .v2_1_1.itsm import \
+    itsm as v2_1_1_itsm
+from .v2_1_1.issues import \
+    issues as v2_1_1_issues
+from .v2_1_1.network_settings import \
+    network_settings as v2_1_1_network_settings
+from .v2_1_1.path_trace import \
+    path_trace as v2_1_1_path_trace
+from .v2_1_1.sda import \
+    sda as v2_1_1_sda
+from .v2_1_1.site_design import \
+    site_design as v2_1_1_site_design
+from .v2_1_1.sites import \
+    sites as v2_1_1_sites
+from .v2_1_1.software_image_management_swim import \
+    software_image_management_swim as v2_1_1_software_image_management_swim
+from .v2_1_1.tag import \
+    tag as v2_1_1_tag
+from .v2_1_1.task import \
+    task as v2_1_1_task
+from .v2_1_1.topology import \
+    topology as v2_1_1_topology
+from .v2_1_1.users import \
+    users as v2_1_1_users
+from .v2_1_1.wireless import \
+    wireless as v2_1_1_wireless
 
 
 def version_set(ctx, param, value):
-    if value not in ['1.2.10', '1.3.0']:
+    if value not in ['1.2.10', '1.3.0', '1.3.1', '1.3.3', '2.1.1']:
         ctx.fail(
             'Unknown API version, '
             + 'known versions are {}'.format(
-                '1.2.10 and 1.3.0.'
+                '1.2.10, 1.3.0, 1.3.1, 1.3.3 and 2.1.1.'
             )
         )
     if value == '1.2.10':
@@ -134,6 +264,74 @@ def version_set(ctx, param, value):
         main.add_command(v1_3_0_tag)
         main.add_command(v1_3_0_task)
         main.add_command(v1_3_0_template_programmer)
+    if value == '1.3.1':
+        main.add_command(v1_3_1_application_policy)
+        main.add_command(v1_3_1_clients)
+        main.add_command(v1_3_1_command_runner)
+        main.add_command(v1_3_1_configuration_templates)
+        main.add_command(v1_3_1_device_onboarding_pnp)
+        main.add_command(v1_3_1_devices)
+        main.add_command(v1_3_1_event_management)
+        main.add_command(v1_3_1_fabric_wired)
+        main.add_command(v1_3_1_file)
+        main.add_command(v1_3_1_issues)
+        main.add_command(v1_3_1_network_discovery)
+        main.add_command(v1_3_1_network_settings)
+        main.add_command(v1_3_1_non_fabric_wireless)
+        main.add_command(v1_3_1_path_trace)
+        main.add_command(v1_3_1_site_design)
+        main.add_command(v1_3_1_sites)
+        main.add_command(v1_3_1_software_image_management_swim)
+        main.add_command(v1_3_1_tag)
+        main.add_command(v1_3_1_task)
+        main.add_command(v1_3_1_topology)
+        main.add_command(v1_3_1_users)
+    if value == '1.3.3':
+        main.add_command(v1_3_3_application_policy)
+        main.add_command(v1_3_3_clients)
+        main.add_command(v1_3_3_command_runner)
+        main.add_command(v1_3_3_configuration_templates)
+        main.add_command(v1_3_3_device_onboarding_pnp)
+        main.add_command(v1_3_3_devices)
+        main.add_command(v1_3_3_discovery)
+        main.add_command(v1_3_3_event_management)
+        main.add_command(v1_3_3_file)
+        main.add_command(v1_3_3_issues)
+        main.add_command(v1_3_3_network_settings)
+        main.add_command(v1_3_3_path_trace)
+        main.add_command(v1_3_3_sda)
+        main.add_command(v1_3_3_site_design)
+        main.add_command(v1_3_3_sites)
+        main.add_command(v1_3_3_software_image_management_swim)
+        main.add_command(v1_3_3_tag)
+        main.add_command(v1_3_3_task)
+        main.add_command(v1_3_3_topology)
+        main.add_command(v1_3_3_users)
+        main.add_command(v1_3_3_wireless)
+    if value == '2.1.1':
+        main.add_command(v2_1_1_application_policy)
+        main.add_command(v2_1_1_clients)
+        main.add_command(v2_1_1_command_runner)
+        main.add_command(v2_1_1_configuration_templates)
+        main.add_command(v2_1_1_device_onboarding_pnp)
+        main.add_command(v2_1_1_device_replacement)
+        main.add_command(v2_1_1_devices)
+        main.add_command(v2_1_1_discovery)
+        main.add_command(v2_1_1_event_management)
+        main.add_command(v2_1_1_file)
+        main.add_command(v2_1_1_itsm)
+        main.add_command(v2_1_1_issues)
+        main.add_command(v2_1_1_network_settings)
+        main.add_command(v2_1_1_path_trace)
+        main.add_command(v2_1_1_sda)
+        main.add_command(v2_1_1_site_design)
+        main.add_command(v2_1_1_sites)
+        main.add_command(v2_1_1_software_image_management_swim)
+        main.add_command(v2_1_1_tag)
+        main.add_command(v2_1_1_task)
+        main.add_command(v2_1_1_topology)
+        main.add_command(v2_1_1_users)
+        main.add_command(v2_1_1_wireless)
     return value
 
 
@@ -172,8 +370,8 @@ def version_set(ctx, param, value):
               default=DNA_CENTER_VERIFY,
               help="Controls whether to verify the server's TLS certificate.",
               show_default=True)
-@click.option('--debug', '-d', type=bool, envvar='DEBUG',
-              default=False,
+@click.option('--debug', '-d', type=bool,
+              default=DNA_CENTER_DEBUG,
               help="Controls whether to log information about DNA Center APIs' request and response process.",
               show_default=True)
 @click.option('-y/-n', 'prompt', is_flag=True,

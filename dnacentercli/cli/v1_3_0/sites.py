@@ -33,12 +33,6 @@ def sites(ctx, obj):
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
-              show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
               show_default=True)
@@ -46,9 +40,7 @@ def sites(ctx, obj):
 @click.pass_obj
 def get_site_health(obj, pretty_print, beep,
                     timestamp,
-                    headers,
-                    payload,
-                    active_validation):
+                    headers):
     """Returns Overall Health information for all sites.
     """
     spinner = init_spinner(beep=beep)
@@ -56,13 +48,9 @@ def get_site_health(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.get_site_health(
             timestamp=timestamp,
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -207,12 +195,6 @@ def create_site(obj, pretty_print, beep,
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
-              show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
               show_default=True)
@@ -224,9 +206,7 @@ def get_site(obj, pretty_print, beep,
              type,
              offset,
              limit,
-             headers,
-             payload,
-             active_validation):
+             headers):
     """Get site with area/building/floor with specified hierarchy.
     """
     spinner = init_spinner(beep=beep)
@@ -234,17 +214,13 @@ def get_site(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.get_site(
             name=name,
             site_id=site_id,
             type=type,
             offset=offset,
             limit=limit,
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -262,12 +238,6 @@ def get_site(obj, pretty_print, beep,
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
-              show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
               show_default=True)
@@ -275,9 +245,7 @@ def get_site(obj, pretty_print, beep,
 @click.pass_obj
 def delete_site(obj, pretty_print, beep,
                 site_id,
-                headers,
-                payload,
-                active_validation):
+                headers):
     """Delete site with area/building/floor by siteId.
     """
     spinner = init_spinner(beep=beep)
@@ -285,13 +253,9 @@ def delete_site(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.delete_site(
             site_id=site_id,
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -308,12 +272,6 @@ def delete_site(obj, pretty_print, beep,
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
-              show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
               show_default=True)
@@ -321,9 +279,7 @@ def delete_site(obj, pretty_print, beep,
 @click.pass_obj
 def get_site_count(obj, pretty_print, beep,
                    site_id,
-                   headers,
-                   payload,
-                   active_validation):
+                   headers):
     """API to get site count .
     """
     spinner = init_spinner(beep=beep)
@@ -331,13 +287,9 @@ def get_site_count(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.get_site_count(
             site_id=site_id,
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -386,6 +338,8 @@ def assign_device_to_site(obj, pretty_print, beep,
         if payload is not None:
             payload = json.loads(payload)
         device = list(device)
+        device = json.loads('[{}]'.format(', '.join('{0}'.format(w) for w in device)))
+        device = device if len(device) > 0 else None
         result = obj.assign_device_to_site(
             device=device,
             site_id=site_id,
@@ -409,12 +363,6 @@ def assign_device_to_site(obj, pretty_print, beep,
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
-              show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
               show_default=True)
@@ -422,9 +370,7 @@ def assign_device_to_site(obj, pretty_print, beep,
 @click.pass_obj
 def get_membership(obj, pretty_print, beep,
                    site_id,
-                   headers,
-                   payload,
-                   active_validation):
+                   headers):
     """Getting the site children details and device details.
     """
     spinner = init_spinner(beep=beep)
@@ -432,13 +378,9 @@ def get_membership(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.get_membership(
             site_id=site_id,
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:

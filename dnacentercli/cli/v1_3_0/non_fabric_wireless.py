@@ -103,7 +103,7 @@ def update_wireless_profile(obj, pretty_print, beep,
         if profiledetails is not None:
             profiledetails = json.loads('{}'.format(profiledetails))
         result = obj.update_wireless_profile(
-            profiledetails=profiledetails,
+            profileDetails=profiledetails,
             headers=headers,
             payload=payload,
             active_validation=active_validation)
@@ -123,12 +123,6 @@ def update_wireless_profile(obj, pretty_print, beep,
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
-              show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
               show_default=True)
@@ -136,9 +130,7 @@ def update_wireless_profile(obj, pretty_print, beep,
 @click.pass_obj
 def get_wireless_profile(obj, pretty_print, beep,
                          profile_name,
-                         headers,
-                         payload,
-                         active_validation):
+                         headers):
     """Gets either one or all the wireless network profiles if no name is provided for network-profile.
     """
     spinner = init_spinner(beep=beep)
@@ -146,13 +138,9 @@ def get_wireless_profile(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.get_wireless_profile(
             profile_name=profile_name,
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -211,12 +199,6 @@ def update_provision(obj, pretty_print, beep,
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
-              show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
               show_default=True)
@@ -224,9 +206,7 @@ def update_provision(obj, pretty_print, beep,
 @click.pass_obj
 def delete_wireless_profile(obj, pretty_print, beep,
                             wireless_profile_name,
-                            headers,
-                            payload,
-                            active_validation):
+                            headers):
     """Delete the Wireless Profile from DNAC whose name is provided.
     """
     spinner = init_spinner(beep=beep)
@@ -234,13 +214,9 @@ def delete_wireless_profile(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.delete_wireless_profile(
             wireless_profile_name=wireless_profile_name,
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -286,7 +262,7 @@ def create_wireless_profile(obj, pretty_print, beep,
         if profiledetails is not None:
             profiledetails = json.loads('{}'.format(profiledetails))
         result = obj.create_wireless_profile(
-            profiledetails=profiledetails,
+            profileDetails=profiledetails,
             headers=headers,
             payload=payload,
             active_validation=active_validation)
@@ -355,14 +331,15 @@ def create_and_provision_ssid(obj, pretty_print, beep,
         if flexconnect is not None:
             flexconnect = json.loads('{}'.format(flexconnect))
         managedaplocations = list(managedaplocations)
+        managedaplocations = managedaplocations if len(managedaplocations) > 0 else None
         if ssiddetails is not None:
             ssiddetails = json.loads('{}'.format(ssiddetails))
         result = obj.create_and_provision_ssid(
-            enablefabric=enablefabric,
-            flexconnect=flexconnect,
-            managedaplocations=managedaplocations,
-            ssiddetails=ssiddetails,
-            ssidtype=ssidtype,
+            enableFabric=enablefabric,
+            flexConnect=flexconnect,
+            managedAPLocations=managedaplocations,
+            ssidDetails=ssiddetails,
+            ssidType=ssidtype,
             headers=headers,
             payload=payload,
             active_validation=active_validation)
@@ -383,12 +360,6 @@ def create_and_provision_ssid(obj, pretty_print, beep,
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
-              show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
               show_default=True)
@@ -396,9 +367,7 @@ def create_and_provision_ssid(obj, pretty_print, beep,
 @click.pass_obj
 def delete_enterprise_ssid(obj, pretty_print, beep,
                            ssid_name,
-                           headers,
-                           payload,
-                           active_validation):
+                           headers):
     """Deletes given enterprise SSID.
     """
     spinner = init_spinner(beep=beep)
@@ -406,13 +375,9 @@ def delete_enterprise_ssid(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.delete_enterprise_ssid(
             ssid_name=ssid_name,
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -434,12 +399,6 @@ def delete_enterprise_ssid(obj, pretty_print, beep,
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
-              show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
               show_default=True)
@@ -448,9 +407,7 @@ def delete_enterprise_ssid(obj, pretty_print, beep,
 def delete_and_provision_ssid(obj, pretty_print, beep,
                               ssid_name,
                               managed_aplocations,
-                              headers,
-                              payload,
-                              active_validation):
+                              headers):
     """Removes SSID for the given site hierarchy matching network profile, provision the device and deletes the SSID from DNA Center.
     """
     spinner = init_spinner(beep=beep)
@@ -458,14 +415,10 @@ def delete_and_provision_ssid(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.delete_and_provision_ssid(
             ssid_name=ssid_name,
             managed_aplocations=managed_aplocations,
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -482,12 +435,6 @@ def delete_and_provision_ssid(obj, pretty_print, beep,
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
-              show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
               show_default=True)
@@ -495,9 +442,7 @@ def delete_and_provision_ssid(obj, pretty_print, beep,
 @click.pass_obj
 def get_enterprise_ssid(obj, pretty_print, beep,
                         ssid_name,
-                        headers,
-                        payload,
-                        active_validation):
+                        headers):
     """Gets either one or all the enterprise SSID.
     """
     spinner = init_spinner(beep=beep)
@@ -505,13 +450,9 @@ def get_enterprise_ssid(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.get_enterprise_ssid(
             ssid_name=ssid_name,
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -595,15 +536,15 @@ def create_enterprise_ssid(obj, pretty_print, beep,
         if payload is not None:
             payload = json.loads(payload)
         result = obj.create_enterprise_ssid(
-            enablebroadcastssid=enablebroadcastssid,
-            enablefastlane=enablefastlane,
-            enablemacfiltering=enablemacfiltering,
-            fasttransition=fasttransition,
+            enableBroadcastSSID=enablebroadcastssid,
+            enableFastLane=enablefastlane,
+            enableMACFiltering=enablemacfiltering,
+            fastTransition=fasttransition,
             name=name,
             passphrase=passphrase,
-            radiopolicy=radiopolicy,
-            securitylevel=securitylevel,
-            traffictype=traffictype,
+            radioPolicy=radiopolicy,
+            securityLevel=securitylevel,
+            trafficType=traffictype,
             headers=headers,
             payload=payload,
             active_validation=active_validation)

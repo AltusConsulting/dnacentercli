@@ -33,12 +33,6 @@ def sites(ctx, obj):
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
-              show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
               show_default=True)
@@ -46,9 +40,7 @@ def sites(ctx, obj):
 @click.pass_obj
 def get_site_health(obj, pretty_print, beep,
                     timestamp,
-                    headers,
-                    payload,
-                    active_validation):
+                    headers):
     """Returns Overall Health information for all sites.
     """
     spinner = init_spinner(beep=beep)
@@ -56,13 +48,9 @@ def get_site_health(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.get_site_health(
             timestamp=timestamp,
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -111,6 +99,8 @@ def assign_device_to_site(obj, pretty_print, beep,
         if payload is not None:
             payload = json.loads(payload)
         device = list(device)
+        device = json.loads('[{}]'.format(', '.join('{0}'.format(w) for w in device)))
+        device = device if len(device) > 0 else None
         result = obj.assign_device_to_site(
             device=device,
             site_id=site_id,

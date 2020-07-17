@@ -30,21 +30,13 @@ def file(ctx, obj):
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
-              show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
               show_default=True)
 @click.option('--beep', is_flag=True, help='''Spinner beep (on)''')
 @click.pass_obj
 def get_list_of_available_namespaces(obj, pretty_print, beep,
-                                     headers,
-                                     payload,
-                                     active_validation):
+                                     headers):
     """Returns list of available namespaces.
     """
     spinner = init_spinner(beep=beep)
@@ -52,12 +44,8 @@ def get_list_of_available_namespaces(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.get_list_of_available_namespaces(
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -75,12 +63,6 @@ def get_list_of_available_namespaces(obj, pretty_print, beep,
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
-              show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
               show_default=True)
@@ -88,9 +70,7 @@ def get_list_of_available_namespaces(obj, pretty_print, beep,
 @click.pass_obj
 def get_list_of_files(obj, pretty_print, beep,
                       name_space,
-                      headers,
-                      payload,
-                      active_validation):
+                      headers):
     """Returns list of files under a specific namespace.
     """
     spinner = init_spinner(beep=beep)
@@ -98,13 +78,9 @@ def get_list_of_files(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.get_list_of_files(
             name_space=name_space,
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -119,14 +95,16 @@ def get_list_of_files(obj, pretty_print, beep,
               help='''File Identification number.''',
               required=True,
               show_default=True)
+@click.option('--dirpath', type=str,
+              help='''Directory absolute path. Defaults to os.getcwd().''',
+              required=False,
+              show_default=True)
+@click.option('--save_file', type=bool,
+              help='''Enable or disable automatic file creation of raw response.''',
+              required=False,
+              show_default=True)
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
-              show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
               show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
@@ -135,9 +113,9 @@ def get_list_of_files(obj, pretty_print, beep,
 @click.pass_obj
 def download_a_file_by_fileid(obj, pretty_print, beep,
                               file_id,
-                              headers,
-                              payload,
-                              active_validation):
+                              dirpath,
+                              save_file,
+                              headers):
     """Downloads a file specified by fileId.
     """
     spinner = init_spinner(beep=beep)
@@ -145,13 +123,11 @@ def download_a_file_by_fileid(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.download_a_file_by_fileid(
             file_id=file_id,
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            dirpath=dirpath,
+            save_file=save_file,
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:

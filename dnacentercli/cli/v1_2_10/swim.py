@@ -84,12 +84,6 @@ def swim(ctx, obj):
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
-              show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
               show_default=True)
@@ -114,9 +108,7 @@ def get_software_image_details(obj, pretty_print, beep,
                                sort_order,
                                limit,
                                offset,
-                               headers,
-                               payload,
-                               active_validation):
+                               headers):
     """Returns software image list based on a filter criteria. For example: "filterbyName = cat3k%".
     """
     spinner = init_spinner(beep=beep)
@@ -124,8 +116,6 @@ def get_software_image_details(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.get_software_image_details(
             image_uuid=image_uuid,
             name=name,
@@ -145,9 +135,7 @@ def get_software_image_details(obj, pretty_print, beep,
             sort_order=sort_order,
             limit=limit,
             offset=offset,
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -211,20 +199,16 @@ def trigger_software_image_distribution(obj, pretty_print, beep,
 @click.option('--third_party_application_type', type=str,
               help='''Third Party Application Type.''',
               show_default=True)
-@click.option('--multipart_fields', default=None,
-              help='''Fields from which to create a multipart/form-data body.''',
+@click.option('--file', type=click.File('rb'),
+              help='The full path of a file. The file is opened with rb flag.',
+              required=True,
               show_default=True)
-@click.option('--multipart_monitor_callback', default=None,
-              help='''function used to monitor the progress of the upload.''',
+@click.option('--filename', type=str,
+              help='The filename (with its extension, for example, test.zip)',
+              required=True,
               show_default=True)
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
-              show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
               show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
@@ -236,11 +220,9 @@ def import_local_software_image(obj, pretty_print, beep,
                                 third_party_vendor,
                                 third_party_image_family,
                                 third_party_application_type,
-                                multipart_fields,
-                                multipart_monitor_callback,
-                                headers,
-                                payload,
-                                active_validation):
+                                file,
+                                filename,
+                                headers):
     """Fetches a software image from local file system and uploads to DNA Center. Supported software image files extensions are bin, img, tar, smu, pie, aes, iso, ova, tar_gz and qcow2.
     """
     spinner = init_spinner(beep=beep)
@@ -248,18 +230,14 @@ def import_local_software_image(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.import_local_software_image(
             is_third_party=is_third_party,
             third_party_vendor=third_party_vendor,
             third_party_image_family=third_party_image_family,
             third_party_application_type=third_party_application_type,
-            multipart_fields=multipart_fields,
-            multipart_monitor_callback=multipart_monitor_callback,
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            multipart_fields={'file': (filename, file)},
+            multipart_monitor_callback=None,
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:

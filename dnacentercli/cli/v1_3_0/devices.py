@@ -34,12 +34,6 @@ def devices(ctx, obj):
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
-              show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
               show_default=True)
@@ -47,9 +41,7 @@ def devices(ctx, obj):
 @click.pass_obj
 def get_module_info_by_id(obj, pretty_print, beep,
                           id,
-                          headers,
-                          payload,
-                          active_validation):
+                          headers):
     """Returns Module info by id.
     """
     spinner = init_spinner(beep=beep)
@@ -57,13 +49,9 @@ def get_module_info_by_id(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.get_module_info_by_id(
             id=id,
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -84,12 +72,6 @@ def get_module_info_by_id(obj, pretty_print, beep,
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
-              show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
               show_default=True)
@@ -98,9 +80,7 @@ def get_module_info_by_id(obj, pretty_print, beep,
 def delete_device_by_id(obj, pretty_print, beep,
                         is_force_delete,
                         id,
-                        headers,
-                        payload,
-                        active_validation):
+                        headers):
     """Deletes the network device for the given Id.
     """
     spinner = init_spinner(beep=beep)
@@ -108,14 +88,10 @@ def delete_device_by_id(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.delete_device_by_id(
             is_force_delete=is_force_delete,
             id=id,
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -268,12 +244,6 @@ def sync_devices_using_forcesync(obj, pretty_print, beep,
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
-              show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
               show_default=True)
@@ -311,9 +281,7 @@ def get_device_list(obj, pretty_print, beep,
                     module_partnumber,
                     module_operationstatecode,
                     id,
-                    headers,
-                    payload,
-                    active_validation):
+                    headers):
     """Returns list of network devices based on filter criteria such as management IP address, mac address, hostname, location name and a wide variety of additional criteria. You can also use the asterisk in any value to conduct a wildcard search. For example, to find all hostnames beginning with myhost in the IP address range 192.25.18.n, issue the following request: GET  fqdnoripofdnacenterplatform/dna/intent/api/v1/network-device? hostname=myhost* & managementIpAddress=192.25.18.* For a complete list of parameter names that you can use for filtering this request, see the DNA Center API Reference documentation.  Note: If id parameter is provided, it will return the list of network-devices for the given ids and ignores the other request parameters. .
     """
     spinner = init_spinner(beep=beep)
@@ -321,8 +289,6 @@ def get_device_list(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.get_device_list(
             hostname=hostname,
             management_ip_address=management_ip_address,
@@ -355,9 +321,7 @@ def get_device_list(obj, pretty_print, beep,
             module_partnumber=module_partnumber,
             module_operationstatecode=module_operationstatecode,
             id=id,
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -378,12 +342,6 @@ def get_device_list(obj, pretty_print, beep,
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
-              show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
               show_default=True)
@@ -392,9 +350,7 @@ def get_device_list(obj, pretty_print, beep,
 def get_device_interface_vlans(obj, pretty_print, beep,
                                interface_type,
                                id,
-                               headers,
-                               payload,
-                               active_validation):
+                               headers):
     """Returns Device Interface VLANs.
     """
     spinner = init_spinner(beep=beep)
@@ -402,14 +358,10 @@ def get_device_interface_vlans(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.get_device_interface_vlans(
             interface_type=interface_type,
             id=id,
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -423,21 +375,13 @@ def get_device_interface_vlans(obj, pretty_print, beep,
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
-              show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
               show_default=True)
 @click.option('--beep', is_flag=True, help='''Spinner beep (on)''')
 @click.pass_obj
 def get_polling_interval_for_all_devices(obj, pretty_print, beep,
-                                         headers,
-                                         payload,
-                                         active_validation):
+                                         headers):
     """Returns polling interval of all devices.
     """
     spinner = init_spinner(beep=beep)
@@ -445,12 +389,8 @@ def get_polling_interval_for_all_devices(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.get_polling_interval_for_all_devices(
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -476,12 +416,6 @@ def get_polling_interval_for_all_devices(obj, pretty_print, beep,
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
-              show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
               show_default=True)
@@ -491,9 +425,7 @@ def get_device_interfaces_by_specified_range(obj, pretty_print, beep,
                                              device_id,
                                              start_index,
                                              records_to_return,
-                                             headers,
-                                             payload,
-                                             active_validation):
+                                             headers):
     """Returns the list of interfaces for the device for the specified range.
     """
     spinner = init_spinner(beep=beep)
@@ -501,15 +433,11 @@ def get_device_interfaces_by_specified_range(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.get_device_interfaces_by_specified_range(
             device_id=device_id,
             start_index=start_index,
             records_to_return=records_to_return,
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -523,21 +451,13 @@ def get_device_interfaces_by_specified_range(obj, pretty_print, beep,
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
-              show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
               show_default=True)
 @click.option('--beep', is_flag=True, help='''Spinner beep (on)''')
 @click.pass_obj
 def get_device_interface_count(obj, pretty_print, beep,
-                               headers,
-                               payload,
-                               active_validation):
+                               headers):
     """Returns the count of interfaces for all devices.
     """
     spinner = init_spinner(beep=beep)
@@ -545,12 +465,8 @@ def get_device_interface_count(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.get_device_interface_count(
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -724,36 +640,40 @@ def add_device(obj, pretty_print, beep,
         if payload is not None:
             payload = json.loads(payload)
         ipaddress = list(ipaddress)
+        ipaddress = ipaddress if len(ipaddress) > 0 else None
         merakiorgid = list(merakiorgid)
+        merakiorgid = merakiorgid if len(merakiorgid) > 0 else None
         updatemgmtipaddresslist = list(updatemgmtipaddresslist)
+        updatemgmtipaddresslist = json.loads('[{}]'.format(', '.join('{0}'.format(w) for w in updatemgmtipaddresslist)))
+        updatemgmtipaddresslist = updatemgmtipaddresslist if len(updatemgmtipaddresslist) > 0 else None
         result = obj.add_device(
-            clitransport=clitransport,
-            computedevice=computedevice,
-            enablepassword=enablepassword,
-            extendeddiscoveryinfo=extendeddiscoveryinfo,
-            httppassword=httppassword,
-            httpport=httpport,
-            httpsecure=httpsecure,
-            httpusername=httpusername,
-            ipaddress=ipaddress,
-            merakiorgid=merakiorgid,
-            netconfport=netconfport,
+            cliTransport=clitransport,
+            computeDevice=computedevice,
+            enablePassword=enablepassword,
+            extendedDiscoveryInfo=extendeddiscoveryinfo,
+            httpPassword=httppassword,
+            httpPort=httpport,
+            httpSecure=httpsecure,
+            httpUserName=httpusername,
+            ipAddress=ipaddress,
+            merakiOrgId=merakiorgid,
+            netconfPort=netconfport,
             password=password,
-            serialnumber=serialnumber,
-            snmpauthpassphrase=snmpauthpassphrase,
-            snmpauthprotocol=snmpauthprotocol,
-            snmpmode=snmpmode,
-            snmpprivpassphrase=snmpprivpassphrase,
-            snmpprivprotocol=snmpprivprotocol,
-            snmprocommunity=snmprocommunity,
-            snmprwcommunity=snmprwcommunity,
-            snmpretry=snmpretry,
-            snmptimeout=snmptimeout,
-            snmpusername=snmpusername,
-            snmpversion=snmpversion,
+            serialNumber=serialnumber,
+            snmpAuthPassphrase=snmpauthpassphrase,
+            snmpAuthProtocol=snmpauthprotocol,
+            snmpMode=snmpmode,
+            snmpPrivPassphrase=snmpprivpassphrase,
+            snmpPrivProtocol=snmpprivprotocol,
+            snmpROCommunity=snmprocommunity,
+            snmpRWCommunity=snmprwcommunity,
+            snmpRetry=snmpretry,
+            snmpTimeout=snmptimeout,
+            snmpUserName=snmpusername,
+            snmpVersion=snmpversion,
             type=type,
-            updatemgmtipaddresslist=updatemgmtipaddresslist,
-            username=username,
+            updateMgmtIPaddressList=updatemgmtipaddresslist,
+            userName=username,
             headers=headers,
             payload=payload,
             active_validation=active_validation)
@@ -778,12 +698,6 @@ def add_device(obj, pretty_print, beep,
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
-              show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
               show_default=True)
@@ -792,9 +706,7 @@ def add_device(obj, pretty_print, beep,
 def get_interface_details(obj, pretty_print, beep,
                           name,
                           device_id,
-                          headers,
-                          payload,
-                          active_validation):
+                          headers):
     """Returns interface by specified device Id and interface name.
     """
     spinner = init_spinner(beep=beep)
@@ -802,14 +714,10 @@ def get_interface_details(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.get_interface_details(
             name=name,
             device_id=device_id,
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -827,12 +735,6 @@ def get_interface_details(obj, pretty_print, beep,
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
-              show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
               show_default=True)
@@ -840,9 +742,7 @@ def get_interface_details(obj, pretty_print, beep,
 @click.pass_obj
 def get_device_interface_count_by_id(obj, pretty_print, beep,
                                      device_id,
-                                     headers,
-                                     payload,
-                                     active_validation):
+                                     headers):
     """Returns the interface count for the given device.
     """
     spinner = init_spinner(beep=beep)
@@ -850,13 +750,9 @@ def get_device_interface_count_by_id(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.get_device_interface_count_by_id(
             device_id=device_id,
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -869,12 +765,6 @@ def get_device_interface_count_by_id(obj, pretty_print, beep,
 @devices.command()
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
-              show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
               show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
@@ -882,9 +772,7 @@ def get_device_interface_count_by_id(obj, pretty_print, beep,
 @click.option('--beep', is_flag=True, help='''Spinner beep (on)''')
 @click.pass_obj
 def get_device_count(obj, pretty_print, beep,
-                     headers,
-                     payload,
-                     active_validation):
+                     headers):
     """Returns the count of network devices based on the filter criteria by management IP address, mac address, hostname and location name.
     """
     spinner = init_spinner(beep=beep)
@@ -892,12 +780,8 @@ def get_device_count(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.get_device_count(
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -911,21 +795,13 @@ def get_device_count(obj, pretty_print, beep,
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
-              show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
               show_default=True)
 @click.option('--beep', is_flag=True, help='''Spinner beep (on)''')
 @click.pass_obj
 def get_ospf_interfaces(obj, pretty_print, beep,
-                        headers,
-                        payload,
-                        active_validation):
+                        headers):
     """Returns the interfaces that has OSPF enabled.
     """
     spinner = init_spinner(beep=beep)
@@ -933,12 +809,8 @@ def get_ospf_interfaces(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.get_ospf_interfaces(
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -956,12 +828,6 @@ def get_ospf_interfaces(obj, pretty_print, beep,
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
-              show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
               show_default=True)
@@ -969,9 +835,7 @@ def get_ospf_interfaces(obj, pretty_print, beep,
 @click.pass_obj
 def get_polling_interval_by_id(obj, pretty_print, beep,
                                id,
-                               headers,
-                               payload,
-                               active_validation):
+                               headers):
     """Returns polling interval by device id.
     """
     spinner = init_spinner(beep=beep)
@@ -979,13 +843,9 @@ def get_polling_interval_by_id(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.get_polling_interval_by_id(
             id=id,
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -1003,12 +863,6 @@ def get_polling_interval_by_id(obj, pretty_print, beep,
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
-              show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
               show_default=True)
@@ -1016,9 +870,7 @@ def get_polling_interval_by_id(obj, pretty_print, beep,
 @click.pass_obj
 def get_organization_list_for_meraki(obj, pretty_print, beep,
                                      id,
-                                     headers,
-                                     payload,
-                                     active_validation):
+                                     headers):
     """Returns list of organizations for meraki dashboard.
     """
     spinner = init_spinner(beep=beep)
@@ -1026,13 +878,9 @@ def get_organization_list_for_meraki(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.get_organization_list_for_meraki(
             id=id,
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -1050,12 +898,6 @@ def get_organization_list_for_meraki(obj, pretty_print, beep,
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
-              show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
               show_default=True)
@@ -1063,9 +905,7 @@ def get_organization_list_for_meraki(obj, pretty_print, beep,
 @click.pass_obj
 def get_functional_capability_by_id(obj, pretty_print, beep,
                                     id,
-                                    headers,
-                                    payload,
-                                    active_validation):
+                                    headers):
     """Returns functional capability with given Id.
     """
     spinner = init_spinner(beep=beep)
@@ -1073,13 +913,9 @@ def get_functional_capability_by_id(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.get_functional_capability_by_id(
             id=id,
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -1093,21 +929,13 @@ def get_functional_capability_by_id(obj, pretty_print, beep,
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
-              show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
               show_default=True)
 @click.option('--beep', is_flag=True, help='''Spinner beep (on)''')
 @click.pass_obj
 def get_isis_interfaces(obj, pretty_print, beep,
-                        headers,
-                        payload,
-                        active_validation):
+                        headers):
     """Returns the interfaces that has ISIS enabled.
     """
     spinner = init_spinner(beep=beep)
@@ -1115,12 +943,8 @@ def get_isis_interfaces(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.get_isis_interfaces(
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -1138,12 +962,6 @@ def get_isis_interfaces(obj, pretty_print, beep,
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
-              show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
               show_default=True)
@@ -1151,9 +969,7 @@ def get_isis_interfaces(obj, pretty_print, beep,
 @click.pass_obj
 def get_device_config_by_id(obj, pretty_print, beep,
                             network_device_id,
-                            headers,
-                            payload,
-                            active_validation):
+                            headers):
     """Returns the device config by specified device ID.
     """
     spinner = init_spinner(beep=beep)
@@ -1161,13 +977,9 @@ def get_device_config_by_id(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.get_device_config_by_id(
             network_device_id=network_device_id,
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -1184,12 +996,6 @@ def get_device_config_by_id(obj, pretty_print, beep,
               show_default=True)
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
-              show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
               show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
@@ -1198,9 +1004,7 @@ def get_device_config_by_id(obj, pretty_print, beep,
 @click.pass_obj
 def get_device_summary(obj, pretty_print, beep,
                        id,
-                       headers,
-                       payload,
-                       active_validation):
+                       headers):
     """Returns brief summary of device info such as hostname, management IP address for the given device Id.
     """
     spinner = init_spinner(beep=beep)
@@ -1208,13 +1012,9 @@ def get_device_summary(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.get_device_summary(
             id=id,
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -1232,12 +1032,6 @@ def get_device_summary(obj, pretty_print, beep,
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
-              show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
               show_default=True)
@@ -1245,9 +1039,7 @@ def get_device_summary(obj, pretty_print, beep,
 @click.pass_obj
 def get_device_by_id(obj, pretty_print, beep,
                      id,
-                     headers,
-                     payload,
-                     active_validation):
+                     headers):
     """Returns the network device details for the given device ID.
     """
     spinner = init_spinner(beep=beep)
@@ -1255,13 +1047,9 @@ def get_device_by_id(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.get_device_by_id(
             id=id,
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -1279,12 +1067,6 @@ def get_device_by_id(obj, pretty_print, beep,
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
-              show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
               show_default=True)
@@ -1292,9 +1074,7 @@ def get_device_by_id(obj, pretty_print, beep,
 @click.pass_obj
 def get_interface_info_by_id(obj, pretty_print, beep,
                              device_id,
-                             headers,
-                             payload,
-                             active_validation):
+                             headers):
     """Returns list of interfaces by specified device.
     """
     spinner = init_spinner(beep=beep)
@@ -1302,13 +1082,9 @@ def get_interface_info_by_id(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.get_interface_info_by_id(
             device_id=device_id,
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -1328,12 +1104,6 @@ def get_interface_info_by_id(obj, pretty_print, beep,
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
-              show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
               show_default=True)
@@ -1342,9 +1112,7 @@ def get_interface_info_by_id(obj, pretty_print, beep,
 def register_device_for_wsa(obj, pretty_print, beep,
                             serial_number,
                             macaddress,
-                            headers,
-                            payload,
-                            active_validation):
+                            headers):
     """Registers a device for WSA notification.
     """
     spinner = init_spinner(beep=beep)
@@ -1352,14 +1120,10 @@ def register_device_for_wsa(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.register_device_for_wsa(
             serial_number=serial_number,
             macaddress=macaddress,
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -1415,7 +1179,7 @@ def update_device_role(obj, pretty_print, beep,
         result = obj.update_device_role(
             id=id,
             role=role,
-            rolesource=rolesource,
+            roleSource=rolesource,
             headers=headers,
             payload=payload,
             active_validation=active_validation)
@@ -1432,21 +1196,13 @@ def update_device_role(obj, pretty_print, beep,
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
-              show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
               show_default=True)
 @click.option('--beep', is_flag=True, help='''Spinner beep (on)''')
 @click.pass_obj
 def get_device_config_for_all_devices(obj, pretty_print, beep,
-                                      headers,
-                                      payload,
-                                      active_validation):
+                                      headers):
     """Returns the config for all devices.
     """
     spinner = init_spinner(beep=beep)
@@ -1454,12 +1210,8 @@ def get_device_config_for_all_devices(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.get_device_config_for_all_devices(
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -1523,11 +1275,13 @@ def export_device_list(obj, pretty_print, beep,
         if payload is not None:
             payload = json.loads(payload)
         deviceuuids = list(deviceuuids)
+        deviceuuids = deviceuuids if len(deviceuuids) > 0 else None
         parameters = list(parameters)
+        parameters = parameters if len(parameters) > 0 else None
         result = obj.export_device_list(
-            deviceuuids=deviceuuids,
+            deviceUuids=deviceuuids,
             id=id,
-            operationenum=operationenum,
+            operationEnum=operationenum,
             parameters=parameters,
             password=password,
             headers=headers,
@@ -1550,12 +1304,6 @@ def export_device_list(obj, pretty_print, beep,
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
-              show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
               show_default=True)
@@ -1563,9 +1311,7 @@ def export_device_list(obj, pretty_print, beep,
 @click.pass_obj
 def get_interface_by_ip(obj, pretty_print, beep,
                         ip_address,
-                        headers,
-                        payload,
-                        active_validation):
+                        headers):
     """Returns list of interfaces by specified IP address.
     """
     spinner = init_spinner(beep=beep)
@@ -1573,13 +1319,9 @@ def get_interface_by_ip(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.get_interface_by_ip(
             ip_address=ip_address,
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -1597,12 +1339,6 @@ def get_interface_by_ip(obj, pretty_print, beep,
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
-              show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
               show_default=True)
@@ -1610,9 +1346,7 @@ def get_interface_by_ip(obj, pretty_print, beep,
 @click.pass_obj
 def get_network_device_by_ip(obj, pretty_print, beep,
                              ip_address,
-                             headers,
-                             payload,
-                             active_validation):
+                             headers):
     """Returns the network device by specified IP address.
     """
     spinner = init_spinner(beep=beep)
@@ -1620,13 +1354,9 @@ def get_network_device_by_ip(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.get_network_device_by_ip(
             ip_address=ip_address,
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -1640,21 +1370,13 @@ def get_network_device_by_ip(obj, pretty_print, beep,
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
-              show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
               show_default=True)
 @click.option('--beep', is_flag=True, help='''Spinner beep (on)''')
 @click.pass_obj
 def get_device_config_count(obj, pretty_print, beep,
-                            headers,
-                            payload,
-                            active_validation):
+                            headers):
     """Returns the count of device configs.
     """
     spinner = init_spinner(beep=beep)
@@ -1662,12 +1384,8 @@ def get_device_config_count(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.get_device_config_count(
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -1685,12 +1403,6 @@ def get_device_config_count(obj, pretty_print, beep,
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
-              show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
               show_default=True)
@@ -1698,9 +1410,7 @@ def get_device_config_count(obj, pretty_print, beep,
 @click.pass_obj
 def get_device_by_serial_number(obj, pretty_print, beep,
                                 serial_number,
-                                headers,
-                                payload,
-                                active_validation):
+                                headers):
     """Returns the network device with given serial number.
     """
     spinner = init_spinner(beep=beep)
@@ -1708,13 +1418,9 @@ def get_device_by_serial_number(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.get_device_by_serial_number(
             serial_number=serial_number,
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -1728,21 +1434,13 @@ def get_device_by_serial_number(obj, pretty_print, beep,
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
-              show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
               show_default=True)
 @click.option('--beep', is_flag=True, help='''Spinner beep (on)''')
 @click.pass_obj
 def get_all_interfaces(obj, pretty_print, beep,
-                       headers,
-                       payload,
-                       active_validation):
+                       headers):
     """Returns all available interfaces. This endpoint can return a maximum of 500 interfaces.
     """
     spinner = init_spinner(beep=beep)
@@ -1750,12 +1448,8 @@ def get_all_interfaces(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.get_all_interfaces(
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -1785,12 +1479,6 @@ def get_all_interfaces(obj, pretty_print, beep,
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
-              show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
               show_default=True)
@@ -1802,9 +1490,7 @@ def get_module_count(obj, pretty_print, beep,
                      vendor_equipment_type_list,
                      part_number_list,
                      operational_state_code_list,
-                     headers,
-                     payload,
-                     active_validation):
+                     headers):
     """Returns Module Count.
     """
     spinner = init_spinner(beep=beep)
@@ -1812,17 +1498,13 @@ def get_module_count(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.get_module_count(
             device_id=device_id,
             name_list=name_list,
             vendor_equipment_type_list=vendor_equipment_type_list,
             part_number_list=part_number_list,
             operational_state_code_list=operational_state_code_list,
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -1858,12 +1540,6 @@ def get_module_count(obj, pretty_print, beep,
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
-              show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
               show_default=True)
@@ -1877,9 +1553,7 @@ def get_modules(obj, pretty_print, beep,
                 vendor_equipment_type_list,
                 part_number_list,
                 operational_state_code_list,
-                headers,
-                payload,
-                active_validation):
+                headers):
     """Returns modules by specified device id.
     """
     spinner = init_spinner(beep=beep)
@@ -1887,8 +1561,6 @@ def get_modules(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.get_modules(
             device_id=device_id,
             limit=limit,
@@ -1897,9 +1569,7 @@ def get_modules(obj, pretty_print, beep,
             vendor_equipment_type_list=vendor_equipment_type_list,
             part_number_list=part_number_list,
             operational_state_code_list=operational_state_code_list,
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -1917,12 +1587,6 @@ def get_modules(obj, pretty_print, beep,
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
-              show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
               show_default=True)
@@ -1930,9 +1594,7 @@ def get_modules(obj, pretty_print, beep,
 @click.pass_obj
 def get_wireless_lan_controller_details_by_id(obj, pretty_print, beep,
                                               id,
-                                              headers,
-                                              payload,
-                                              active_validation):
+                                              headers):
     """Returns the wireless lan controller info with given device ID.
     """
     spinner = init_spinner(beep=beep)
@@ -1940,13 +1602,9 @@ def get_wireless_lan_controller_details_by_id(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.get_wireless_lan_controller_details_by_id(
             id=id,
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -2120,36 +1778,40 @@ def sync_devices(obj, pretty_print, beep,
         if payload is not None:
             payload = json.loads(payload)
         ipaddress = list(ipaddress)
+        ipaddress = ipaddress if len(ipaddress) > 0 else None
         merakiorgid = list(merakiorgid)
+        merakiorgid = merakiorgid if len(merakiorgid) > 0 else None
         updatemgmtipaddresslist = list(updatemgmtipaddresslist)
+        updatemgmtipaddresslist = json.loads('[{}]'.format(', '.join('{0}'.format(w) for w in updatemgmtipaddresslist)))
+        updatemgmtipaddresslist = updatemgmtipaddresslist if len(updatemgmtipaddresslist) > 0 else None
         result = obj.sync_devices(
-            clitransport=clitransport,
-            computedevice=computedevice,
-            enablepassword=enablepassword,
-            extendeddiscoveryinfo=extendeddiscoveryinfo,
-            httppassword=httppassword,
-            httpport=httpport,
-            httpsecure=httpsecure,
-            httpusername=httpusername,
-            ipaddress=ipaddress,
-            merakiorgid=merakiorgid,
-            netconfport=netconfport,
+            cliTransport=clitransport,
+            computeDevice=computedevice,
+            enablePassword=enablepassword,
+            extendedDiscoveryInfo=extendeddiscoveryinfo,
+            httpPassword=httppassword,
+            httpPort=httpport,
+            httpSecure=httpsecure,
+            httpUserName=httpusername,
+            ipAddress=ipaddress,
+            merakiOrgId=merakiorgid,
+            netconfPort=netconfport,
             password=password,
-            serialnumber=serialnumber,
-            snmpauthpassphrase=snmpauthpassphrase,
-            snmpauthprotocol=snmpauthprotocol,
-            snmpmode=snmpmode,
-            snmpprivpassphrase=snmpprivpassphrase,
-            snmpprivprotocol=snmpprivprotocol,
-            snmprocommunity=snmprocommunity,
-            snmprwcommunity=snmprwcommunity,
-            snmpretry=snmpretry,
-            snmptimeout=snmptimeout,
-            snmpusername=snmpusername,
-            snmpversion=snmpversion,
+            serialNumber=serialnumber,
+            snmpAuthPassphrase=snmpauthpassphrase,
+            snmpAuthProtocol=snmpauthprotocol,
+            snmpMode=snmpmode,
+            snmpPrivPassphrase=snmpprivpassphrase,
+            snmpPrivProtocol=snmpprivprotocol,
+            snmpROCommunity=snmprocommunity,
+            snmpRWCommunity=snmprwcommunity,
+            snmpRetry=snmpretry,
+            snmpTimeout=snmptimeout,
+            snmpUserName=snmpusername,
+            snmpVersion=snmpversion,
             type=type,
-            updatemgmtipaddresslist=updatemgmtipaddresslist,
-            username=username,
+            updateMgmtIPaddressList=updatemgmtipaddresslist,
+            userName=username,
             headers=headers,
             payload=payload,
             active_validation=active_validation)
@@ -2170,12 +1832,6 @@ def sync_devices(obj, pretty_print, beep,
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
-              show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
               show_default=True)
@@ -2183,9 +1839,7 @@ def sync_devices(obj, pretty_print, beep,
 @click.pass_obj
 def get_interface_by_id(obj, pretty_print, beep,
                         id,
-                        headers,
-                        payload,
-                        active_validation):
+                        headers):
     """Returns the interface for the given interface ID.
     """
     spinner = init_spinner(beep=beep)
@@ -2193,13 +1847,9 @@ def get_interface_by_id(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.get_interface_by_id(
             id=id,
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -2219,12 +1869,6 @@ def get_interface_by_id(obj, pretty_print, beep,
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
-              show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
               show_default=True)
@@ -2233,9 +1877,7 @@ def get_interface_by_id(obj, pretty_print, beep,
 def get_functional_capability_for_devices(obj, pretty_print, beep,
                                           device_id,
                                           function_name,
-                                          headers,
-                                          payload,
-                                          active_validation):
+                                          headers):
     """Returns the functional-capability for given devices.
     """
     spinner = init_spinner(beep=beep)
@@ -2243,14 +1885,10 @@ def get_functional_capability_for_devices(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.get_functional_capability_for_devices(
             device_id=device_id,
             function_name=function_name,
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -2275,12 +1913,6 @@ def get_functional_capability_for_devices(obj, pretty_print, beep,
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
-              show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
               show_default=True)
@@ -2290,9 +1922,7 @@ def get_device_detail(obj, pretty_print, beep,
                       timestamp,
                       search_by,
                       identifier,
-                      headers,
-                      payload,
-                      active_validation):
+                      headers):
     """Returns detailed Network Device information retrieved by Mac Address, Device Name or UUID for any given point of time. .
     """
     spinner = init_spinner(beep=beep)
@@ -2300,15 +1930,11 @@ def get_device_detail(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.get_device_detail(
             timestamp=timestamp,
             search_by=search_by,
             identifier=identifier,
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -2330,12 +1956,6 @@ def get_device_detail(obj, pretty_print, beep,
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
-              show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
               show_default=True)
@@ -2344,9 +1964,7 @@ def get_device_detail(obj, pretty_print, beep,
 def get_network_device_by_pagination_range(obj, pretty_print, beep,
                                            start_index,
                                            records_to_return,
-                                           headers,
-                                           payload,
-                                           active_validation):
+                                           headers):
     """Returns the list of network devices for the given pagination range.
     """
     spinner = init_spinner(beep=beep)
@@ -2354,14 +1972,10 @@ def get_network_device_by_pagination_range(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.get_network_device_by_pagination_range(
             start_index=start_index,
             records_to_return=records_to_return,
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -2441,12 +2055,6 @@ def get_network_device_by_pagination_range(obj, pretty_print, beep,
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
-              show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
               show_default=True)
@@ -2475,9 +2083,7 @@ def retrieves_all_network_devices(obj, pretty_print, beep,
                                   associated_wlc_ip,
                                   offset,
                                   limit,
-                                  headers,
-                                  payload,
-                                  active_validation):
+                                  headers):
     """Gets the list of first 500 network devices sorted lexicographically based on host name. It can be filtered using management IP address, mac address, hostname and location name. If id param is provided, it will be returning the list of network-devices for the given id's and other request params will be ignored. In case of autocomplete request, returns the list of specified attributes.
     """
     spinner = init_spinner(beep=beep)
@@ -2485,8 +2091,6 @@ def retrieves_all_network_devices(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.retrieves_all_network_devices(
             vrf_name=vrf_name,
             management_ip_address=management_ip_address,
@@ -2510,9 +2114,7 @@ def retrieves_all_network_devices(obj, pretty_print, beep,
             associated_wlc_ip=associated_wlc_ip,
             offset=offset,
             limit=limit,
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:

@@ -75,12 +75,6 @@ def path_trace(ctx, obj):
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
-              show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
               show_default=True)
@@ -102,9 +96,7 @@ def retrives_all_previous_pathtraces_summary(obj, pretty_print, beep,
                                              offset,
                                              order,
                                              sort_by,
-                                             headers,
-                                             payload,
-                                             active_validation):
+                                             headers):
     """Returns a summary of all flow analyses stored. Results can be filtered by specified parameters.
     """
     spinner = init_spinner(beep=beep)
@@ -112,8 +104,6 @@ def retrives_all_previous_pathtraces_summary(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.retrives_all_previous_pathtraces_summary(
             periodic_refresh=periodic_refresh,
             source_ip=source_ip,
@@ -130,9 +120,7 @@ def retrives_all_previous_pathtraces_summary(obj, pretty_print, beep,
             offset=offset,
             order=order,
             sort_by=sort_by,
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -149,12 +137,6 @@ def retrives_all_previous_pathtraces_summary(obj, pretty_print, beep,
               show_default=True)
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
-              show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
               show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
@@ -163,9 +145,7 @@ def retrives_all_previous_pathtraces_summary(obj, pretty_print, beep,
 @click.pass_obj
 def retrieves_previous_pathtrace(obj, pretty_print, beep,
                                  flow_analysis_id,
-                                 headers,
-                                 payload,
-                                 active_validation):
+                                 headers):
     """Returns result of a previously requested flow analysis by its Flow Analysis id.
     """
     spinner = init_spinner(beep=beep)
@@ -173,13 +153,9 @@ def retrieves_previous_pathtrace(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.retrieves_previous_pathtrace(
             flow_analysis_id=flow_analysis_id,
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -197,12 +173,6 @@ def retrieves_previous_pathtrace(obj, pretty_print, beep,
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
-              show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
               show_default=True)
@@ -210,9 +180,7 @@ def retrieves_previous_pathtrace(obj, pretty_print, beep,
 @click.pass_obj
 def deletes_pathtrace_by_id(obj, pretty_print, beep,
                             flow_analysis_id,
-                            headers,
-                            payload,
-                            active_validation):
+                            headers):
     """Deletes a flow analysis request by its id.
     """
     spinner = init_spinner(beep=beep)
@@ -220,13 +188,9 @@ def deletes_pathtrace_by_id(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.deletes_pathtrace_by_id(
             flow_analysis_id=flow_analysis_id,
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -305,15 +269,16 @@ def initiate_a_new_pathtrace(obj, pretty_print, beep,
         if payload is not None:
             payload = json.loads(payload)
         inclusions = list(inclusions)
+        inclusions = inclusions if len(inclusions) > 0 else None
         result = obj.initiate_a_new_pathtrace(
-            controlpath=controlpath,
-            destip=destip,
-            destport=destport,
+            controlPath=controlpath,
+            destIP=destip,
+            destPort=destport,
             inclusions=inclusions,
-            periodicrefresh=periodicrefresh,
+            periodicRefresh=periodicrefresh,
             protocol=protocol,
-            sourceip=sourceip,
-            sourceport=sourceport,
+            sourceIP=sourceip,
+            sourcePort=sourceport,
             headers=headers,
             payload=payload,
             active_validation=active_validation)

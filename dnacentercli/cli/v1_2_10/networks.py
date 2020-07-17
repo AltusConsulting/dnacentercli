@@ -30,21 +30,13 @@ def networks(ctx, obj):
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
-              show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
               show_default=True)
 @click.option('--beep', is_flag=True, help='''Spinner beep (on)''')
 @click.pass_obj
 def get_vlan_details(obj, pretty_print, beep,
-                     headers,
-                     payload,
-                     active_validation):
+                     headers):
     """Returns the list of VLAN names.
     """
     spinner = init_spinner(beep=beep)
@@ -52,12 +44,8 @@ def get_vlan_details(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.get_vlan_details(
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -71,21 +59,13 @@ def get_vlan_details(obj, pretty_print, beep,
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
-              show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
               show_default=True)
 @click.option('--beep', is_flag=True, help='''Spinner beep (on)''')
 @click.pass_obj
 def get_site_topology(obj, pretty_print, beep,
-                      headers,
-                      payload,
-                      active_validation):
+                      headers):
     """Returns site topology.
     """
     spinner = init_spinner(beep=beep)
@@ -93,12 +73,8 @@ def get_site_topology(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.get_site_topology(
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -115,12 +91,6 @@ def get_site_topology(obj, pretty_print, beep,
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
-              show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
               show_default=True)
@@ -128,9 +98,7 @@ def get_site_topology(obj, pretty_print, beep,
 @click.pass_obj
 def get_physical_topology(obj, pretty_print, beep,
                           node_type,
-                          headers,
-                          payload,
-                          active_validation):
+                          headers):
     """Returns the raw physical topology by specified criteria of nodeType.
     """
     spinner = init_spinner(beep=beep)
@@ -138,13 +106,9 @@ def get_physical_topology(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.get_physical_topology(
             node_type=node_type,
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -162,12 +126,6 @@ def get_physical_topology(obj, pretty_print, beep,
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
-              show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
               show_default=True)
@@ -175,9 +133,7 @@ def get_physical_topology(obj, pretty_print, beep,
 @click.pass_obj
 def get_l3_topology_details(obj, pretty_print, beep,
                             topology_type,
-                            headers,
-                            payload,
-                            active_validation):
+                            headers):
     """Returns the Layer 3 network topology by routing protocol.
     """
     spinner = init_spinner(beep=beep)
@@ -185,13 +141,9 @@ def get_l3_topology_details(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.get_l3_topology_details(
             topology_type=topology_type,
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -209,12 +161,6 @@ def get_l3_topology_details(obj, pretty_print, beep,
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
-              show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
               show_default=True)
@@ -222,9 +168,7 @@ def get_l3_topology_details(obj, pretty_print, beep,
 @click.pass_obj
 def get_topology_details(obj, pretty_print, beep,
                          vlan_id,
-                         headers,
-                         payload,
-                         active_validation):
+                         headers):
     """Returns Layer 2 network topology by specified VLAN ID.
     """
     spinner = init_spinner(beep=beep)
@@ -232,13 +176,9 @@ def get_topology_details(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.get_topology_details(
             vlan_id=vlan_id,
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -255,12 +195,6 @@ def get_topology_details(obj, pretty_print, beep,
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
-              show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
               show_default=True)
@@ -268,9 +202,7 @@ def get_topology_details(obj, pretty_print, beep,
 @click.pass_obj
 def get_overall_network_health(obj, pretty_print, beep,
                                timestamp,
-                               headers,
-                               payload,
-                               active_validation):
+                               headers):
     """Returns Overall Network Health information by Device category (Access, Distribution, Core, Router, Wireless) for any given point of time.
     """
     spinner = init_spinner(beep=beep)
@@ -278,13 +210,9 @@ def get_overall_network_health(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.get_overall_network_health(
             timestamp=timestamp,
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:

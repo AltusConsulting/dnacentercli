@@ -60,8 +60,10 @@ def un_claim_device(obj, pretty_print, beep,
         if payload is not None:
             payload = json.loads(payload)
         deviceidlist = list(deviceidlist)
+        deviceidlist = json.loads('[{}]'.format(', '.join('{0}'.format(w) for w in deviceidlist)))
+        deviceidlist = deviceidlist if len(deviceidlist) > 0 else None
         result = obj.un_claim_device(
-            deviceidlist=deviceidlist,
+            deviceIdList=deviceidlist,
             headers=headers,
             payload=payload,
             active_validation=active_validation)
@@ -86,12 +88,6 @@ def un_claim_device(obj, pretty_print, beep,
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
-              show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
               show_default=True)
@@ -100,9 +96,7 @@ def un_claim_device(obj, pretty_print, beep,
 def get_sync_result_for_virtual_account(obj, pretty_print, beep,
                                         domain,
                                         name,
-                                        headers,
-                                        payload,
-                                        active_validation):
+                                        headers):
     """Returns the summary of devices synced from the given smart account & virtual account with PnP.
     """
     spinner = init_spinner(beep=beep)
@@ -110,14 +104,10 @@ def get_sync_result_for_virtual_account(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.get_sync_result_for_virtual_account(
             domain=domain,
             name=name,
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -208,6 +198,8 @@ def update_device(obj, pretty_print, beep,
         if deviceinfo is not None:
             deviceinfo = json.loads('{}'.format(deviceinfo))
         runsummarylist = list(runsummarylist)
+        runsummarylist = json.loads('[{}]'.format(', '.join('{0}'.format(w) for w in runsummarylist)))
+        runsummarylist = runsummarylist if len(runsummarylist) > 0 else None
         if systemresetworkflow is not None:
             systemresetworkflow = json.loads('{}'.format(systemresetworkflow))
         if systemworkflow is not None:
@@ -218,14 +210,14 @@ def update_device(obj, pretty_print, beep,
             workflowparameters = json.loads('{}'.format(workflowparameters))
         result = obj.update_device(
             _id=_id,
-            deviceinfo=deviceinfo,
-            runsummarylist=runsummarylist,
-            systemresetworkflow=systemresetworkflow,
-            systemworkflow=systemworkflow,
-            tenantid=tenantid,
+            deviceInfo=deviceinfo,
+            runSummaryList=runsummarylist,
+            systemResetWorkflow=systemresetworkflow,
+            systemWorkflow=systemworkflow,
+            tenantId=tenantid,
             version=version,
             workflow=workflow,
-            workflowparameters=workflowparameters,
+            workflowParameters=workflowparameters,
             id=id,
             headers=headers,
             payload=payload,
@@ -251,12 +243,6 @@ def update_device(obj, pretty_print, beep,
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
-              show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
               show_default=True)
@@ -265,9 +251,7 @@ def update_device(obj, pretty_print, beep,
 def deregister_virtual_account(obj, pretty_print, beep,
                                domain,
                                name,
-                               headers,
-                               payload,
-                               active_validation):
+                               headers):
     """Deregisters the specified smart account & virtual account info and the associated device information from the PnP System & database. The devices associated with the deregistered virtual account are removed from the PnP database as well. The response payload contains the deregistered smart & virtual account information.
     """
     spinner = init_spinner(beep=beep)
@@ -275,14 +259,10 @@ def deregister_virtual_account(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.deregister_virtual_account(
             domain=domain,
             name=name,
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -390,19 +370,19 @@ def add_virtual_account(obj, pretty_print, beep,
         if syncresult is not None:
             syncresult = json.loads('{}'.format(syncresult))
         result = obj.add_virtual_account(
-            autosyncperiod=autosyncperiod,
-            ccouser=ccouser,
+            autoSyncPeriod=autosyncperiod,
+            ccoUser=ccouser,
             expiry=expiry,
-            lastsync=lastsync,
+            lastSync=lastsync,
             profile=profile,
-            smartaccountid=smartaccountid,
-            syncresult=syncresult,
-            syncresultstr=syncresultstr,
-            syncstarttime=syncstarttime,
-            syncstatus=syncstatus,
-            tenantid=tenantid,
+            smartAccountId=smartaccountid,
+            syncResult=syncresult,
+            syncResultStr=syncresultstr,
+            syncStartTime=syncstarttime,
+            syncStatus=syncstatus,
+            tenantId=tenantid,
             token=token,
-            virtualaccountid=virtualaccountid,
+            virtualAccountId=virtualaccountid,
             headers=headers,
             payload=payload,
             active_validation=active_validation)
@@ -585,25 +565,27 @@ def update_workflow(obj, pretty_print, beep,
         if payload is not None:
             payload = json.loads(payload)
         tasks = list(tasks)
+        tasks = json.loads('[{}]'.format(', '.join('{0}'.format(w) for w in tasks)))
+        tasks = tasks if len(tasks) > 0 else None
         result = obj.update_workflow(
             _id=_id,
-            addtoinventory=addtoinventory,
-            addedon=addedon,
-            configid=configid,
-            currtaskidx=currtaskidx,
+            addToInventory=addtoinventory,
+            addedOn=addedon,
+            configId=configid,
+            currTaskIdx=currtaskidx,
             description=description,
-            endtime=endtime,
-            exectime=exectime,
-            imageid=imageid,
-            instancetype=instancetype,
-            lastupdateon=lastupdateon,
+            endTime=endtime,
+            execTime=exectime,
+            imageId=imageid,
+            instanceType=instancetype,
+            lastupdateOn=lastupdateon,
             name=name,
-            starttime=starttime,
+            startTime=starttime,
             state=state,
             tasks=tasks,
-            tenantid=tenantid,
+            tenantId=tenantid,
             type=type,
-            usestate=usestate,
+            useState=usestate,
             version=version,
             id=id,
             headers=headers,
@@ -622,21 +604,13 @@ def update_workflow(obj, pretty_print, beep,
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
-              show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
               show_default=True)
 @click.option('--beep', is_flag=True, help='''Spinner beep (on)''')
 @click.pass_obj
 def get_smart_account_list(obj, pretty_print, beep,
-                           headers,
-                           payload,
-                           active_validation):
+                           headers):
     """Returns the list of Smart Account domains.
     """
     spinner = init_spinner(beep=beep)
@@ -644,12 +618,8 @@ def get_smart_account_list(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.get_smart_account_list(
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -703,8 +673,8 @@ def claim_a_device_to_a_site(obj, pretty_print, beep,
         if payload is not None:
             payload = json.loads(payload)
         result = obj.claim_a_device_to_a_site(
-            deviceid=deviceid,
-            siteid=siteid,
+            deviceId=deviceid,
+            siteId=siteid,
             type=type,
             headers=headers,
             payload=payload,
@@ -816,19 +786,19 @@ def update_pnp_server_profile(obj, pretty_print, beep,
         if syncresult is not None:
             syncresult = json.loads('{}'.format(syncresult))
         result = obj.update_pnp_server_profile(
-            autosyncperiod=autosyncperiod,
-            ccouser=ccouser,
+            autoSyncPeriod=autosyncperiod,
+            ccoUser=ccouser,
             expiry=expiry,
-            lastsync=lastsync,
+            lastSync=lastsync,
             profile=profile,
-            smartaccountid=smartaccountid,
-            syncresult=syncresult,
-            syncresultstr=syncresultstr,
-            syncstarttime=syncstarttime,
-            syncstatus=syncstatus,
-            tenantid=tenantid,
+            smartAccountId=smartaccountid,
+            syncResult=syncresult,
+            syncResultStr=syncresultstr,
+            syncStartTime=syncstarttime,
+            syncStatus=syncstatus,
+            tenantId=tenantid,
             token=token,
-            virtualaccountid=virtualaccountid,
+            virtualAccountId=virtualaccountid,
             headers=headers,
             payload=payload,
             active_validation=active_validation)
@@ -848,12 +818,6 @@ def update_pnp_server_profile(obj, pretty_print, beep,
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
-              show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
               show_default=True)
@@ -861,9 +825,7 @@ def update_pnp_server_profile(obj, pretty_print, beep,
 @click.pass_obj
 def get_workflow_count(obj, pretty_print, beep,
                        name,
-                       headers,
-                       payload,
-                       active_validation):
+                       headers):
     """Returns the workflow count.
     """
     spinner = init_spinner(beep=beep)
@@ -871,13 +833,9 @@ def get_workflow_count(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.get_workflow_count(
             name=name,
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -895,12 +853,6 @@ def get_workflow_count(obj, pretty_print, beep,
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
-              show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
               show_default=True)
@@ -908,9 +860,7 @@ def get_workflow_count(obj, pretty_print, beep,
 @click.pass_obj
 def get_virtual_account_list(obj, pretty_print, beep,
                              domain,
-                             headers,
-                             payload,
-                             active_validation):
+                             headers):
     """Returns list of virtual accounts associated with the specified smart account.
     """
     spinner = init_spinner(beep=beep)
@@ -918,13 +868,9 @@ def get_virtual_account_list(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.get_virtual_account_list(
             domain=domain,
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -938,21 +884,13 @@ def get_virtual_account_list(obj, pretty_print, beep,
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
-              show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
               show_default=True)
 @click.option('--beep', is_flag=True, help='''Spinner beep (on)''')
 @click.pass_obj
 def get_pnp_global_settings(obj, pretty_print, beep,
-                            headers,
-                            payload,
-                            active_validation):
+                            headers):
     """Returns global PnP settings of the user.
     """
     spinner = init_spinner(beep=beep)
@@ -960,12 +898,8 @@ def get_pnp_global_settings(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.get_pnp_global_settings(
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -1048,16 +982,18 @@ def update_pnp_global_settings(obj, pretty_print, beep,
         if defaultprofile is not None:
             defaultprofile = json.loads('{}'.format(defaultprofile))
         savamappinglist = list(savamappinglist)
+        savamappinglist = json.loads('[{}]'.format(', '.join('{0}'.format(w) for w in savamappinglist)))
+        savamappinglist = savamappinglist if len(savamappinglist) > 0 else None
         if tasktimeouts is not None:
             tasktimeouts = json.loads('{}'.format(tasktimeouts))
         result = obj.update_pnp_global_settings(
             _id=_id,
-            aaacredentials=aaacredentials,
-            accepteula=accepteula,
-            defaultprofile=defaultprofile,
-            savamappinglist=savamappinglist,
-            tasktimeouts=tasktimeouts,
-            tenantid=tenantid,
+            aaaCredentials=aaacredentials,
+            acceptEula=accepteula,
+            defaultProfile=defaultprofile,
+            savaMappingList=savamappinglist,
+            taskTimeOuts=tasktimeouts,
+            tenantId=tenantid,
             version=version,
             headers=headers,
             payload=payload,
@@ -1195,25 +1131,27 @@ def add_a_workflow(obj, pretty_print, beep,
         if payload is not None:
             payload = json.loads(payload)
         tasks = list(tasks)
+        tasks = json.loads('[{}]'.format(', '.join('{0}'.format(w) for w in tasks)))
+        tasks = tasks if len(tasks) > 0 else None
         result = obj.add_a_workflow(
             _id=_id,
-            addtoinventory=addtoinventory,
-            addedon=addedon,
-            configid=configid,
-            currtaskidx=currtaskidx,
+            addToInventory=addtoinventory,
+            addedOn=addedon,
+            configId=configid,
+            currTaskIdx=currtaskidx,
             description=description,
-            endtime=endtime,
-            exectime=exectime,
-            imageid=imageid,
-            instancetype=instancetype,
-            lastupdateon=lastupdateon,
+            endTime=endtime,
+            execTime=exectime,
+            imageId=imageid,
+            instanceType=instancetype,
+            lastupdateOn=lastupdateon,
             name=name,
-            starttime=starttime,
+            startTime=starttime,
             state=state,
             tasks=tasks,
-            tenantid=tenantid,
+            tenantId=tenantid,
             type=type,
-            usestate=usestate,
+            useState=usestate,
             version=version,
             headers=headers,
             payload=payload,
@@ -1325,19 +1263,19 @@ def sync_virtual_account_devices(obj, pretty_print, beep,
         if syncresult is not None:
             syncresult = json.loads('{}'.format(syncresult))
         result = obj.sync_virtual_account_devices(
-            autosyncperiod=autosyncperiod,
-            ccouser=ccouser,
+            autoSyncPeriod=autosyncperiod,
+            ccoUser=ccouser,
             expiry=expiry,
-            lastsync=lastsync,
+            lastSync=lastsync,
             profile=profile,
-            smartaccountid=smartaccountid,
-            syncresult=syncresult,
-            syncresultstr=syncresultstr,
-            syncstarttime=syncstarttime,
-            syncstatus=syncstatus,
-            tenantid=tenantid,
+            smartAccountId=smartaccountid,
+            syncResult=syncresult,
+            syncResultStr=syncresultstr,
+            syncStartTime=syncstarttime,
+            syncStatus=syncstatus,
+            tenantId=tenantid,
             token=token,
-            virtualaccountid=virtualaccountid,
+            virtualAccountId=virtualaccountid,
             headers=headers,
             payload=payload,
             active_validation=active_validation)
@@ -1394,10 +1332,12 @@ def reset_device(obj, pretty_print, beep,
         if payload is not None:
             payload = json.loads(payload)
         deviceresetlist = list(deviceresetlist)
+        deviceresetlist = json.loads('[{}]'.format(', '.join('{0}'.format(w) for w in deviceresetlist)))
+        deviceresetlist = deviceresetlist if len(deviceresetlist) > 0 else None
         result = obj.reset_device(
-            deviceresetlist=deviceresetlist,
-            projectid=projectid,
-            workflowid=workflowid,
+            deviceResetList=deviceresetlist,
+            projectId=projectid,
+            workflowId=workflowid,
             headers=headers,
             payload=payload,
             active_validation=active_validation)
@@ -1417,12 +1357,6 @@ def reset_device(obj, pretty_print, beep,
               show_default=True)
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
-              show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
               show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
@@ -1431,9 +1365,7 @@ def reset_device(obj, pretty_print, beep,
 @click.pass_obj
 def delete_workflow_by_id(obj, pretty_print, beep,
                           id,
-                          headers,
-                          payload,
-                          active_validation):
+                          headers):
     """Deletes a workflow specified by id.
     """
     spinner = init_spinner(beep=beep)
@@ -1441,13 +1373,9 @@ def delete_workflow_by_id(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.delete_workflow_by_id(
             id=id,
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -1465,12 +1393,6 @@ def delete_workflow_by_id(obj, pretty_print, beep,
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
-              show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
               show_default=True)
@@ -1478,9 +1400,7 @@ def delete_workflow_by_id(obj, pretty_print, beep,
 @click.pass_obj
 def delete_device_by_id_from_pnp(obj, pretty_print, beep,
                                  id,
-                                 headers,
-                                 payload,
-                                 active_validation):
+                                 headers):
     """Deletes specified device from PnP database.
     """
     spinner = init_spinner(beep=beep)
@@ -1488,13 +1408,9 @@ def delete_device_by_id_from_pnp(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.delete_device_by_id_from_pnp(
             id=id,
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -1526,12 +1442,6 @@ def delete_device_by_id_from_pnp(obj, pretty_print, beep,
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
-              show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
               show_default=True)
@@ -1544,9 +1454,7 @@ def get_workflows(obj, pretty_print, beep,
                   sort_order,
                   type,
                   name,
-                  headers,
-                  payload,
-                  active_validation):
+                  headers):
     """Returns the list of workflows based on filter criteria. If a limit is not specified, it will default to return 50 workflows. Pagination and sorting are also supported by this endpoint.
     """
     spinner = init_spinner(beep=beep)
@@ -1554,8 +1462,6 @@ def get_workflows(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.get_workflows(
             limit=limit,
             offset=offset,
@@ -1563,9 +1469,7 @@ def get_workflows(obj, pretty_print, beep,
             sort_order=sort_order,
             type=type,
             name=name,
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -1583,12 +1487,6 @@ def get_workflows(obj, pretty_print, beep,
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
-              show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
               show_default=True)
@@ -1596,9 +1494,7 @@ def get_workflows(obj, pretty_print, beep,
 @click.pass_obj
 def get_device_by_id(obj, pretty_print, beep,
                      id,
-                     headers,
-                     payload,
-                     active_validation):
+                     headers):
     """Returns device details specified by device id.
     """
     spinner = init_spinner(beep=beep)
@@ -1606,13 +1502,9 @@ def get_device_by_id(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.get_device_by_id(
             id=id,
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -1668,12 +1560,6 @@ def get_device_by_id(obj, pretty_print, beep,
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
-              show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
               show_default=True)
@@ -1694,9 +1580,7 @@ def get_device_count(obj, pretty_print, beep,
                      smart_account_id,
                      virtual_account_id,
                      last_contact,
-                     headers,
-                     payload,
-                     active_validation):
+                     headers):
     """Returns the device count based on filter criteria. This is useful for pagination.
     """
     spinner = init_spinner(beep=beep)
@@ -1704,8 +1588,6 @@ def get_device_count(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.get_device_count(
             serial_number=serial_number,
             state=state,
@@ -1721,9 +1603,7 @@ def get_device_count(obj, pretty_print, beep,
             smart_account_id=smart_account_id,
             virtual_account_id=virtual_account_id,
             last_contact=last_contact,
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -1741,12 +1621,6 @@ def get_device_count(obj, pretty_print, beep,
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
-              show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
               show_default=True)
@@ -1754,9 +1628,7 @@ def get_device_count(obj, pretty_print, beep,
 @click.pass_obj
 def get_workflow_by_id(obj, pretty_print, beep,
                        id,
-                       headers,
-                       payload,
-                       active_validation):
+                       headers):
     """Returns a workflow specified by id.
     """
     spinner = init_spinner(beep=beep)
@@ -1764,13 +1636,9 @@ def get_workflow_by_id(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.get_workflow_by_id(
             id=id,
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -1794,12 +1662,6 @@ def get_workflow_by_id(obj, pretty_print, beep,
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
-              show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
               show_default=True)
@@ -1809,9 +1671,7 @@ def get_device_history(obj, pretty_print, beep,
                        serial_number,
                        sort,
                        sort_order,
-                       headers,
-                       payload,
-                       active_validation):
+                       headers):
     """Returns history for a specific device. Serial number is a required parameter.
     """
     spinner = init_spinner(beep=beep)
@@ -1819,15 +1679,11 @@ def get_device_history(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.get_device_history(
             serial_number=serial_number,
             sort=sort,
             sort_order=sort_order,
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -1895,12 +1751,6 @@ def get_device_history(obj, pretty_print, beep,
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
-              show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
               show_default=True)
@@ -1925,9 +1775,7 @@ def get_device_list(obj, pretty_print, beep,
                     smart_account_id,
                     virtual_account_id,
                     last_contact,
-                    headers,
-                    payload,
-                    active_validation):
+                    headers):
     """Returns list of devices based on filter crieteria. If a limit is not specified, it will default to return 50 devices. Pagination and sorting are also supported by this endpoint.
     """
     spinner = init_spinner(beep=beep)
@@ -1935,8 +1783,6 @@ def get_device_list(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.get_device_list(
             limit=limit,
             offset=offset,
@@ -1956,9 +1802,7 @@ def get_device_list(obj, pretty_print, beep,
             smart_account_id=smart_account_id,
             virtual_account_id=virtual_account_id,
             last_contact=last_contact,
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -2012,8 +1856,8 @@ def preview_config(obj, pretty_print, beep,
         if payload is not None:
             payload = json.loads(payload)
         result = obj.preview_config(
-            deviceid=deviceid,
-            siteid=siteid,
+            deviceId=deviceid,
+            siteId=siteid,
             type=type,
             headers=headers,
             payload=payload,
@@ -2103,6 +1947,8 @@ def add_device(obj, pretty_print, beep,
         if deviceinfo is not None:
             deviceinfo = json.loads('{}'.format(deviceinfo))
         runsummarylist = list(runsummarylist)
+        runsummarylist = json.loads('[{}]'.format(', '.join('{0}'.format(w) for w in runsummarylist)))
+        runsummarylist = runsummarylist if len(runsummarylist) > 0 else None
         if systemresetworkflow is not None:
             systemresetworkflow = json.loads('{}'.format(systemresetworkflow))
         if systemworkflow is not None:
@@ -2113,14 +1959,14 @@ def add_device(obj, pretty_print, beep,
             workflowparameters = json.loads('{}'.format(workflowparameters))
         result = obj.add_device(
             _id=_id,
-            deviceinfo=deviceinfo,
-            runsummarylist=runsummarylist,
-            systemresetworkflow=systemresetworkflow,
-            systemworkflow=systemworkflow,
-            tenantid=tenantid,
+            deviceInfo=deviceinfo,
+            runSummaryList=runsummarylist,
+            systemResetWorkflow=systemresetworkflow,
+            systemWorkflow=systemworkflow,
+            tenantId=tenantid,
             version=version,
             workflow=workflow,
-            workflowparameters=workflowparameters,
+            workflowParameters=workflowparameters,
             headers=headers,
             payload=payload,
             active_validation=active_validation)
@@ -2207,16 +2053,18 @@ def claim_device(obj, pretty_print, beep,
         if payload is not None:
             payload = json.loads(payload)
         deviceclaimlist = list(deviceclaimlist)
+        deviceclaimlist = json.loads('[{}]'.format(', '.join('{0}'.format(w) for w in deviceclaimlist)))
+        deviceclaimlist = deviceclaimlist if len(deviceclaimlist) > 0 else None
         result = obj.claim_device(
-            configfileurl=configfileurl,
-            configid=configid,
-            deviceclaimlist=deviceclaimlist,
-            fileserviceid=fileserviceid,
-            imageid=imageid,
-            imageurl=imageurl,
-            populateinventory=populateinventory,
-            projectid=projectid,
-            workflowid=workflowid,
+            configFileUrl=configfileurl,
+            configId=configid,
+            deviceClaimList=deviceclaimlist,
+            fileServiceId=fileserviceid,
+            imageId=imageid,
+            imageUrl=imageurl,
+            populateInventory=populateinventory,
+            projectId=projectid,
+            workflowId=workflowid,
             headers=headers,
             payload=payload,
             active_validation=active_validation)

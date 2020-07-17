@@ -33,12 +33,6 @@ def clients(ctx, obj):
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
-              show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
               show_default=True)
@@ -46,9 +40,7 @@ def clients(ctx, obj):
 @click.pass_obj
 def get_overall_client_health(obj, pretty_print, beep,
                               timestamp,
-                              headers,
-                              payload,
-                              active_validation):
+                              headers):
     """Returns Overall Client Health information by Client type (Wired and Wireless) for any given point of time.
     """
     spinner = init_spinner(beep=beep)
@@ -56,13 +48,9 @@ def get_overall_client_health(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.get_overall_client_health(
             timestamp=timestamp,
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -83,12 +71,6 @@ def get_overall_client_health(obj, pretty_print, beep,
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
-              show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
               show_default=True)
@@ -97,9 +79,7 @@ def get_overall_client_health(obj, pretty_print, beep,
 def get_client_detail(obj, pretty_print, beep,
                       timestamp,
                       mac_address,
-                      headers,
-                      payload,
-                      active_validation):
+                      headers):
     """Returns detailed Client information retrieved by Mac Address for any given point of time. .
     """
     spinner = init_spinner(beep=beep)
@@ -107,14 +87,10 @@ def get_client_detail(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.get_client_detail(
             timestamp=timestamp,
             mac_address=mac_address,
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:

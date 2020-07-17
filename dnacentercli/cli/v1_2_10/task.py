@@ -60,12 +60,6 @@ def task(ctx, obj):
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
-              show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
               show_default=True)
@@ -82,9 +76,7 @@ def get_task_count(obj, pretty_print, beep,
                    is_error,
                    failure_reason,
                    parent_id,
-                   headers,
-                   payload,
-                   active_validation):
+                   headers):
     """Returns Task count.
     """
     spinner = init_spinner(beep=beep)
@@ -92,8 +84,6 @@ def get_task_count(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.get_task_count(
             start_time=start_time,
             end_time=end_time,
@@ -105,9 +95,7 @@ def get_task_count(obj, pretty_print, beep,
             is_error=is_error,
             failure_reason=failure_reason,
             parent_id=parent_id,
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -125,12 +113,6 @@ def get_task_count(obj, pretty_print, beep,
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
-              show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
               show_default=True)
@@ -138,9 +120,7 @@ def get_task_count(obj, pretty_print, beep,
 @click.pass_obj
 def get_task_by_id(obj, pretty_print, beep,
                    task_id,
-                   headers,
-                   payload,
-                   active_validation):
+                   headers):
     """Returns a task by specified id.
     """
     spinner = init_spinner(beep=beep)
@@ -148,13 +128,9 @@ def get_task_by_id(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.get_task_by_id(
             task_id=task_id,
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -210,12 +186,6 @@ def get_task_by_id(obj, pretty_print, beep,
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
-              show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
               show_default=True)
@@ -236,9 +206,7 @@ def get_tasks(obj, pretty_print, beep,
               limit,
               sort_by,
               order,
-              headers,
-              payload,
-              active_validation):
+              headers):
     """Returns task(s) based on filter criteria.
     """
     spinner = init_spinner(beep=beep)
@@ -246,8 +214,6 @@ def get_tasks(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.get_tasks(
             start_time=start_time,
             end_time=end_time,
@@ -263,9 +229,7 @@ def get_tasks(obj, pretty_print, beep,
             limit=limit,
             sort_by=sort_by,
             order=order,
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -283,12 +247,6 @@ def get_tasks(obj, pretty_print, beep,
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
-              show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
               show_default=True)
@@ -296,9 +254,7 @@ def get_tasks(obj, pretty_print, beep,
 @click.pass_obj
 def get_task_tree(obj, pretty_print, beep,
                   task_id,
-                  headers,
-                  payload,
-                  active_validation):
+                  headers):
     """Returns a task with its children tasks by based on their id.
     """
     spinner = init_spinner(beep=beep)
@@ -306,13 +262,9 @@ def get_task_tree(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.get_task_tree(
             task_id=task_id,
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -339,12 +291,6 @@ def get_task_tree(obj, pretty_print, beep,
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
-              show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
               show_default=True)
@@ -354,9 +300,7 @@ def get_task_by_operationid(obj, pretty_print, beep,
                             operation_id,
                             offset,
                             limit,
-                            headers,
-                            payload,
-                            active_validation):
+                            headers):
     """Returns root tasks associated with an Operationid.
     """
     spinner = init_spinner(beep=beep)
@@ -364,15 +308,11 @@ def get_task_by_operationid(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.get_task_by_operationid(
             operation_id=operation_id,
             offset=offset,
             limit=limit,
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:

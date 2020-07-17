@@ -38,23 +38,15 @@ def fabric_wired(ctx, obj):
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
-              show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
               show_default=True)
 @click.option('--beep', is_flag=True, help='''Spinner beep (on)''')
 @click.pass_obj
-def gets_border_device_details_from_sda_fabric(obj, pretty_print, beep,
-                                               sda_border_device,
-                                               device_ip_address,
-                                               headers,
-                                               payload,
-                                               active_validation):
+def gets_border_device_detail(obj, pretty_print, beep,
+                              sda_border_device,
+                              device_ip_address,
+                              headers):
     """**Beta** - Gets border device detail from SDA Fabric.
     """
     spinner = init_spinner(beep=beep)
@@ -62,14 +54,10 @@ def gets_border_device_details_from_sda_fabric(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
-        result = obj.gets_border_device_details_from_sda_fabric(
+        result = obj.gets_border_device_detail(
             sda_border_device=sda_border_device,
             device_ip_address=device_ip_address,
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -98,11 +86,11 @@ def gets_border_device_details_from_sda_fabric(obj, pretty_print, beep,
               show_default=True)
 @click.option('--beep', is_flag=True, help='''Spinner beep (on)''')
 @click.pass_obj
-def adds_border_device_in_sda_fabric(obj, pretty_print, beep,
-                                     sda_border_device,
-                                     headers,
-                                     payload,
-                                     active_validation):
+def adds_border_device(obj, pretty_print, beep,
+                       sda_border_device,
+                       headers,
+                       payload,
+                       active_validation):
     """Adds border device in SDA Fabric.
     """
     spinner = init_spinner(beep=beep)
@@ -112,7 +100,7 @@ def adds_border_device_in_sda_fabric(obj, pretty_print, beep,
             headers = json.loads(headers)
         if payload is not None:
             payload = json.loads(payload)
-        result = obj.adds_border_device_in_sda_fabric(
+        result = obj.adds_border_device(
             sda_border_device=sda_border_device,
             headers=headers,
             payload=payload,
@@ -138,23 +126,15 @@ def adds_border_device_in_sda_fabric(obj, pretty_print, beep,
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
-              show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
               show_default=True)
 @click.option('--beep', is_flag=True, help='''Spinner beep (on)''')
 @click.pass_obj
-def deletes_border_device_from_sda_fabric(obj, pretty_print, beep,
-                                          sda_border_device,
-                                          device_ip_address,
-                                          headers,
-                                          payload,
-                                          active_validation):
+def deletes_border_device(obj, pretty_print, beep,
+                          sda_border_device,
+                          device_ip_address,
+                          headers):
     """Deletes border device from SDA Fabric.
     """
     spinner = init_spinner(beep=beep)
@@ -162,14 +142,10 @@ def deletes_border_device_from_sda_fabric(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
-        result = obj.deletes_border_device_from_sda_fabric(
+        result = obj.deletes_border_device(
             sda_border_device=sda_border_device,
             device_ip_address=device_ip_address,
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:

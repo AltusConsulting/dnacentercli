@@ -38,12 +38,6 @@ def non_fabric_wireless(ctx, obj):
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
-              show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
               show_default=True)
@@ -52,9 +46,7 @@ def non_fabric_wireless(ctx, obj):
 def delete_and_provision_ssid(obj, pretty_print, beep,
                               ssid_name,
                               managed_aplocations,
-                              headers,
-                              payload,
-                              active_validation):
+                              headers):
     """**Beta** - Removes SSID from the given site profile and provisions these changes to devices matching the site profile.
     """
     spinner = init_spinner(beep=beep)
@@ -62,14 +54,10 @@ def delete_and_provision_ssid(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.delete_and_provision_ssid(
             ssid_name=ssid_name,
             managed_aplocations=managed_aplocations,
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -153,15 +141,15 @@ def create_enterprise_ssid(obj, pretty_print, beep,
         if payload is not None:
             payload = json.loads(payload)
         result = obj.create_enterprise_ssid(
-            enablebroadcastssid=enablebroadcastssid,
-            enablefastlane=enablefastlane,
-            enablemacfiltering=enablemacfiltering,
-            fasttransition=fasttransition,
+            enableBroadcastSSID=enablebroadcastssid,
+            enableFastLane=enablefastlane,
+            enableMACFiltering=enablemacfiltering,
+            fastTransition=fasttransition,
             name=name,
             passphrase=passphrase,
-            radiopolicy=radiopolicy,
-            securitylevel=securitylevel,
-            traffictype=traffictype,
+            radioPolicy=radiopolicy,
+            securityLevel=securitylevel,
+            trafficType=traffictype,
             headers=headers,
             payload=payload,
             active_validation=active_validation)
@@ -235,17 +223,18 @@ def create_and_provision_ssid(obj, pretty_print, beep,
         if flexconnect is not None:
             flexconnect = json.loads('{}'.format(flexconnect))
         managedaplocations = list(managedaplocations)
+        managedaplocations = managedaplocations if len(managedaplocations) > 0 else None
         if ssiddetails is not None:
             ssiddetails = json.loads('{}'.format(ssiddetails))
         if vlananddynamicinterfacedetails is not None:
             vlananddynamicinterfacedetails = json.loads('{}'.format(vlananddynamicinterfacedetails))
         result = obj.create_and_provision_ssid(
-            enablefabric=enablefabric,
-            flexconnect=flexconnect,
-            managedaplocations=managedaplocations,
-            ssiddetails=ssiddetails,
-            ssidtype=ssidtype,
-            vlananddynamicinterfacedetails=vlananddynamicinterfacedetails,
+            enableFabric=enablefabric,
+            flexConnect=flexconnect,
+            managedAPLocations=managedaplocations,
+            ssidDetails=ssiddetails,
+            ssidType=ssidtype,
+            vlanAndDynamicInterfaceDetails=vlananddynamicinterfacedetails,
             headers=headers,
             payload=payload,
             active_validation=active_validation)
@@ -266,12 +255,6 @@ def create_and_provision_ssid(obj, pretty_print, beep,
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
-              show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
               show_default=True)
@@ -279,9 +262,7 @@ def create_and_provision_ssid(obj, pretty_print, beep,
 @click.pass_obj
 def delete_enterprise_ssid(obj, pretty_print, beep,
                            ssid_name,
-                           headers,
-                           payload,
-                           active_validation):
+                           headers):
     """**Beta** - Deletes given enterprise SSID.
     """
     spinner = init_spinner(beep=beep)
@@ -289,13 +270,9 @@ def delete_enterprise_ssid(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.delete_enterprise_ssid(
             ssid_name=ssid_name,
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -312,12 +289,6 @@ def delete_enterprise_ssid(obj, pretty_print, beep,
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
-              show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
               show_default=True)
@@ -325,9 +296,7 @@ def delete_enterprise_ssid(obj, pretty_print, beep,
 @click.pass_obj
 def get_enterprise_ssid(obj, pretty_print, beep,
                         ssid_name,
-                        headers,
-                        payload,
-                        active_validation):
+                        headers):
     """**Beta** - Gets either one or all the enterprise SSID.
     """
     spinner = init_spinner(beep=beep)
@@ -335,13 +304,9 @@ def get_enterprise_ssid(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.get_enterprise_ssid(
             ssid_name=ssid_name,
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:

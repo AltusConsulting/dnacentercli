@@ -51,12 +51,6 @@ def template_programmer(ctx, obj):
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
-              show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
               show_default=True)
@@ -70,9 +64,7 @@ def gets_the_templates_available(obj, pretty_print, beep,
                                  product_series,
                                  product_type,
                                  filter_conflicting_templates,
-                                 headers,
-                                 payload,
-                                 active_validation):
+                                 headers):
     """List the templates available.
     """
     spinner = init_spinner(beep=beep)
@@ -80,8 +72,6 @@ def gets_the_templates_available(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.gets_the_templates_available(
             project_id=project_id,
             software_type=software_type,
@@ -90,9 +80,7 @@ def gets_the_templates_available(obj, pretty_print, beep,
             product_series=product_series,
             product_type=product_type,
             filter_conflicting_templates=filter_conflicting_templates,
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -166,11 +154,13 @@ def create_project(obj, pretty_print, beep,
         if payload is not None:
             payload = json.loads(payload)
         tags = list(tags)
+        tags = json.loads('[{}]'.format(', '.join('{0}'.format(w) for w in tags)))
+        tags = tags if len(tags) > 0 else None
         result = obj.create_project(
-            createtime=createtime,
+            createTime=createtime,
             description=description,
             id=id,
-            lastupdatetime=lastupdatetime,
+            lastUpdateTime=lastupdatetime,
             name=name,
             tags=tags,
             templates=templates,
@@ -325,32 +315,42 @@ def update_template(obj, pretty_print, beep,
         if payload is not None:
             payload = json.loads(payload)
         containingtemplates = list(containingtemplates)
+        containingtemplates = json.loads('[{}]'.format(', '.join('{0}'.format(w) for w in containingtemplates)))
+        containingtemplates = containingtemplates if len(containingtemplates) > 0 else None
         devicetypes = list(devicetypes)
+        devicetypes = json.loads('[{}]'.format(', '.join('{0}'.format(w) for w in devicetypes)))
+        devicetypes = devicetypes if len(devicetypes) > 0 else None
         rollbacktemplateparams = list(rollbacktemplateparams)
+        rollbacktemplateparams = json.loads('[{}]'.format(', '.join('{0}'.format(w) for w in rollbacktemplateparams)))
+        rollbacktemplateparams = rollbacktemplateparams if len(rollbacktemplateparams) > 0 else None
         tags = list(tags)
+        tags = json.loads('[{}]'.format(', '.join('{0}'.format(w) for w in tags)))
+        tags = tags if len(tags) > 0 else None
         templateparams = list(templateparams)
+        templateparams = json.loads('[{}]'.format(', '.join('{0}'.format(w) for w in templateparams)))
+        templateparams = templateparams if len(templateparams) > 0 else None
         result = obj.update_template(
             author=author,
             composite=composite,
-            containingtemplates=containingtemplates,
-            createtime=createtime,
+            containingTemplates=containingtemplates,
+            createTime=createtime,
             description=description,
-            devicetypes=devicetypes,
-            failurepolicy=failurepolicy,
+            deviceTypes=devicetypes,
+            failurePolicy=failurepolicy,
             id=id,
-            lastupdatetime=lastupdatetime,
+            lastUpdateTime=lastupdatetime,
             name=name,
-            parenttemplateid=parenttemplateid,
-            projectid=projectid,
-            projectname=projectname,
-            rollbacktemplatecontent=rollbacktemplatecontent,
-            rollbacktemplateparams=rollbacktemplateparams,
-            softwaretype=softwaretype,
-            softwarevariant=softwarevariant,
-            softwareversion=softwareversion,
+            parentTemplateId=parenttemplateid,
+            projectId=projectid,
+            projectName=projectname,
+            rollbackTemplateContent=rollbacktemplatecontent,
+            rollbackTemplateParams=rollbacktemplateparams,
+            softwareType=softwaretype,
+            softwareVariant=softwarevariant,
+            softwareVersion=softwareversion,
             tags=tags,
-            templatecontent=templatecontent,
-            templateparams=templateparams,
+            templateContent=templatecontent,
+            templateParams=templateparams,
             version=version,
             headers=headers,
             payload=payload,
@@ -371,12 +371,6 @@ def update_template(obj, pretty_print, beep,
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
-              show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
               show_default=True)
@@ -384,9 +378,7 @@ def update_template(obj, pretty_print, beep,
 @click.pass_obj
 def get_projects(obj, pretty_print, beep,
                  name,
-                 headers,
-                 payload,
-                 active_validation):
+                 headers):
     """Returns the projects in the system.
     """
     spinner = init_spinner(beep=beep)
@@ -394,13 +386,9 @@ def get_projects(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.get_projects(
             name=name,
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -469,16 +457,18 @@ def deploy_template(obj, pretty_print, beep,
         if payload is not None:
             payload = json.loads(payload)
         membertemplatedeploymentinfo = list(membertemplatedeploymentinfo)
-        if membertemplatedeploymentinfo is not None:
-            membertemplatedeploymentinfo = json.loads('[{}]'.format(', '.join('{0}'.format(w) for w in membertemplatedeploymentinfo)))
+        membertemplatedeploymentinfo = json.loads('[{}]'.format(', '.join('{0}'.format(w) for w in membertemplatedeploymentinfo)))
+        membertemplatedeploymentinfo = membertemplatedeploymentinfo if len(membertemplatedeploymentinfo) > 0 else None
         targetinfo = list(targetinfo)
+        targetinfo = json.loads('[{}]'.format(', '.join('{0}'.format(w) for w in targetinfo)))
+        targetinfo = targetinfo if len(targetinfo) > 0 else None
         result = obj.deploy_template(
-            forcepushtemplate=forcepushtemplate,
-            iscomposite=iscomposite,
-            maintemplateid=maintemplateid,
-            membertemplatedeploymentinfo=membertemplatedeploymentinfo,
-            targetinfo=targetinfo,
-            templateid=templateid,
+            forcePushTemplate=forcepushtemplate,
+            isComposite=iscomposite,
+            mainTemplateId=maintemplateid,
+            memberTemplateDeploymentInfo=membertemplatedeploymentinfo,
+            targetInfo=targetinfo,
+            templateId=templateid,
             headers=headers,
             payload=payload,
             active_validation=active_validation)
@@ -502,12 +492,6 @@ def deploy_template(obj, pretty_print, beep,
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
-              show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
               show_default=True)
@@ -516,9 +500,7 @@ def deploy_template(obj, pretty_print, beep,
 def get_template_details(obj, pretty_print, beep,
                          latest_version,
                          template_id,
-                         headers,
-                         payload,
-                         active_validation):
+                         headers):
     """Returns details of the specified template.
     """
     spinner = init_spinner(beep=beep)
@@ -526,14 +508,10 @@ def get_template_details(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.get_template_details(
             latest_version=latest_version,
             template_id=template_id,
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -607,11 +585,13 @@ def update_project(obj, pretty_print, beep,
         if payload is not None:
             payload = json.loads(payload)
         tags = list(tags)
+        tags = json.loads('[{}]'.format(', '.join('{0}'.format(w) for w in tags)))
+        tags = tags if len(tags) > 0 else None
         result = obj.update_project(
-            createtime=createtime,
+            createTime=createtime,
             description=description,
             id=id,
-            lastupdatetime=lastupdatetime,
+            lastUpdateTime=lastupdatetime,
             name=name,
             tags=tags,
             templates=templates,
@@ -635,12 +615,6 @@ def update_project(obj, pretty_print, beep,
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
-              show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
               show_default=True)
@@ -648,9 +622,7 @@ def update_project(obj, pretty_print, beep,
 @click.pass_obj
 def get_template_deployment_status(obj, pretty_print, beep,
                                    deployment_id,
-                                   headers,
-                                   payload,
-                                   active_validation):
+                                   headers):
     """Returns the status of a deployed template.
     """
     spinner = init_spinner(beep=beep)
@@ -658,13 +630,9 @@ def get_template_deployment_status(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.get_template_deployment_status(
             deployment_id=deployment_id,
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -682,12 +650,6 @@ def get_template_deployment_status(obj, pretty_print, beep,
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
-              show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
               show_default=True)
@@ -695,9 +657,7 @@ def get_template_deployment_status(obj, pretty_print, beep,
 @click.pass_obj
 def delete_template(obj, pretty_print, beep,
                     template_id,
-                    headers,
-                    payload,
-                    active_validation):
+                    headers):
     """Deletes an existing template.
     """
     spinner = init_spinner(beep=beep)
@@ -705,13 +665,9 @@ def delete_template(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.delete_template(
             template_id=template_id,
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -761,7 +717,7 @@ def version_template(obj, pretty_print, beep,
             payload = json.loads(payload)
         result = obj.version_template(
             comments=comments,
-            templateid=templateid,
+            templateId=templateid,
             headers=headers,
             payload=payload,
             active_validation=active_validation)
@@ -816,7 +772,7 @@ def preview_template(obj, pretty_print, beep,
             params = json.loads('{}'.format(params))
         result = obj.preview_template(
             params=params,
-            templateid=templateid,
+            templateId=templateid,
             headers=headers,
             payload=payload,
             active_validation=active_validation)
@@ -837,12 +793,6 @@ def preview_template(obj, pretty_print, beep,
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
-              show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
               show_default=True)
@@ -850,9 +800,7 @@ def preview_template(obj, pretty_print, beep,
 @click.pass_obj
 def delete_project(obj, pretty_print, beep,
                    project_id,
-                   headers,
-                   payload,
-                   active_validation):
+                   headers):
     """Deletes an existing Project.
     """
     spinner = init_spinner(beep=beep)
@@ -860,13 +808,9 @@ def delete_project(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.delete_project(
             project_id=project_id,
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -1020,32 +964,42 @@ def create_template(obj, pretty_print, beep,
         if payload is not None:
             payload = json.loads(payload)
         containingtemplates = list(containingtemplates)
+        containingtemplates = json.loads('[{}]'.format(', '.join('{0}'.format(w) for w in containingtemplates)))
+        containingtemplates = containingtemplates if len(containingtemplates) > 0 else None
         devicetypes = list(devicetypes)
+        devicetypes = json.loads('[{}]'.format(', '.join('{0}'.format(w) for w in devicetypes)))
+        devicetypes = devicetypes if len(devicetypes) > 0 else None
         rollbacktemplateparams = list(rollbacktemplateparams)
+        rollbacktemplateparams = json.loads('[{}]'.format(', '.join('{0}'.format(w) for w in rollbacktemplateparams)))
+        rollbacktemplateparams = rollbacktemplateparams if len(rollbacktemplateparams) > 0 else None
         tags = list(tags)
+        tags = json.loads('[{}]'.format(', '.join('{0}'.format(w) for w in tags)))
+        tags = tags if len(tags) > 0 else None
         templateparams = list(templateparams)
+        templateparams = json.loads('[{}]'.format(', '.join('{0}'.format(w) for w in templateparams)))
+        templateparams = templateparams if len(templateparams) > 0 else None
         result = obj.create_template(
             author=author,
             composite=composite,
-            containingtemplates=containingtemplates,
-            createtime=createtime,
+            containingTemplates=containingtemplates,
+            createTime=createtime,
             description=description,
-            devicetypes=devicetypes,
-            failurepolicy=failurepolicy,
+            deviceTypes=devicetypes,
+            failurePolicy=failurepolicy,
             id=id,
-            lastupdatetime=lastupdatetime,
+            lastUpdateTime=lastupdatetime,
             name=name,
-            parenttemplateid=parenttemplateid,
-            projectid=projectid,
-            projectname=projectname,
-            rollbacktemplatecontent=rollbacktemplatecontent,
-            rollbacktemplateparams=rollbacktemplateparams,
-            softwaretype=softwaretype,
-            softwarevariant=softwarevariant,
-            softwareversion=softwareversion,
+            parentTemplateId=parenttemplateid,
+            projectId=projectid,
+            projectName=projectname,
+            rollbackTemplateContent=rollbacktemplatecontent,
+            rollbackTemplateParams=rollbacktemplateparams,
+            softwareType=softwaretype,
+            softwareVariant=softwarevariant,
+            softwareVersion=softwareversion,
             tags=tags,
-            templatecontent=templatecontent,
-            templateparams=templateparams,
+            templateContent=templatecontent,
+            templateParams=templateparams,
             version=version,
             project_id=project_id,
             headers=headers,
@@ -1068,12 +1022,6 @@ def create_template(obj, pretty_print, beep,
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
-              show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
               show_default=True)
@@ -1081,9 +1029,7 @@ def create_template(obj, pretty_print, beep,
 @click.pass_obj
 def get_template_versions(obj, pretty_print, beep,
                           template_id,
-                          headers,
-                          payload,
-                          active_validation):
+                          headers):
     """Returns the versions of a specified template.
     """
     spinner = init_spinner(beep=beep)
@@ -1091,13 +1037,9 @@ def get_template_versions(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.get_template_versions(
             template_id=template_id,
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:

@@ -132,13 +132,15 @@ def create_tag(obj, pretty_print, beep,
         if payload is not None:
             payload = json.loads(payload)
         dynamicrules = list(dynamicrules)
+        dynamicrules = json.loads('[{}]'.format(', '.join('{0}'.format(w) for w in dynamicrules)))
+        dynamicrules = dynamicrules if len(dynamicrules) > 0 else None
         result = obj.create_tag(
             description=description,
-            dynamicrules=dynamicrules,
+            dynamicRules=dynamicrules,
             id=id,
-            instancetenantid=instancetenantid,
+            instanceTenantId=instancetenantid,
             name=name,
-            systemtag=systemtag,
+            systemTag=systemtag,
             headers=headers,
             payload=payload,
             active_validation=active_validation)
@@ -159,12 +161,6 @@ def create_tag(obj, pretty_print, beep,
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
-              show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
               show_default=True)
@@ -172,9 +168,7 @@ def create_tag(obj, pretty_print, beep,
 @click.pass_obj
 def delete_tag(obj, pretty_print, beep,
                id,
-               headers,
-               payload,
-               active_validation):
+               headers):
     """Deletes a tag specified by id.
     """
     spinner = init_spinner(beep=beep)
@@ -182,13 +176,9 @@ def delete_tag(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.delete_tag(
             id=id,
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -216,12 +206,6 @@ def delete_tag(obj, pretty_print, beep,
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
-              show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
               show_default=True)
@@ -232,9 +216,7 @@ def get_tag_member_count(obj, pretty_print, beep,
                          member_association_type,
                          level,
                          id,
-                         headers,
-                         payload,
-                         active_validation):
+                         headers):
     """Returns the number of members in a given tag.
     """
     spinner = init_spinner(beep=beep)
@@ -242,16 +224,12 @@ def get_tag_member_count(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.get_tag_member_count(
             member_type=member_type,
             member_association_type=member_association_type,
             level=level,
             id=id,
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -265,21 +243,13 @@ def get_tag_member_count(obj, pretty_print, beep,
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
-              show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
               show_default=True)
 @click.option('--beep', is_flag=True, help='''Spinner beep (on)''')
 @click.pass_obj
 def get_tag_resource_types(obj, pretty_print, beep,
-                           headers,
-                           payload,
-                           active_validation):
+                           headers):
     """Returns list of supported resource types.
     """
     spinner = init_spinner(beep=beep)
@@ -287,12 +257,8 @@ def get_tag_resource_types(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.get_tag_resource_types(
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -343,8 +309,8 @@ def updates_tag_membership(obj, pretty_print, beep,
         if membertotags is not None:
             membertotags = json.loads('{}'.format(membertotags))
         result = obj.updates_tag_membership(
-            membertotags=membertotags,
-            membertype=membertype,
+            memberToTags=membertotags,
+            memberType=membertype,
             headers=headers,
             payload=payload,
             active_validation=active_validation)
@@ -416,13 +382,15 @@ def update_tag(obj, pretty_print, beep,
         if payload is not None:
             payload = json.loads(payload)
         dynamicrules = list(dynamicrules)
+        dynamicrules = json.loads('[{}]'.format(', '.join('{0}'.format(w) for w in dynamicrules)))
+        dynamicrules = dynamicrules if len(dynamicrules) > 0 else None
         result = obj.update_tag(
             description=description,
-            dynamicrules=dynamicrules,
+            dynamicRules=dynamicrules,
             id=id,
-            instancetenantid=instancetenantid,
+            instanceTenantId=instancetenantid,
             name=name,
-            systemtag=systemtag,
+            systemTag=systemtag,
             headers=headers,
             payload=payload,
             active_validation=active_validation)
@@ -457,12 +425,6 @@ def update_tag(obj, pretty_print, beep,
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
-              show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
               show_default=True)
@@ -475,9 +437,7 @@ def get_tag_count(obj, pretty_print, beep,
                   level,
                   size,
                   system_tag,
-                  headers,
-                  payload,
-                  active_validation):
+                  headers):
     """Returns tag count.
     """
     spinner = init_spinner(beep=beep)
@@ -485,8 +445,6 @@ def get_tag_count(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.get_tag_count(
             name=name,
             name_space=name_space,
@@ -494,9 +452,7 @@ def get_tag_count(obj, pretty_print, beep,
             level=level,
             size=size,
             system_tag=system_tag,
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -514,12 +470,6 @@ def get_tag_count(obj, pretty_print, beep,
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
-              show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
               show_default=True)
@@ -527,9 +477,7 @@ def get_tag_count(obj, pretty_print, beep,
 @click.pass_obj
 def get_tag_by_id(obj, pretty_print, beep,
                   id,
-                  headers,
-                  payload,
-                  active_validation):
+                  headers):
     """Returns tag specified by Id.
     """
     spinner = init_spinner(beep=beep)
@@ -537,13 +485,9 @@ def get_tag_by_id(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.get_tag_by_id(
             id=id,
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -577,12 +521,6 @@ def get_tag_by_id(obj, pretty_print, beep,
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
-              show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
               show_default=True)
@@ -595,9 +533,7 @@ def get_tag_members_by_id(obj, pretty_print, beep,
                           member_association_type,
                           level,
                           id,
-                          headers,
-                          payload,
-                          active_validation):
+                          headers):
     """Returns tag members specified by id.
     """
     spinner = init_spinner(beep=beep)
@@ -605,8 +541,6 @@ def get_tag_members_by_id(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.get_tag_members_by_id(
             member_type=member_type,
             offset=offset,
@@ -614,9 +548,7 @@ def get_tag_members_by_id(obj, pretty_print, beep,
             member_association_type=member_association_type,
             level=level,
             id=id,
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -638,12 +570,6 @@ def get_tag_members_by_id(obj, pretty_print, beep,
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
-              show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
               show_default=True)
@@ -652,9 +578,7 @@ def get_tag_members_by_id(obj, pretty_print, beep,
 def remove_tag_member(obj, pretty_print, beep,
                       id,
                       member_id,
-                      headers,
-                      payload,
-                      active_validation):
+                      headers):
     """Removes Tag member from the tag specified by id.
     """
     spinner = init_spinner(beep=beep)
@@ -662,14 +586,10 @@ def remove_tag_member(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.remove_tag_member(
             id=id,
             member_id=member_id,
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -716,12 +636,6 @@ def remove_tag_member(obj, pretty_print, beep,
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
-              show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
               show_default=True)
@@ -739,9 +653,7 @@ def get_tag(obj, pretty_print, beep,
             sort_by,
             order,
             system_tag,
-            headers,
-            payload,
-            active_validation):
+            headers):
     """Returns the tags for given filter criteria.
     """
     spinner = init_spinner(beep=beep)
@@ -749,8 +661,6 @@ def get_tag(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.get_tag(
             name=name,
             additional_info_name_space=additional_info_name_space,
@@ -763,9 +673,7 @@ def get_tag(obj, pretty_print, beep,
             sort_by=sort_by,
             order=order,
             system_tag=system_tag,
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:

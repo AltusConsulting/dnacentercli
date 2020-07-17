@@ -34,12 +34,6 @@ def site_profile(ctx, obj):
 @click.option('--headers', type=str, help='''Dictionary of HTTP Headers to send with the Request.''',
               default=None,
               show_default=True)
-@click.option('--payload', type=str, help='''A JSON serializable Python object to send in the body of the Request.''',
-              default=None,
-              show_default=True)
-@click.option('--active_validation', type=bool, help='''Enable/Disable payload validation.''',
-              default=True,
-              show_default=True)
 @click.option('-pp', '--pretty_print', type=int, help='''Pretty print indent''',
               default=None,
               show_default=True)
@@ -47,9 +41,7 @@ def site_profile(ctx, obj):
 @click.pass_obj
 def get_device_details_by_ip(obj, pretty_print, beep,
                              device_ip,
-                             headers,
-                             payload,
-                             active_validation):
+                             headers):
     """**Beta** - Returns provisioning device information for the specified IP address.
     """
     spinner = init_spinner(beep=beep)
@@ -57,13 +49,9 @@ def get_device_details_by_ip(obj, pretty_print, beep,
     try:
         if headers is not None:
             headers = json.loads(headers)
-        if payload is not None:
-            payload = json.loads(payload)
         result = obj.get_device_details_by_ip(
             device_ip=device_ip,
-            headers=headers,
-            payload=payload,
-            active_validation=active_validation)
+            headers=headers)
         stop_spinner(spinner)
         opprint(result, indent=pretty_print)
     except Exception as e:
@@ -117,11 +105,15 @@ def provision_nfv(obj, pretty_print, beep,
         if payload is not None:
             payload = json.loads(payload)
         provisioning = list(provisioning)
+        provisioning = json.loads('[{}]'.format(', '.join('{0}'.format(w) for w in provisioning)))
+        provisioning = provisioning if len(provisioning) > 0 else None
         siteprofile = list(siteprofile)
+        siteprofile = json.loads('[{}]'.format(', '.join('{0}'.format(w) for w in siteprofile)))
+        siteprofile = siteprofile if len(siteprofile) > 0 else None
         result = obj.provision_nfv(
-            callbackurl=callbackurl,
+            callbackUrl=callbackurl,
             provisioning=provisioning,
-            siteprofile=siteprofile,
+            siteProfile=siteprofile,
             headers=headers,
             payload=payload,
             active_validation=active_validation)
